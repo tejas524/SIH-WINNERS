@@ -1,4 +1,4 @@
-# VayuSutra: National Airfare Intelligence & Inflation Decision Platform
+# AirIntel India: National Airfare Intelligence & Inflation Decision Platform
 ### Measure &bull; Explain &bull; Forecast &bull; Simulate
 **Smart India Hackathon 2026 (Problem Statement SIH26056)**  
 *Commissioned for:* **Ministry of Statistics and Programme Implementation (MoSPI), Government of India**  
@@ -11,17 +11,17 @@
 
 **Dev Parth** — Sole Creator & Lead Developer *(System Architecture, Econometric Math, AI Nowcasting Ensemble, Data Engineering, Ethical Ingestion, Backend & API Architecture, Forecasting, Policy Simulation, Data Trust Center, UI/UX, Visualizations, Testing & Full-Stack Development)*
 
-> **VayuSutra was designed, engineered, and developed entirely by Dev Parth.**
+> **AirIntel India was designed, engineered, and developed entirely by Dev Parth (Team Rookie).**
 
 ---
 
 ## 1. Executive Overview: The Complete Intelligence Loop
 
-**VayuSutra** is an enterprise-grade quantitative econometric intelligence platform that modernizes India's retail inflation measurement. It replaces archaic 30-day manual airport counter price collection with an automated, high-frequency, statistical pipeline that captures real-world online airfares, de-biases multi-OTA listings, computes statutory international price indices, and provides predictive nowcasting for central bank rate policy decisions.
+**AirIntel India** is an enterprise-grade quantitative econometric intelligence platform that modernizes India's retail inflation measurement. It replaces archaic 30-day manual airport counter price collection with an automated, high-frequency, statistical pipeline that captures real-world online airfares, de-biases multi-OTA listings, computes statutory international price indices, and provides predictive nowcasting for central bank rate policy decisions.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 THE VAYUSUTRA INTELLIGENCE LOOP                                  │
+│                                 THE AIRINTEL INTELLIGENCE LOOP                                   │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                                  │
 │   1. WHAT HAPPENED?     ──►  Real-Time Index (Jevons Elementary, Laspeyres, Superlative Fisher)  │
@@ -45,7 +45,7 @@
 
 ```
 +──────────────────────────────────────────────────────────────────────────────────────────────────+
-|                                  VAYUSUTRA PRODUCTION ARCHITECTURE                               |
+|                                  AIRINTEL INDIA PRODUCTION ARCHITECTURE                           |
 +──────────────────────────────────────────────────────────────────────────────────────────────────+
 |                                                                                                  |
 |   +──────────────────────────+   +──────────────────────────+   +────────────────────────────+   |
@@ -129,7 +129,7 @@ $$\Delta \text{Bps}_{\text{Headline}} = \Delta \text{Bps}_{\text{Transport}} \ti
 
 Benchmarked against official DGCA monthly reported domestic passenger yields across **31,505 observations**:
 
-| Validation Metric | Statutory Mandate | VayuSutra APIx Empirical Result | Status |
+| Validation Metric | Statutory Mandate | AirIntel India Empirical Result | Status |
 | :--- | :--- | :--- | :--- |
 | **Pearson Correlation ($r$)** | $r \ge 0.8500$ | **$0.9858$** | :white_check_mark: **PASSED (Exceptional)** |
 | **Mean Absolute % Error (MAPE)**| $\text{MAPE} \le 4.00\%$ | **$0.838\%$** | :white_check_mark: **PASSED (High Precision)** |

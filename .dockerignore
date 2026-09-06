@@ -1,0 +1,13 @@
+# Keep the Docker build context lean and secrets out of the image
+.git
+.github
+.gitignore
+.dockerignore
+**/__pycache__/
+*.py[cod]
+.env
+.vscode/
+.idea/
+deploy/
+/docs/
+/README.md

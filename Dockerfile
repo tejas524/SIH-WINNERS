@@ -55,4 +55,8 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD curl -f http://127.0.0.1:8000/api/v1/health || exit 1
 
-CMD ["python3", "-m", "uvicorn", "vayusutra_apix.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4", "--log-level", "info"]
+# Single worker: the app is stateful per-process (in-memory WebSocket stream
+# manager, background ingestion daemon, lifespan DB seeding) and shares one
+# SQLite file -- multiple workers would race initialization and duplicate the
+# ingestion daemon.
+CMD ["python3", "-m", "uvicorn", "vayusutra_apix.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1", "--log-level", "info"]

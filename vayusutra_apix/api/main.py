@@ -93,6 +93,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 DATA_DIR = os.path.join(BASE_DIR, "data")
 DASHBOARD_PATH = os.path.join(STATIC_DIR, "dashboard.html")
+LANDING_PATH = os.path.join(STATIC_DIR, "landing.html")
 VIDEO_PATH = os.path.join(STATIC_DIR, "video_walkthrough.html")
 SOLUTION_CARD_PATH = os.path.join(STATIC_DIR, "proposed_solution_card.html")
 
@@ -121,10 +122,11 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="VayuSutra APIx - National Airfare Intelligence & Inflation Decision Platform",
+    title="AirIntel India - National Airfare Intelligence & Inflation Decision Platform",
     description=(
         "High-frequency econometric price indexing, inflation nowcasting, and policy scenario simulation "
-        "for MoSPI / NSO, RBI Monetary Policy Committee, and DGCA. Measures, Explains, Forecasts, and Simulates air travel inflation."
+        "for MoSPI / NSO, RBI Monetary Policy Committee, and DGCA. Measures, Explains, Forecasts, and Simulates air travel inflation. "
+        "Built by Team Rookie."
     ),
     version="2.0.0",
     docs_url="/docs",
@@ -174,13 +176,28 @@ def get_dashboard_html_content() -> str:
         if os.path.exists(p):
             with open(p, "r", encoding="utf-8") as f:
                 return f.read()
-    return "<h2>VAYUSUTRA APIx &bull; National Airfare Intelligence &amp; Inflation Decision Platform</h2>"
+    return "<h2>AirIntel India &bull; National Airfare Intelligence &amp; Inflation Decision Platform</h2>"
 
 
 @app.get("/", response_class=HTMLResponse, summary="National Airfare Intelligence Command Center")
 def serve_dashboard():
     """Serves the standalone interactive zero-dependency HTML dashboard."""
     return HTMLResponse(content=get_dashboard_html_content())
+
+
+@app.get("/landing", response_class=HTMLResponse, summary="AirIntel India Landing Page")
+def serve_landing():
+    """Serves the AirIntel India editorial landing page (Team Rookie)."""
+    candidate_paths = [
+        LANDING_PATH,
+        os.path.join(os.getcwd(), "vayusutra_apix", "static", "landing.html"),
+        os.path.join(BASE_DIR, "static", "landing.html"),
+    ]
+    for p in candidate_paths:
+        if os.path.exists(p):
+            with open(p, "r", encoding="utf-8") as f:
+                return HTMLResponse(content=f.read())
+    return serve_dashboard()
 
 
 @app.get("/routes/{route_code}", response_class=HTMLResponse, summary="Route Intelligence Page")
@@ -210,17 +227,17 @@ def serve_solution_slide():
     return HTMLResponse("<h2>Solution slide loading...</h2>")
 
 
-@app.get("/demo-video", response_class=HTMLResponse, summary="VayuSutra APIx Video Demo Player")
+@app.get("/demo-video", response_class=HTMLResponse, summary="AirIntel India Video Demo Player")
 def serve_demo_video():
     return HTMLResponse("""
-    <!DOCTYPE html><html><head><title>VayuSutra MVP Demo Player</title><style>body{background:#040814;color:#fff;font-family:sans-serif;padding:20px;display:flex;flex-direction:column;align-items:center;}.box{max-width:1200px;width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(56,189,248,0.3);box-shadow:0 8px 32px rgba(0,0,0,0.8);}</style></head><body><div class="box"><h2 style="padding:14px;background:#0d1426;">VayuSutra APIx: MVP Walkthrough Player</h2><p style="padding:0 14px 14px;color:#94a3b8;">High-Resolution Screen Recording & Feature Explanation (SIH26056)</p></div></body></html>
+    <!DOCTYPE html><html><head><title>AirIntel India Demo Player</title><style>body{background:#0A1F33;color:#fff;font-family:sans-serif;padding:20px;display:flex;flex-direction:column;align-items:center;}.box{max-width:1200px;width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(14,126,123,0.4);box-shadow:0 8px 32px rgba(0,0,0,0.8);}</style></head><body><div class="box"><h2 style="padding:14px;background:#0C2A47;">AirIntel India: Platform Walkthrough Player</h2><p style="padding:0 14px 14px;color:#9BDDD9;">High-Resolution Screen Recording & Feature Explanation &middot; Team Rookie</p></div></body></html>
     """)
 
 
 @app.get("/references", response_class=HTMLResponse, summary="References & Research Work")
 def serve_references():
     return HTMLResponse("""
-    <!DOCTYPE html><html><head><title>References & Research Work | VayuSutra APIx</title><style>body{background:#040814;color:#fff;font-family:sans-serif;padding:20px;display:flex;flex-direction:column;align-items:center;}.container{max-width:1300px;width:100%;}a{color:#38bdf8;text-decoration:none;border:1px solid rgba(56,189,248,0.3);padding:6px 12px;border-radius:6px;}</style></head><body><div class="container"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><h2>📚 References & Research Work (SIH26056)</h2><a href="/">&larr; Back to Dashboard</a></div><div style="background:#0d1426;border:1px solid #1e3a8a;border-radius:12px;padding:20px;line-height:1.7;"><h3>Official Statutory Sources:</h3><ul><li><strong>MoSPI eSankhyiki Portal:</strong> <a href="https://esankhyiki.mospi.gov.in" target="_blank">https://esankhyiki.mospi.gov.in</a> (Group 6.1.03)</li><li><strong>DGCA Domestic Air Transport Statistics:</strong> <a href="https://dgca.gov.in" target="_blank">https://dgca.gov.in</a> (City-Pair Volumes)</li><li><strong>ILO / IMF / OECD CPI Manual (2020 Edition):</strong> Jevons & Superlative Fisher Standards</li><li><strong>Iglewicz & Hoaglin:</strong> Median Absolute Deviation (MAD) Modified Z-Score Outlier Rejection</li></ul></div></div></body></html>
+    <!DOCTYPE html><html><head><title>References & Research Work | AirIntel India</title><style>body{background:#F7F4EC;color:#0F2231;font-family:sans-serif;padding:20px;display:flex;flex-direction:column;align-items:center;}.container{max-width:1300px;width:100%;}a{color:#0E7E7B;text-decoration:none;border:1px solid rgba(14,126,123,0.35);padding:6px 12px;border-radius:6px;}</style></head><body><div class="container"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><h2>References & Research Work</h2><a href="/">&larr; Back to Dashboard</a></div><div style="background:#FFFFFF;border:1px solid #E5DFD1;border-radius:12px;padding:20px;line-height:1.7;"><h3>Official Statutory Sources:</h3><ul><li><strong>MoSPI eSankhyiki Portal:</strong> <a href="https://esankhyiki.mospi.gov.in" target="_blank">https://esankhyiki.mospi.gov.in</a> (Group 6.1.03)</li><li><strong>DGCA Domestic Air Transport Statistics:</strong> <a href="https://dgca.gov.in" target="_blank">https://dgca.gov.in</a> (City-Pair Volumes)</li><li><strong>ILO / IMF / OECD CPI Manual (2020 Edition):</strong> Jevons & Superlative Fisher Standards</li><li><strong>Iglewicz & Hoaglin:</strong> Median Absolute Deviation (MAD) Modified Z-Score Outlier Rejection</li></ul><p style="color:#5F6E7B;font-size:13px;">AirIntel India &mdash; India's Airfare Intelligence Platform &middot; Team Rookie</p></div></div></body></html>
     """)
 
 

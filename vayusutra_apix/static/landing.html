@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AirIntel India — India's Airfare Intelligence Platform. Measure, explain, forecast and simulate India's airfare-driven inflation. Built by Team Rookie.">
+<title>AirIntel India — India's Airfare Intelligence Platform</title>
+<style>
+/* ============================================================
+   AirIntel India — Landing Page
+   Team Rookie · one cohesive warm-editorial visual system
+   Foundation: warm ivory #F7F4EC · Navy ink · Teal accent
+   Motifs: curved flight paths, airport nodes, India contours,
+   topographic lines — one shared visual language, never the
+   exact same illustration twice.
+   ============================================================ */
+:root{
+  /* one warm neutral family — the page moves between these only */
+  --ivory:#F7F4EC;          /* primary foundation */
+  --cream:#F1EDE2;          /* alternating bands   */
+  --cream-deep:#EBE6D8;     /* inset surfaces      */
+  --paper:#FCFAF4;          /* lightest tint, never pure white */
+
+  --navy:#0A1F33;           /* PRIMARY — ink */
+  --navy-2:#0F3A5C;
+  --teal:#0E7E7B;           /* ACCENT */
+  --teal-deep:#0B6562;
+  --teal-ink:#2A5A58;
+  --green:#2E7D4F;          /* SECONDARY — muted */
+  --blue:#2E6CA9;           /* SUPPORTING — soft desaturated */
+  --orange:#C2621A;         /* HIGHLIGHT — muted */
+  --amber:#C77E0E; --red:#C13A2E;   /* semantic */
+
+  --text-1:#152430; --text-2:#3E4E5C; --text-3:#5F6E7B; --text-4:#84909B;
+  --border:#E2DCCB; --border-strong:#CFC6B2;
+  --shadow-sm:0 1px 2px rgba(21,36,48,.05);
+  --shadow-md:0 2px 6px rgba(21,36,48,.06),0 18px 40px -18px rgba(21,36,48,.22);
+  --r:12px; --r-sm:9px;
+  --font-serif:Georgia,'Iowan Old Style','Times New Roman',Times,serif;
+  --font-sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Inter","Helvetica Neue",Arial,sans-serif;
+  --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --tr:.2s cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--text-1);font-family:var(--font-sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(14,126,123,.2)}
+a{color:var(--teal);text-decoration:none}
+img,svg{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- shared type scale (serif editorial display) ---------- */
+.d-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:2px;color:var(--teal);text-transform:uppercase}
+.d-eyebrow::before{content:"";width:26px;height:1.5px;background:var(--teal);opacity:.55}
+h1.display{font-family:var(--font-serif);font-weight:700;font-size:clamp(40px,5.8vw,64px);line-height:1.04;letter-spacing:-1.5px;color:var(--navy);margin:18px 0 0}
+h2.display{font-family:var(--font-serif);font-weight:700;font-size:clamp(28px,3.6vw,40px);line-height:1.12;letter-spacing:-.9px;color:var(--navy);margin:14px 0 0}
+p.lead{font-size:clamp(15.5px,1.7vw,18px);color:var(--text-2);max-width:620px;margin:18px 0 0;line-height:1.7}
+p.sub{color:var(--text-3);font-size:15.5px;max-width:600px;margin:12px 0 0;line-height:1.7}
+
+/* ---------- buttons / chips (consistent everywhere) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--navy);background:var(--navy);color:#FDFCF8;font-size:13.5px;font-weight:700;padding:11px 22px;border-radius:10px;cursor:pointer;transition:background var(--tr),border-color var(--tr),transform var(--tr);font-family:inherit;white-space:nowrap}
+.btn:hover{background:var(--teal-deep);border-color:var(--teal-deep);transform:translateY(-1px)}
+.btn svg{width:15px;height:15px}
+.btn-soft{background:transparent;color:var(--navy);border-color:var(--border-strong)}
+.btn-soft:hover{color:var(--teal-deep);border-color:var(--teal);background:transparent}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;border:1px solid var(--border-strong);border-radius:999px;padding:5px 13px;color:var(--teal-ink);background:var(--paper)}
+
+/* ---------- scroll reveal (one animation language) ---------- */
+.rv{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* ---------- navbar ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(247,244,236,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.hd{display:flex;align-items:center;gap:14px;min-height:68px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--navy) 0%,var(--teal) 100%);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:var(--shadow-sm);flex:none}
+.brand-mark svg{width:19px;height:19px}
+.brand-name{font-family:var(--font-serif);font-size:17px;font-weight:700;letter-spacing:-.2px;color:var(--navy);line-height:1.1}
+.brand-name span{font-family:var(--font-sans);font-size:9.5px;font-weight:800;background:linear-gradient(135deg,var(--amber),var(--orange));color:#fff;padding:2px 6px;border-radius:5px;letter-spacing:.6px;vertical-align:2px;margin-left:5px}
+.brand-sub{font-size:10.4px;color:var(--text-3);letter-spacing:.2px;margin-top:2px}
+nav.links{margin-left:auto;display:flex;gap:24px;align-items:center}
+nav.links a{color:var(--text-2);font-weight:650;font-size:13px;transition:color var(--tr)}
+nav.links a:hover{color:var(--teal)}
+.hd-ctas{display:flex;gap:10px}
+@media(max-width:940px){nav.links{display:none}}
+@media(max-width:560px){.hd-ctas .btn-soft{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding:92px 0 84px;background:var(--ivory)}
+/* mesh-drift shader as a quiet atmospheric wash — part of the page's air, not a spectacle */
+#hero-gl{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;opacity:.16;
+  -webkit-mask-image:radial-gradient(115% 90% at 72% 30%,#000 30%,transparent 78%);
+          mask-image:radial-gradient(115% 90% at 72% 30%,#000 30%,transparent 78%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,var(--ivory) 100%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+@media(max-width:960px){.hero .wrap{grid-template-columns:1fr}}
+.hero-ctas{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.hero-meta{display:grid;grid-template-columns:repeat(4,auto);gap:14px 34px;margin-top:40px;width:fit-content}
+@media(max-width:680px){.hero-meta{grid-template-columns:repeat(2,auto)}}
+.hm{border-left:2px solid rgba(14,126,123,.4);padding-left:13px}
+.hm .n{font-size:21px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1.15;font-family:var(--font-serif)}
+.hm .l{font-size:10.2px;color:var(--text-3);letter-spacing:.6px;margin-top:2px;text-transform:uppercase;font-weight:700}
+/* India flight-path illustration — the hero's quiet centerpiece */
+.india-fig{position:relative}
+.india-fig svg{display:block;width:100%;height:auto}
+.fig-cap{margin-top:10px;font-size:11.6px;color:var(--text-4);letter-spacing:.3px;display:flex;gap:8px;align-items:center}
+.fig-cap .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);flex:none}
+.fig-cap .dot.o{background:var(--orange)}
+
+/* ---------- philosophy strip (first motif echo: dashed route line) ---------- */
+.phil{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--cream);padding:30px 0}
+.phil-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.ph{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.8px;color:var(--text-2)}
+.ph .nd{width:9px;height:9px;border-radius:50%;border:2px solid var(--teal);background:var(--cream);flex:none}
+.ph b{color:var(--navy)}
+.ph-sep{color:var(--teal);opacity:.5;flex:none}
+
+/* ---------- section scaffold (identical rhythm everywhere) ---------- */
+section.band{padding:96px 0;background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+section.plain{padding:96px 0;background:var(--ivory)}
+.sec-head{max-width:640px;margin-bottom:52px}
+/* thin flight-path divider used above section headings */
+.route-div{display:block;margin-bottom:26px;width:150px;height:22px}
+
+/* ---------- challenge: editorial numbered rows, no card grid ---------- */
+.chal{display:flex;flex-direction:column}
+.chal-row{display:grid;grid-template-columns:64px 1fr 1.4fr;gap:26px;padding:30px 4px;border-top:1px solid var(--border);align-items:baseline}
+.chal-row:first-child{border-top:0}
+.chal-row .no{font-family:var(--font-serif);font-size:26px;color:var(--teal);font-variant-numeric:tabular-nums}
+.chal-row h3{margin:0;font-size:18px;font-family:var(--font-serif);font-weight:700;color:var(--navy);letter-spacing:-.2px}
+.chal-row p{margin:0;color:var(--text-3);font-size:14px;line-height:1.65}
+@media(max-width:820px){.chal-row{grid-template-columns:48px 1fr}.chal-row p{grid-column:2}}
+
+/* ---------- how it works: numbered route timeline (motif: nodes + dashed line) ---------- */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.flow::before{content:"";position:absolute;top:21px;left:9%;right:9%;border-top:1.5px dashed rgba(14,126,123,.45)}
+.step{padding:0 16px;position:relative}
+.step .nd{width:42px;height:42px;border-radius:50%;background:var(--ivory);border:1.5px solid var(--teal);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-weight:700;font-size:15px;color:var(--teal-deep);margin-bottom:16px;box-shadow:var(--shadow-sm)}
+.step h3{margin:0 0 6px;font-size:13.5px;font-weight:800;letter-spacing:1.4px;color:var(--navy);text-transform:uppercase}
+.step p{margin:0;color:var(--text-3);font-size:12.6px;line-height:1.6}
+@media(max-width:1000px){.flow{grid-template-columns:repeat(2,1fr);gap:28px 0}.flow::before{display:none}.step{padding:0 18px}}
+@media(max-width:560px){.flow{grid-template-columns:1fr}}
+
+/* ---------- product preview: dark analytical window embedded in warm page ---------- */
+.frame{background:var(--ivory);border:1px solid var(--border-strong);border-radius:var(--r);padding:14px;box-shadow:var(--shadow-md);position:relative}
+.frame::before{content:"";position:absolute;left:-26px;top:34px;width:70px;height:44px;pointer-events:none;
+  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 44"><path d="M2 40 Q26 4 68 6" fill="none" stroke="%230E7E7B" stroke-width="1.4" stroke-dasharray="1 6" stroke-linecap="round" opacity=".55"/><circle cx="2" cy="40" r="3" fill="%230E7E7B" opacity=".6"/></svg>') no-repeat}
+.frame::after{content:"";position:absolute;right:-26px;bottom:38px;width:70px;height:44px;pointer-events:none;
+  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 44"><path d="M68 40 Q44 4 2 6" fill="none" stroke="%23C2621A" stroke-width="1.4" stroke-dasharray="1 6" stroke-linecap="round" opacity=".5"/><circle cx="68" cy="40" r="3" fill="%23C2621A" opacity=".55"/></svg>') no-repeat}
+@media(max-width:860px){.frame::before,.frame::after{display:none}}
+.pv{background:linear-gradient(150deg,#0A1F33 0%,#0C2A47 60%,#0B6562 140%);border-radius:calc(var(--r) - 4px);overflow:hidden}
+.pv-bar{display:flex;align-items:center;gap:8px;padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.pv-dot{width:10px;height:10px;border-radius:50%}
+.pv-title{margin-left:10px;font-size:12px;color:rgba(255,255,255,.65);font-weight:700;letter-spacing:.4px}
+.pv-body{display:grid;grid-template-columns:200px 1fr;min-height:400px}
+@media(max-width:820px){.pv-body{grid-template-columns:1fr}}
+.pv-nav{padding:16px 13px;border-right:1px solid rgba(255,255,255,.1)}
+.pv-nav .grp{font-size:9px;font-weight:800;letter-spacing:1.4px;color:rgba(255,255,255,.4);margin:13px 8px 5px;text-transform:uppercase}
+.pv-nav .item{display:flex;align-items:center;gap:9px;font-size:12px;color:rgba(255,255,255,.78);padding:6px 10px;border-radius:8px;margin-bottom:2px}
+.pv-nav .item.on{background:rgba(14,126,123,.85);color:#fff;font-weight:700}
+.pv-main{padding:22px 24px;display:flex;flex-direction:column;gap:14px}
+.pv-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:640px){.pv-kpis{grid-template-columns:repeat(2,1fr)}}
+.pv-kpi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px}
+.pv-kpi.hero-kpi{background:linear-gradient(135deg,rgba(14,126,123,.4),rgba(15,58,92,.4));border-color:rgba(155,221,217,.3)}
+.pv-kpi .k{font-size:9.2px;font-weight:800;letter-spacing:1px;color:rgba(255,255,255,.55);text-transform:uppercase}
+.pv-kpi .v{font-size:20px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums;margin-top:3px;letter-spacing:-.4px}
+.pv-kpi .d{font-size:10px;margin-top:4px;color:#9BDDD9;font-weight:700}
+.pv-chart{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:13px;display:flex;flex-direction:column}
+.pv-chart .t{font-size:11px;font-weight:800;letter-spacing:.8px;color:rgba(255,255,255,.6);text-transform:uppercase;margin-bottom:8px}
+.spark{flex:1;min-height:120px}
+.pv-note{font-size:12.4px;color:var(--text-3);margin-top:18px;text-align:center}
+.pv-note b{color:var(--teal-deep)}
+
+/* ---------- data trust: editorial split + arc + topo lines ---------- */
+.trust{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative}
+@media(max-width:900px){.trust{grid-template-columns:1fr;gap:36px}}
+.topo{position:absolute;right:-60px;top:-40px;width:340px;height:280px;pointer-events:none;opacity:.5}
+@media(max-width:900px){.topo{display:none}}
+.trust-arc{display:flex;gap:22px;align-items:center;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:24px;box-shadow:var(--shadow-sm)}
+.trust-stats{margin-top:18px}
+.ts-row{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:14px 4px;border-top:1px solid var(--border)}
+.ts-row:first-child{border-top:0}
+.ts-row .l{font-size:12px;font-weight:800;letter-spacing:1.1px;color:var(--text-3);text-transform:uppercase}
+.ts-row .v{font-family:var(--font-serif);font-size:24px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.ts-row .s{font-size:12.4px;color:var(--text-3);max-width:340px;margin:4px 0 0}
+.trust-arc .lab{font-size:11px;font-weight:800;letter-spacing:1.1px;color:var(--text-3);text-transform:uppercase;margin-bottom:4px}
+.trust-arc .v{font-family:var(--font-serif);font-size:26px;font-weight:700;color:var(--navy)}
+
+/* ---------- methodology: editorial list + formula card ---------- */
+.meth{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;position:relative}
+@media(max-width:900px){.meth{grid-template-columns:1fr}}
+.india-ghost{position:absolute;right:-40px;bottom:-50px;width:300px;opacity:.07;pointer-events:none}
+.meth-item{display:flex;gap:18px;padding:17px 4px;border-top:1px solid var(--border)}
+.meth-item:first-child{border-top:0}
+.meth-item .n{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--teal);color:var(--teal-deep);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex:none;margin-top:2px}
+.meth-item h4{margin:0 0 4px;font-size:15px;font-family:var(--font-serif);font-weight:700;color:var(--navy)}
+.meth-item p{margin:0;font-size:13px;color:var(--text-3);line-height:1.6}
+.formula-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:26px;box-shadow:var(--shadow-sm)}
+.formula-card h3{margin:0 0 18px;font-family:var(--font-serif);font-size:17px;color:var(--navy)}
+.fx{font-family:var(--font-mono);font-size:12.6px;background:var(--ivory);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:var(--r-sm);padding:12px 15px;margin-bottom:10px;line-height:1.6;color:var(--text-2)}
+.fx b{color:var(--teal-deep)}
+.fx .cm{color:var(--text-4);font-size:10.4px}
+.fx:last-child{margin:0}
+
+/* ---------- architecture: route-network node graph ---------- */
+.arch{position:relative;display:flex;flex-direction:column;gap:0;max-width:860px;margin:0 auto}
+.arch-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:760px){.arch-row{grid-template-columns:1fr}}
+.arch-node{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:17px 19px;box-shadow:var(--shadow-sm);position:relative}
+.arch-node .t{font-size:9.6px;font-weight:800;letter-spacing:1.4px;color:var(--orange);text-transform:uppercase;margin-bottom:5px}
+.arch-node .n{font-size:15px;font-weight:750;color:var(--navy);font-family:var(--font-serif)}
+.arch-node .d{font-size:12.2px;color:var(--text-3);margin-top:4px;line-height:1.55}
+.arch-node::before{content:"";position:absolute;top:24px;left:-23px;width:22px;border-top:1.5px dashed rgba(14,126,123,.5)}
+.arch-row .arch-node:first-child::before{display:none}
+.arch-link{display:flex;justify-content:center;padding:14px 0;color:var(--teal);opacity:.6}
+.arch-link svg{width:22px;height:26px}
+
+/* ---------- final CTA: echoes the hero (same ground, same motifs) ---------- */
+.final-sec{padding:110px 0 96px;position:relative;overflow:hidden;background:var(--ivory)}
+.final-sec::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70% 60% at 50% 30%,rgba(14,126,123,.07),transparent 75%)}
+.final{position:relative;z-index:2;text-align:center;max-width:640px;margin:0 auto}
+.final .motif{display:block;margin:0 auto 22px;width:180px;height:40px}
+.final h2{font-family:var(--font-serif);font-weight:700;font-size:clamp(30px,4vw,44px);letter-spacing:-1.1px;line-height:1.1;color:var(--navy);margin:0 0 14px}
+.final p{color:var(--text-2);margin:0 auto 30px;font-size:16px}
+.final .btn{padding:13px 28px;font-size:14.5px}
+
+/* ---------- footer (navy bookend, same palette) ---------- */
+footer{background:var(--navy);color:rgba(247,244,236,.68);padding:44px 0 36px;font-size:12.6px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.foot b{color:#F7F4EC}
+.foot a{color:#9BDDD9}
+.foot .links{display:flex;gap:16px;flex-wrap:wrap}
+.foot-credit{margin-top:24px;padding-top:18px;border-top:1px solid rgba(247,244,236,.14);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11.4px;color:rgba(247,244,236,.45)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <div class="brand">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div>
+      <div>
+        <div class="brand-name">AirIntel India<span>TEAM ROOKIE</span></div>
+        <div class="brand-sub">India's Airfare Intelligence Platform</div>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#how">How it works</a>
+      <a href="#product">Product</a>
+      <a href="#methodology">Methodology</a>
+      <a href="#trust">Data Trust</a>
+      <a href="#architecture">Architecture</a>
+    </nav>
+    <div class="hd-ctas">
+      <a class="btn" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg> Explore the Dashboard</a>
+      <a class="btn btn-soft" href="#methodology">Explore Methodology</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO — warm ivory, India flight-path illustration, atmospheric shader wash ============ -->
+<section class="hero">
+  <canvas id="hero-gl" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="chip">Team Rookie &middot; for MoSPI / NSO &middot; RBI MPC &middot; DGCA</span>
+      <h1 class="display">India's airfare,<br><em style="font-style:italic;color:var(--teal-deep)">decoded.</em></h1>
+      <p class="lead">A high-frequency airfare intelligence platform that measures, explains, forecasts and simulates India's airfare-driven inflation — from live fare collection across the DGCA top-20 corridors to statutory price indices and RBI-grade policy guidance.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9.5 9-7 9 7V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 22v-8h6v8"/></svg> Explore the Dashboard</a>
+        <a class="btn btn-soft" href="#methodology">Explore Methodology</a>
+      </div>
+      <div class="hero-meta">
+        <div class="hm"><div class="n" id="hm-index">—</div><div class="l">National Airfare Index</div></div>
+        <div class="hm"><div class="n" id="hm-fare">—</div><div class="l">Avg fare (basket)</div></div>
+        <div class="hm"><div class="n">20 × 5</div><div class="l">Routes × windows</div></div>
+        <div class="hm"><div class="n" id="hm-trust">—</div><div class="l">Data trust</div></div>
+      </div>
+    </div>
+    <div class="india-fig rv">
+      <svg viewBox="0 0 660 600" role="img" aria-label="Map of India with airfare intelligence routes">
+        <defs>
+          <linearGradient id="mapfill" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="rgba(14,126,123,.07)"/>
+            <stop offset="1" stop-color="rgba(46,108,169,.06)"/>
+          </linearGradient>
+        </defs>
+        <!-- India contour — the shared geographic motif -->
+        <path d="M224.27 18.0 L247.22 42.01 L245.06 58.73 L253.55 69.21 L252.85 79.67 L237.53 76.92 L243.51 99.5 L294.17 126.8 L280.62 136.1 L272.33 155.26 L340.99 184.56 L370.26 187.21 L382.57 197.63 L442.53 204.02 L443.82 174.07 L456.84 169.76 L459.09 190.0 L478.49 197.77 L527.37 195.34 L528.86 182.75 L520.17 176.21 L537.39 173.65 L581.44 145.36 L599.35 150.4 L614.57 141.77 L624.58 154.51 L617.37 163.12 L640.39 166.18 L642.0 173.94 L634.51 177.7 L636.27 190.31 L621.01 186.6 L593.37 200.76 L594.02 212.49 L571.63 256.55 L554.94 251.88 L551.55 288.76 L541.01 293.62 L529.77 261.12 L523.87 261.18 L520.38 274.28 L508.69 263.66 L515.29 252.0 L524.84 250.82 L534.68 233.48 L482.26 227.47 L480.37 213.23 L453.27 203.36 L445.73 217.26 L461.14 228.11 L443.05 243.21 L456.19 248.7 L452.56 261.04 L463.28 293.32 L460.22 300.8 L419.38 304.8 L420.6 320.21 L409.21 332.33 L378.48 346.12 L354.58 370.23 L317.26 396.56 L317.22 405.99 L277.38 419.46 L270.97 435.08 L276.55 478.73 L267.5 498.19 L267.41 533.0 L256.36 533.99 L246.64 549.62 L253.14 556.37 L233.67 562.18 L217.91 582.0 L197.7 562.87 L179.62 513.51 L160.8 484.14 L151.81 445.72 L132.39 417.58 L117.16 351.66 L113.09 307.66 L82.02 319.92 L66.98 317.46 L39.08 292.63 L49.35 285.23 L43.04 277.19 L18.0 259.8 L32.22 246.13 L79.2 246.18 L74.97 228.59 L62.97 218.2 L60.54 202.43 L46.56 193.23 L70.09 171.76 L94.89 173.32 L151.33 110.49 L151.0 95.88 L169.21 84.03 L151.98 73.91 L137.0 42.1 L147.46 33.27 L179.85 38.26 L203.65 35.22 L224.27 18.0 Z" fill="url(#mapfill)" stroke="#C4BBA4" stroke-width="1.6" stroke-linejoin="round"/>
+        <!-- flight-path arcs: teal = tracked corridors, orange = anomaly watch -->
+        <g fill="none" stroke="#0E7E7B" stroke-width="1.5" stroke-dasharray="1 7" stroke-linecap="round" opacity=".75">
+          <path d="M210.9 159 Q118 235 117.3 354.3"/>
+          <path d="M210.9 159 Q330 195 448.9 282.8"/>
+          <path d="M210.9 159 Q148 330 219 479.5"/>
+          <path d="M117.3 354.3 Q110 398 138.7 427.8"/>
+          <path d="M238.2 388.9 Q172 396 117.3 354.3"/>
+          <path d="M219 479.5 Q244 492 276.2 477.2"/>
+        </g>
+        <path d="M117.3 354.3 Q80 434 219 479.5" fill="none" stroke="#C2621A" stroke-width="1.5" stroke-dasharray="1 7" stroke-linecap="round" opacity=".8"/>
+        <!-- airport nodes -->
+        <g>
+          <circle cx="210.9" cy="159" r="6.5" fill="#0A1F33"/>
+          <circle cx="210.9" cy="159" r="11" fill="none" stroke="#0E7E7B" stroke-width="1.2" opacity=".5"/>
+          <circle cx="117.3" cy="354.3" r="5.5" fill="#0E7E7B"/>
+          <circle cx="448.9" cy="282.8" r="5.5" fill="#0E7E7B"/>
+          <circle cx="219" cy="479.5" r="5.5" fill="#0E7E7B"/>
+          <circle cx="238.2" cy="388.9" r="4.5" fill="#2E7D4F"/>
+          <circle cx="276.2" cy="477.2" r="4.5" fill="#2E7D4F"/>
+          <circle cx="138.7" cy="427.8" r="4" fill="#2E6CA9"/>
+          <circle cx="139.3" cy="365.8" r="4" fill="#2E6CA9"/>
+        </g>
+        <!-- index readout card floating over the map -->
+        <g transform="translate(378,404)">
+          <rect x="0" y="0" width="176" height="64" rx="10" fill="#FCFAF4" stroke="#CFC6B2" stroke-width="1"/>
+          <text x="14" y="22" font-family="ui-sans-serif,system-ui,sans-serif" font-size="9.5" font-weight="800" letter-spacing="1.2" fill="#5F6E7B">NATIONAL AIRFARE INDEX</text>
+          <text x="14" y="47" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#0A1F33" id="map-idx">—</text>
+          <text x="152" y="47" text-anchor="end" font-family="ui-sans-serif,system-ui,sans-serif" font-size="10" font-weight="700" fill="#0E7E7B" id="map-mom">—</text>
+        </g>
+      </svg>
+      <div class="fig-cap"><span class="dot"></span> tracked corridor &nbsp;&middot;&nbsp; <span class="dot o"></span> anomaly watch &nbsp;&middot;&nbsp; live from the DGCA top-20 basket</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHILOSOPHY STRIP ============ -->
+<div class="phil">
+  <div class="wrap phil-row">
+    <span class="ph"><span class="nd"></span><b>MEASURE</b></span><span class="ph-sep">—→</span>
+    <span class="ph"><span class="nd"></span><b>EXPLAIN</b></span><span class="ph-sep">—→</span>
+    <span class="ph"><span class="nd"></span><b>FORECAST</b></span><span class="ph-sep">—→</span>
+    <span class="ph"><span class="nd"></span><b>SIMULATE</b></span><span class="ph-sep">—→</span>
+    <span class="ph"><span class="nd"></span><b>DECIDE</b></span>
+  </div>
+</div>
+
+<!-- ============ CHALLENGE — editorial numbered rows ============ -->
+<section class="plain" id="challenge">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <svg class="route-div" viewBox="0 0 150 22" aria-hidden="true"><path d="M2 18 Q40 2 88 10 T148 6" fill="none" stroke="#0E7E7B" stroke-width="1.4" stroke-dasharray="1 6" stroke-linecap="round"/><circle cx="2" cy="18" r="3" fill="#0E7E7B"/></svg>
+      <span class="d-eyebrow">The problem</span>
+      <h2 class="display">Airfare inflation has been flying blind.</h2>
+      <p class="sub">Official airfare measurement in India still relies on manual, 30-day airport price collection — too slow, too thin, and too opaque for monetary policy that needs to react in days, not months.</p>
+    </div>
+    <div class="chal">
+      <div class="chal-row rv"><div class="no">01</div><h3>30-day manual collection</h3><p>Archaic airport surveys capture a sparse snapshot while fares move daily across airlines, OTAs and booking windows — the signal is stale before it is published.</p></div>
+      <div class="chal-row rv"><div class="no">02</div><h3>No real-time index</h3><p>The transport CPI sub-group lags the market by weeks, leaving the RBI Monetary Policy Committee without a timely airfare signal when it matters most.</p></div>
+      <div class="chal-row rv"><div class="no">03</div><h3>Untraceable numbers</h3><p>Policy debates cite airfare figures with no provenance — no source quotes, no methodology, no audit trail behind the headline claim.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS — numbered route timeline ============ -->
+<section class="band" id="how">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <svg class="route-div" viewBox="0 0 150 22" aria-hidden="true"><path d="M2 18 Q40 2 88 10 T148 6" fill="none" stroke="#0E7E7B" stroke-width="1.4" stroke-dasharray="1 6" stroke-linecap="round"/><circle cx="2" cy="18" r="3" fill="#0E7E7B"/><circle cx="148" cy="6" r="3" fill="none" stroke="#0E7E7B" stroke-width="1.4"/></svg>
+      <span class="d-eyebrow">How it works</span>
+      <h2 class="display">From raw quotes to policy decisions.</h2>
+      <p class="sub">Five capabilities, one chain of custody — every number in the platform can be traced back to a hashed, source-verified quote.</p>
+    </div>
+    <div class="flow">
+      <div class="step rv"><div class="nd">1</div><h3>Measure</h3><p>Automated high-frequency fare collection across 20 DGCA-weighted corridors × 5 booking horizons, every cycle.</p></div>
+      <div class="step rv"><div class="nd">2</div><h3>Explain</h3><p>CPI transmission decomposition, superlative formula verification and driver attribution to individual routes.</p></div>
+      <div class="step rv"><div class="nd">3</div><h3>Forecast</h3><p>Multi-model ensemble with walk-forward selection — a 14–30 day path at 95% confidence. Economic, not black-box.</p></div>
+      <div class="step rv"><div class="nd">4</div><h3>Simulate</h3><p>What-if shocks on ATF fuel, demand and capacity, projected through to CPI bps and RBI MPC policy guidance.</p></div>
+      <div class="step rv"><div class="nd">5</div><h3>Decide</h3><p>Alerts, daily dossiers and a data-grounded AI analyst turn the intelligence into action for NSO, RBI and DGCA.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCT PREVIEW — dark analytical window, warm frame ============ -->
+<section class="plain" id="product">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <svg class="route-div" viewBox="0 0 150 22" aria-hidden="true"><path d="M2 6 Q60 20 108 10 T148 16" fill="none" stroke="#C2621A" stroke-width="1.4" stroke-dasharray="1 6" stroke-linecap="round" opacity=".8"/><circle cx="2" cy="6" r="3" fill="#C2621A" opacity=".8"/></svg>
+      <span class="d-eyebrow">The product</span>
+      <h2 class="display">A command center, not a dashboard template.</h2>
+      <p class="sub">Understand the national airfare situation in seconds: dominant index card, live pressure map, and every route drillable to its 360° dossier.</p>
+    </div>
+    <div class="frame rv">
+      <div class="pv">
+        <div class="pv-bar">
+          <span class="pv-dot" style="background:#E88377"></span>
+          <span class="pv-dot" style="background:#E0A53E"></span>
+          <span class="pv-dot" style="background:#43C680"></span>
+          <span class="pv-title">AirIntel India — Command Center</span>
+        </div>
+        <div class="pv-body">
+          <div class="pv-nav">
+            <div class="grp">Command Center</div>
+            <div class="item on">Dashboard</div>
+            <div class="grp">Airfare Intelligence</div>
+            <div class="item">Airfare Index</div>
+            <div class="item">Routes</div>
+            <div class="item">Airlines</div>
+            <div class="item">Booking Windows</div>
+            <div class="item">Route Heatmap</div>
+            <div class="grp">Analytics</div>
+            <div class="item">Forecasting</div>
+            <div class="item">Anomalies</div>
+            <div class="item">CPI Decomposition</div>
+            <div class="grp">Decision Support</div>
+            <div class="item">Policy Simulator</div>
+            <div class="item">AI Policy Analyst</div>
+          </div>
+          <div class="pv-main">
+            <div class="pv-kpis">
+              <div class="pv-kpi hero-kpi"><div class="k">National Airfare Index</div><div class="v" id="pv-index">—</div><div class="d" id="pv-mom">—</div></div>
+              <div class="pv-kpi"><div class="k">Average Airfare</div><div class="v" id="pv-fare">—</div><div class="d" id="pv-chg">—</div></div>
+              <div class="pv-kpi"><div class="k">Inflation Pressure</div><div class="v" id="pv-aips">—</div><div class="d" id="pv-lvl">—</div></div>
+              <div class="pv-kpi"><div class="k">Data Trust</div><div class="v" id="pv-trust">—</div><div class="d" id="pv-status">—</div></div>
+            </div>
+            <div class="pv-chart">
+              <div class="t">Market pulse — index trajectory</div>
+              <svg class="spark" id="pv-spark" viewBox="0 0 600 150" preserveAspectRatio="none" aria-hidden="true"></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="pv-note rv">Every value above is <b>live from the deployed API</b> — open the dashboard to explore the full surface. <b>Ctrl K</b> jumps anywhere.</p>
+  </div>
+</section>
+
+<!-- ============ DATA TRUST — arc + topographic lines ============ -->
+<section class="band" id="trust">
+  <div class="wrap">
+    <svg class="topo" viewBox="0 0 340 280" aria-hidden="true">
+      <g fill="none" stroke="#0E7E7B" stroke-width="1" opacity=".28">
+        <path d="M10 240 Q120 180 180 210 T330 150"/>
+        <path d="M-10 200 Q110 140 190 170 T340 100"/>
+        <path d="M0 160 Q130 100 200 130 T340 60"/>
+        <path d="M20 120 Q140 60 210 90 T330 20"/>
+      </g>
+      <circle cx="180" cy="210" r="3" fill="#0E7E7B" opacity=".5"/>
+      <circle cx="190" cy="170" r="3" fill="#0E7E7B" opacity=".35"/>
+    </svg>
+    <div class="trust">
+      <div class="rv">
+        <svg class="route-div" viewBox="0 0 150 22" aria-hidden="true"><path d="M2 18 Q40 2 88 10 T148 6" fill="none" stroke="#0E7E7B" stroke-width="1.4" stroke-dasharray="1 6" stroke-linecap="round"/><circle cx="2" cy="18" r="3" fill="#0E7E7B"/></svg>
+        <span class="d-eyebrow">Data trust</span>
+        <h2 class="display">Every number carries its own audit trail.</h2>
+        <p class="sub">Fares are cleaned, deduplicated, outlier-filtered and SHA-256 hashed before they ever touch an index. A composite trust score tracks the pipeline's health in real time — so a statistic is never just a number.</p>
+        <div class="trust-stats">
+          <div class="ts-row"><div><div class="l">Coverage</div><p class="s">Route coverage across the DGCA top-20 corridor basket, with 5 advance booking windows per corridor.</p></div><div class="v" id="tc-cov">—</div></div>
+          <div class="ts-row"><div><div class="l">Freshness</div><p class="s">Share of quotes ingested within the latest collection cycles from airline, OTA and government channels.</p></div><div class="v" id="tc-fresh">—</div></div>
+          <div class="ts-row"><div><div class="l">Provenance</div><p class="s">Every retained quote is hashed into the provenance vault — drill from any index value to its source quotes.</p></div><div class="v">SHA-256</div></div>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="trust-arc">
+          <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border)" stroke-width="9"/>
+            <circle id="ring-trust" cx="60" cy="60" r="50" fill="none" stroke="#0E7E7B" stroke-width="9" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 1.2s ease"/>
+            <text x="60" y="66" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-weight="700" fill="#0A1F33" id="ring-val">—</text>
+          </svg>
+          <div>
+            <div class="lab">Data trust score</div>
+            <div class="v" id="tc-trust">—</div>
+            <div style="font-size:12.4px;color:var(--text-3);margin-top:6px;max-width:220px">Composite of freshness, completeness, coverage, source health and cross-source consensus — recomputed every cycle.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METHODOLOGY — editorial list + formula card + India ghost ============ -->
+<section class="band" id="methodology">
+  <div class="wrap">
+    <div class="meth">
+      <svg class="india-ghost" viewBox="0 0 660 600" aria-hidden="true"><path d="M224.27 18.0 L247.22 42.01 L245.06 58.73 L253.55 69.21 L252.85 79.67 L237.53 76.92 L243.51 99.5 L294.17 126.8 L280.62 136.1 L272.33 155.26 L340.99 184.56 L370.26 187.21 L382.57 197.63 L442.53 204.02 L443.82 174.07 L456.84 169.76 L459.09 190.0 L478.49 197.77 L527.37 195.34 L528.86 182.75 L520.17 176.21 L537.39 173.65 L581.44 145.36 L599.35 150.4 L614.57 141.77 L624.58 154.51 L617.37 163.12 L640.39 166.18 L642.0 173.94 L634.51 177.7 L636.27 190.31 L621.01 186.6 L593.37 200.76 L594.02 212.49 L571.63 256.55 L554.94 251.88 L551.55 288.76 L541.01 293.62 L529.77 261.12 L523.87 261.18 L520.38 274.28 L508.69 263.66 L515.29 252.0 L524.84 250.82 L534.68 233.48 L482.26 227.47 L480.37 213.23 L453.27 203.36 L445.73 217.26 L461.14 228.11 L443.05 243.21 L456.19 248.7 L452.56 261.04 L463.28 293.32 L460.22 300.8 L419.38 304.8 L420.6 320.21 L409.21 332.33 L378.48 346.12 L354.58 370.23 L317.26 396.56 L317.22 405.99 L277.38 419.46 L270.97 435.08 L276.55 478.73 L267.5 498.19 L267.41 533.0 L256.36 533.99 L246.64 549.62 L253.14 556.37 L233.67 562.18 L217.91 582.0 L197.7 562.87 L179.62 513.51 L160.8 484.14 L151.81 445.72 L132.39 417.58 L117.16 351.66 L113.09 307.66 L82.02 319.92 L66.98 317.46 L39.08 292.63 L49.35 285.23 L43.04 277.19 L18.0 259.8 L32.22 246.13 L79.2 246.18 L74.97 228.59 L62.97 218.2 L60.54 202.43 L46.56 193.23 L70.09 171.76 L94.89 173.32 L151.33 110.49 L151.0 95.88 L169.21 84.03 L151.98 73.91 L137.0 42.1 L147.46 33.27 L179.85 38.26 L203.65 35.22 L224.27 18.0 Z" fill="#0A1F33"/></svg>
+      <div class="rv">
+        <svg class="route-div" viewBox="0 0 150 22" aria-hidden="true"><path d="M2 6 Q60 20 108 10 T148 16" fill="none" stroke="#0E7E7B" stroke-width="1.4" stroke-dasharray="1 6" stroke-linecap="round"/><circle cx="2" cy="6" r="3" fill="#0E7E7B"/></svg>
+        <span class="d-eyebrow">Methodology</span>
+        <h2 class="display">UN/ILO-aligned index mathematics.</h2>
+        <p class="sub">Statutory continuity by default, superlative quality by standard. AirIntel India reports the Laspeyres index for MoSPI continuity alongside the Fisher ideal as the quality benchmark.</p>
+        <div style="margin-top:28px">
+          <div class="meth-item"><div class="n">1</div><div><h4>Jevons elementary aggregate</h4><p>Geometric mean across quotes per route × booking-window cell — eliminates arithmetic-mean bias at the elementary level.</p></div></div>
+          <div class="meth-item"><div class="n">2</div><div><h4>Laspeyres master index</h4><p>Fixed-base, DGCA passenger-volume-weighted aggregate (base Jan 2024 = 100) — the statutory MoSPI baseline.</p></div></div>
+          <div class="meth-item"><div class="n">3</div><div><h4>Superlative Fisher &amp; Törnqvist</h4><p>√(Iₗ·Iₚ) and log-share alternatives capture substitution effects the fixed-basket Laspeyres overstates.</p></div></div>
+          <div class="meth-item"><div class="n">4</div><div><h4>CPI transmission</h4><p>Airfare moves map into transport-CPI bps (8.59% weight) and headline bps (0.33% effective) with DGCA route-level attribution.</p></div></div>
+          <div class="meth-item"><div class="n">5</div><div><h4>MAD outlier rejection</h4><p>Modified Z-score filter (|M| &gt; 3.0) drops corrupt quotes before aggregation; deduplication keeps the best-sourced listing per flight.</p></div></div>
+        </div>
+      </div>
+      <div class="formula-card rv">
+        <h3>Live formula catalogue</h3>
+        <div class="fx"><b>I_L</b> = Σ wᵢ · Rᵢ × 100 <span class="cm">— Laspeyres, wᵢ = DGCA route weight</span></div>
+        <div class="fx"><b>I_F</b> = √(I_L · I_P) <span class="cm">— Fisher ideal superlative</span></div>
+        <div class="fx"><b>Δbps</b> = Δ% fare × 3.85% × 8.59% <span class="cm">— headline CPI transmission</span></div>
+        <div class="fx"><b>MAD-Z</b> = 0.6745(xᵢ − med)/MAD <span class="cm">— outlier gate |Z| &gt; 3.0</span></div>
+        <div class="fx"><b>CI₉₅</b> = ŷ ± 1.96·σ̂ <span class="cm">— forecast confidence bounds</span></div>
+        <div style="margin-top:16px;font-size:12px;color:var(--text-3);border-top:1px solid var(--border);padding-top:14px">Every formula is computed on live pipeline data and exposed via the <a href="/docs">API catalog</a>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARCHITECTURE — route-network node graph ============ -->
+<section class="plain" id="architecture">
+  <div class="wrap">
+    <div class="sec-head rv" style="margin-left:auto;margin-right:auto;text-align:center;max-width:560px">
+      <svg class="route-div" style="margin:0 auto 26px" viewBox="0 0 150 22" aria-hidden="true"><path d="M2 18 Q75 2 148 18" fill="none" stroke="#0E7E7B" stroke-width="1.4" stroke-dasharray="1 6" stroke-linecap="round"/><circle cx="2" cy="18" r="3" fill="#0E7E7B"/><circle cx="148" cy="18" r="3" fill="#0E7E7B"/></svg>
+      <span class="d-eyebrow" style="justify-content:center">Architecture</span>
+      <h2 class="display">A pipeline that reads like a route network.</h2>
+      <p class="sub" style="margin-left:auto;margin-right:auto">Collection, econometrics, forecasting and delivery in one FastAPI platform — deployable via Docker or Vercel, with a full REST catalog for integration.</p>
+    </div>
+    <div class="arch">
+      <div class="arch-row">
+        <div class="arch-node rv"><div class="t">Layer 1 · Collect</div><div class="n">Ethical scraper engine</div><div class="d">Token-bucket rate-limited collection from airline-direct portals, OTA aggregators and government sources — robots.txt compliant.</div></div>
+        <div class="arch-node rv"><div class="t">Layer 2 · Clean</div><div class="n">Validation &amp; provenance</div><div class="d">Deduplication, MAD outlier rejection and SHA-256 hashing into the provenance vault.</div></div>
+      </div>
+      <div class="arch-link"><svg viewBox="0 0 22 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="1 5" stroke-linecap="round"><path d="M11 1v24"/><path d="m6 21 5 4 5-4"/></svg></div>
+      <div class="arch-row">
+        <div class="arch-node rv"><div class="t">Layer 3 · Index</div><div class="n">Econometric engine</div><div class="d">Jevons · Laspeyres · Paasche · Fisher · Törnqvist · Walsh index construction with substitution-bias analysis.</div></div>
+        <div class="arch-node rv"><div class="t">Layer 4 · Forecast</div><div class="n">Multi-model ensemble</div><div class="d">ETS · autoregressive · GBDT nowcast models with walk-forward selection and 95% confidence cones.</div></div>
+      </div>
+      <div class="arch-link"><svg viewBox="0 0 22 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="1 5" stroke-linecap="round"><path d="M11 1v24"/><path d="m6 21 5 4 5-4"/></svg></div>
+      <div class="arch-row">
+        <div class="arch-node rv"><div class="t">Layer 5 · Decide</div><div class="n">Policy simulation &amp; AI analyst</div><div class="d">Scenario engine with CPI-bps projections, alerting, daily dossiers and a data-grounded AI policy analyst.</div></div>
+        <div class="arch-node rv"><div class="t">Layer 6 · Deliver</div><div class="n">FastAPI REST + live feeds</div><div class="d">60+ versioned endpoints, OpenAPI catalog, WebSocket/SSE live index ticks, and a zero-CDN single-file command center UI.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA — same ivory ground, same motifs as the hero ============ -->
+<section class="final-sec">
+  <div class="wrap">
+    <div class="final rv">
+      <svg class="motif" viewBox="0 0 180 40" aria-hidden="true">
+        <path d="M6 32 Q60 4 96 18 T174 10" fill="none" stroke="#0E7E7B" stroke-width="1.5" stroke-dasharray="1 7" stroke-linecap="round"/>
+        <path d="M10 36 Q70 18 120 28 T176 24" fill="none" stroke="#C2621A" stroke-width="1.4" stroke-dasharray="1 7" stroke-linecap="round" opacity=".7"/>
+        <circle cx="6" cy="32" r="3.5" fill="#0E7E7B"/>
+        <circle cx="96" cy="18" r="3" fill="none" stroke="#0E7E7B" stroke-width="1.4"/>
+        <circle cx="174" cy="10" r="3" fill="#0E7E7B"/>
+      </svg>
+      <h2>See India's airfare clearly.</h2>
+      <p>Open the live command center — real indices, real forecasts, real provenance. Built by Team Rookie for India's statistical and monetary institutions.</p>
+      <a class="btn" href="/" style="padding:13px 30px;font-size:15px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg> Explore the Dashboard</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <b>AirIntel India</b> — India's Airfare Intelligence Platform<br>
+        MEASURE → EXPLAIN → FORECAST → SIMULATE → DECIDE
+      </div>
+      <div class="links">
+        <a href="/">Dashboard</a>
+        <a href="/docs">API docs</a>
+        <a href="/references">References</a>
+        <a href="#methodology">Methodology</a>
+      </div>
+    </div>
+    <div class="foot-credit">
+      <span>Built by <b style="color:#9BDDD9">Team Rookie</b> · for MoSPI / NSO · RBI MPC · DGCA</span>
+      <span>UN/ILO CPI-aligned · DGCA top-20 corridor basket · base Jan 2024 = 100</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   Mesh-drift shader background — vanilla JS port of the
+   bue-drift design spec (21st.dev "Mesh drift"). Zero
+   dependencies. Presented here as a quiet atmospheric wash
+   over the ivory hero (opacity .16, radial mask).
+   ============================================================ */
+(function () {
+  var canvas = document.getElementById('hero-gl');
+  if (!canvas) return;
+  var gl = null;
+  try { gl = canvas.getContext('webgl', { antialias: false }); } catch (e) { gl = null; }
+  if (!gl) return; /* hero keeps its ivory gradient */
+
+  var VERT = 'attribute vec2 a_position;\nvoid main() {\n  gl_Position = vec4(a_position, 0.0, 1.0);\n}\n';
+
+  var FRAG = [
+'#ifdef GL_FRAGMENT_PRECISION_HIGH',
+'precision highp float;',
+'#else',
+'precision mediump float;',
+'#endif',
+'',
+'uniform vec3 u_colors[8];',
+'uniform vec4 u_scene;      // resolution.xy, time, colour count',
+'uniform vec4 u_shape;      // scale, intensity, paramA, warp',
+'uniform vec4 u_surface;    // detail, contrast, brightness, saturation',
+'uniform vec4 u_finish;     // hue, vignette, blur, grain',
+'uniform vec4 u_transform;  // seed, rotation, drift, OKLab toggle',
+'uniform vec4 u_space;      // offset.xy, pointer.xy',
+'uniform vec4 u_cursor;',
+'',
+'#define u_resolution u_scene.xy',
+'#define u_time u_scene.z',
+'#define u_colorCount u_scene.w',
+'#define u_scale u_shape.x',
+'#define u_intensity u_shape.y',
+'#define u_paramA u_shape.z',
+'#define u_warp u_shape.w',
+'#define u_detail u_surface.x',
+'#define u_contrast u_surface.y',
+'#define u_brightness u_surface.z',
+'#define u_saturation u_surface.w',
+'#define u_hue u_finish.x',
+'#define u_vignette u_finish.y',
+'#define u_blur u_finish.z',
+'#define u_grain u_finish.w',
+'#ifdef GL_FRAGMENT_PRECISION_HIGH',
+'#define u_seed u_transform.x',
+'#else',
+'#define u_seed mod(u_transform.x, 31.0)',
+'#endif',
+'#define u_rotate u_transform.y',
+'#define u_drift u_transform.z',
+'#define u_oklab u_transform.w',
+'#define u_offset u_space.xy',
+'#define u_mouse u_space.zw',
+'#define u_cursorPresence u_cursor.x',
+'#define u_cursorEffect u_cursor.y',
+'#define u_cursorStrength u_cursor.z',
+'#define u_cursorRadius u_cursor.w',
+'',
+'float hash21(vec2 p) {',
+'#ifndef GL_FRAGMENT_PRECISION_HIGH',
+'  p = mod(p, 31.0);',
+'#endif',
+'  p = fract(p * vec2(234.34, 435.345));',
+'  p += dot(p, p + 34.23);',
+'  return fract(p.x * p.y);',
+'}',
+'',
+'float grainHash(vec2 p) {',
+'  vec3 p3 = fract(vec3(p.xyx) * 0.1031);',
+'  p3 += dot(p3, p3.yzx + 33.33);',
+'  return fract((p3.x + p3.y) * p3.z);',
+'}',
+'',
+'float noise(vec2 p) {',
+'  vec2 i = floor(p);',
+'  vec2 f = fract(p);',
+'  vec2 u = f * f * (3.0 - 2.0 * f);',
+'  return mix(',
+'    mix(hash21(i), hash21(i + vec2(1.0, 0.0)), u.x),',
+'    mix(hash21(i + vec2(0.0, 1.0)), hash21(i + vec2(1.0, 1.0)), u.x),',
+'    u.y);',
+'}',
+'',
+'float fbm(vec2 p) {',
+'  float v = 0.0;',
+'  float a = 0.5;',
+'  for (int i = 0; i < 5; i++) {',
+'    v += a * noise(p);',
+'    p = p * 2.03 + vec2(17.0, 9.2);',
+'    a *= 0.5;',
+'  }',
+'  return v;',
+'}',
+'',
+'vec3 srgbToLinear(vec3 c) {',
+'  return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)),',
+'    step(0.04045, c));',
+'}',
+'vec3 linearToSrgb(vec3 c) {',
+'  return mix(c * 12.92, 1.055 * pow(max(c, vec3(0.0)), vec3(1.0 / 2.4)) - 0.055,',
+'    step(0.0031308, c));',
+'}',
+'vec3 linToOklab(vec3 c) {',
+'  float l = 0.4122214708 * c.r + 0.5363325363 * c.g + 0.0514459929 * c.b;',
+'  float m = 0.2119034982 * c.r + 0.6806995451 * c.g + 0.1073969566 * c.b;',
+'  float s = 0.0883024619 * c.r + 0.2817188376 * c.g + 0.6299787005 * c.b;',
+'  l = pow(max(l, 0.0), 1.0 / 3.0);',
+'  m = pow(max(m, 0.0), 1.0 / 3.0);',
+'  s = pow(max(s, 0.0), 1.0 / 3.0);',
+'  return vec3(',
+'    0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,',
+'    1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,',
+'    0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s);',
+'}',
+'vec3 oklabToLin(vec3 c) {',
+'  float l = c.x + 0.3963377774 * c.y + 0.2158037573 * c.z;',
+'  float m = c.x - 0.1055613458 * c.y - 0.0638541728 * c.z;',
+'  float s = c.x - 0.0894841775 * c.y - 1.2914855480 * c.z;',
+'  l = l * l * l; m = m * m * m; s = s * s * s;',
+'  return vec3(',
+'    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,',
+'    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,',
+'    -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s);',
+'}',
+'vec3 mixColour(vec3 a, vec3 b, float t) {',
+'  if (u_oklab > 0.5) {',
+'    vec3 la = linToOklab(srgbToLinear(a));',
+'    vec3 lb = linToOklab(srgbToLinear(b));',
+'    return clamp(linearToSrgb(oklabToLin(mix(la, lb, t))), 0.0, 1.0);',
+'  }',
+'  return mix(a, b, t);',
+'}',
+'',
+'vec3 palette(float x) {',
+'  float n = max(u_colorCount - 1.0, 1.0);',
+'  float f = clamp(x, 0.0, 1.0) * n;',
+'  vec3 col = u_colors[0];',
+'  for (int i = 0; i < 7; i++) {',
+'    if (float(i) < n)',
+'      col = mixColour(col, u_colors[i + 1],',
+'        smoothstep(0.0, 1.0, clamp(f - float(i), 0.0, 1.0)));',
+'  }',
+'  return col;',
+'}',
+'',
+'vec3 hueRotate(vec3 col, float a) {',
+'  const mat3 toYIQ = mat3(0.299, 0.596, 0.211,',
+'                          0.587, -0.274, -0.523,',
+'                          0.114, -0.322, 0.312);',
+'  const mat3 toRGB = mat3(1.0, 1.0, 1.0,',
+'                          0.956, -0.272, -1.106,',
+'                          0.621, -0.647, 1.703);',
+'  vec3 yiq = toYIQ * col;',
+'  float ca = cos(a), sa = sin(a);',
+'  yiq = vec3(yiq.x, yiq.y * ca - yiq.z * sa, yiq.y * sa + yiq.z * ca);',
+'  return toRGB * yiq;',
+'}',
+'',
+'vec3 shade(vec2 uv, vec2 p, float t) {',
+'  vec3 acc = u_colors[0] * 0.15;',
+'  float total = 0.15;',
+'  for (int i = 0; i < 8; i++) {',
+'    if (float(i) >= u_colorCount) break;',
+'    float fi = float(i);',
+'    vec2 c = vec2(',
+'      sin(t * (0.21 + fi * 0.071) + fi * 2.4 + u_seed),',
+'      cos(t * (0.17 + fi * 0.093) + fi * 1.7)) * (0.45 + u_intensity * 0.35);',
+'    float w = exp(-dot(p - c, p - c) * 6.0);',
+'    acc += u_colors[i] * w;',
+'    total += w;',
+'  }',
+'  return acc / total;',
+'}',
+'',
+'void main() {',
+'  vec2 uv = gl_FragCoord.xy / u_resolution.xy;',
+'  vec2 screenUv = uv;',
+'  vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy)',
+'    / min(u_resolution.x, u_resolution.y);',
+'  float cursorMask = 0.0;',
+'',
+'  if (u_cursorPresence > 0.001) {',
+'    vec2 cursor = (0.5 * u_mouse * u_resolution.xy)',
+'      / min(u_resolution.x, u_resolution.y);',
+'    vec2 cursorDelta = p - cursor;',
+'    if (u_cursorEffect < 0.5) {',
+'      p += cursor * u_cursorPresence * u_cursorStrength * 0.55;',
+'    } else {',
+'      float cursorDistance = length(cursorDelta);',
+'      vec2 cursorDirection = cursorDelta / max(cursorDistance, 0.0001);',
+'      cursorMask = u_cursorPresence',
+'        * (1.0 - smoothstep(0.0, u_cursorRadius, cursorDistance));',
+'      if (u_cursorEffect < 1.5) {',
+'        p -= cursorDirection * cursorMask * u_cursorStrength * 0.24;',
+'      } else if (u_cursorEffect < 2.5) {',
+'        float cursorAngle = cursorMask * u_cursorStrength * 2.2;',
+'        float cc = cos(cursorAngle), cs = sin(cursorAngle);',
+'        p = cursor + mat2(cc, -cs, cs, cc) * cursorDelta;',
+'      } else if (u_cursorEffect < 3.5) {',
+'        float ripple = sin(',
+'          cursorDistance / max(u_cursorRadius, 0.001) * 18.0 - u_time * 5.0);',
+'        p -= cursorDirection * ripple * cursorMask * u_cursorStrength * 0.07;',
+'      }',
+'    }',
+'  }',
+'',
+'  uv = p * min(u_resolution.x, u_resolution.y) / u_resolution.xy + 0.5;',
+'  p *= u_scale;',
+'  if (abs(u_rotate) > 0.0001) {',
+'    float cr = cos(u_rotate), sr = sin(u_rotate);',
+'    p = mat2(cr, -sr, sr, cr) * p;',
+'  }',
+'  p += u_offset;',
+'  if (u_drift > 0.0001)',
+'    p += u_drift * vec2(sin(u_time * 0.31), cos(u_time * 0.23));',
+'  if (u_warp > 0.0) {',
+'    p += u_warp * (vec2(',
+'      fbm(p * u_detail + u_seed),',
+'      fbm(p * u_detail + vec2(5.2, 1.3))) - 0.5);',
+'  }',
+'  vec3 col;',
+'  if (u_blur > 0.0) {',
+'    float e = u_blur;',
+'    float pe = e * u_scale;',
+'    vec2 uvE = vec2(e) * min(u_resolution.x, u_resolution.y) / u_resolution.xy;',
+'    col  = shade(uv, p, u_time) * 0.36;',
+'    col += shade(uv + vec2(uvE.x, 0.0), p + vec2(pe, 0.0), u_time) * 0.16;',
+'    col += shade(uv - vec2(uvE.x, 0.0), p - vec2(pe, 0.0), u_time) * 0.16;',
+'    col += shade(uv + vec2(0.0, uvE.y), p + vec2(0.0, pe), u_time) * 0.16;',
+'    col += shade(uv - vec2(0.0, uvE.y), p - vec2(0.0, pe), u_time) * 0.16;',
+'  } else {',
+'    col = shade(uv, p, u_time);',
+'  }',
+'  if (abs(u_contrast - 1.0) > 0.0001)',
+'    col = (col - 0.5) * u_contrast + 0.5;',
+'  if (abs(u_saturation - 1.0) > 0.0001) {',
+'    float luma = dot(col, vec3(0.299, 0.587, 0.114));',
+'    col = mix(vec3(luma), col, u_saturation);',
+'  }',
+'  if (abs(u_hue) > 0.0001)',
+'    col = hueRotate(col, u_hue);',
+'  if (abs(u_brightness) > 0.0001)',
+'    col += u_brightness;',
+'  if (u_vignette > 0.0001) {',
+'    float vd = length(screenUv - 0.5) * 1.41421356;',
+'    col *= 1.0 - u_vignette * smoothstep(0.35, 1.0, vd);',
+'  }',
+'  if (u_cursorPresence > 0.001 && u_cursorEffect > 3.5)',
+'    col += (vec3(0.18) + col * 0.12) * cursorMask * u_cursorStrength;',
+'  if (u_grain > 0.0001)',
+'    col += (grainHash(',
+'      gl_FragCoord.xy + vec2(u_seed * 17.0, u_seed * 31.0)) - 0.5) * u_grain;',
+'  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);',
+'}'
+  ].join('\n');
+
+  /* Uniform recipe — "Mesh drift" preset from the design spec.
+     Palette: deep ink navy -> ocean blue -> soft horizon blue (no purple). */
+  var COLORS = [
+    [0.011764705882352941, 0.10980392156862745, 0.14901960784313725],
+    [0.10588235294117647, 0.4235294117647059, 0.6588235294117647],
+    [0.26666666666666666, 0.615686274509804, 0.7137254901960784],
+    [0.6862745098039216, 0.7764705882352941, 0.8823529411764706],
+    [0.6862745098039216, 0.7764705882352941, 0.8823529411764706],
+    [0.6862745098039216, 0.7764705882352941, 0.8823529411764706],
+    [0.6862745098039216, 0.7764705882352941, 0.8823529411764706],
+    [0.6862745098039216, 0.7764705882352941, 0.8823529411764706]
+  ];
+  var U = {
+    colorCount: 4, scale: 1.500, intensity: 0.200, paramA: 0.340, warp: 0.180,
+    detail: 1.664, contrast: 1.140, brightness: 0.000, saturation: 0.840,
+    hue: 0.0349, vignette: 0.340, blur: 0.0040, grain: 0.028,
+    seed: 8816.0, rotate: 0.3316, offsetX: -0.130, offsetY: -0.120,
+    drift: 0.048, cursorEnabled: true, cursorEffect: 4.0,
+    cursorStrength: 0.360, cursorRadius: 0.344, oklab: 0.0, timeScale: 0.936
+  };
+
+  /* Respect prefers-reduced-motion: render the same field as a still frame. */
+  try {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      U.timeScale = 0; U.cursorEnabled = false; U.drift = 0;
+    }
+  } catch (e) {}
+
+  function compile(type, src) {
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) return null;
+    return s;
+  }
+  var vs = compile(gl.VERTEX_SHADER, VERT);
+  var fs = compile(gl.FRAGMENT_SHADER, FRAG);
+  if (!vs || !fs) return; /* shader failed to compile; ivory fallback stays */
+  var program = gl.createProgram();
+  gl.attachShader(program, vs);
+  gl.attachShader(program, fs);
+  gl.linkProgram(program);
+  gl.deleteShader(vs);
+  gl.deleteShader(fs);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
+  gl.useProgram(program);
+
+  var buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(program, 'a_position');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  var uni = {
+    colors: gl.getUniformLocation(program, 'u_colors'),
+    scene: gl.getUniformLocation(program, 'u_scene'),
+    shape: gl.getUniformLocation(program, 'u_shape'),
+    surface: gl.getUniformLocation(program, 'u_surface'),
+    finish: gl.getUniformLocation(program, 'u_finish'),
+    transform: gl.getUniformLocation(program, 'u_transform'),
+    space: gl.getUniformLocation(program, 'u_space'),
+    cursor: gl.getUniformLocation(program, 'u_cursor')
+  };
+  var flat = [];
+  for (var ci = 0; ci < COLORS.length; ci++) flat = flat.concat(COLORS[ci]);
+  gl.uniform3fv(uni.colors, new Float32Array(flat));
+  gl.uniform4f(uni.shape, U.scale, U.intensity, U.paramA, U.warp);
+  gl.uniform4f(uni.surface, U.detail, U.contrast, U.brightness, U.saturation);
+  gl.uniform4f(uni.finish, U.hue, U.vignette, U.blur, U.grain);
+  gl.uniform4f(uni.transform, U.seed, U.rotate, U.drift, U.oklab);
+  gl.uniform4f(uni.cursor, 0, U.cursorEffect, U.cursorStrength, U.cursorRadius);
+
+  var targetX = 0, targetY = 0, targetPresence = 0;
+  var mouseX = 0, mouseY = 0, cursorPresence = 0;
+  var pointerKnown = false, pointerClientX = 0, pointerClientY = 0;
+  var bounds = canvas.getBoundingClientRect();
+  var raf = 0, lastNow = null;
+  var visible = document.visibilityState === 'visible';
+  var inView = true;
+  var start = performance.now();
+  var timeAnimated = Math.abs(U.timeScale) > 0.0001;
+
+  function resizeCanvas() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var rawWidth = Math.max(1, Math.round(bounds.width * dpr));
+    var rawHeight = Math.max(1, Math.round(bounds.height * dpr));
+    var pixelScale = Math.min(1, Math.sqrt(2000000 / Math.max(1, rawWidth * rawHeight)));
+    var width = Math.max(1, Math.round(rawWidth * pixelScale));
+    var height = Math.max(1, Math.round(rawHeight * pixelScale));
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+      gl.viewport(0, 0, width, height);
+    }
+  }
+
+  function requestRender() {
+    if (raf === 0 && visible && inView) raf = requestAnimationFrame(render);
+  }
+
+  function updatePointerTarget() {
+    if (!pointerKnown) return;
+    if (bounds.width === 0 || bounds.height === 0) return;
+    var inside = pointerClientX >= bounds.left && pointerClientX <= bounds.right &&
+                 pointerClientY >= bounds.top && pointerClientY <= bounds.bottom;
+    if (!inside) { targetPresence = 0; requestRender(); return; }
+    var nextX = ((pointerClientX - bounds.left) / bounds.width) * 2 - 1;
+    var nextY = -(((pointerClientY - bounds.top) / bounds.height) * 2 - 1);
+    if (targetPresence === 0 && cursorPresence < 0.01) { mouseX = nextX; mouseY = nextY; }
+    targetX = nextX;
+    targetY = nextY;
+    targetPresence = 1;
+    requestRender();
+  }
+  function onPointerMove(e) {
+    pointerKnown = true;
+    pointerClientX = e.clientX;
+    pointerClientY = e.clientY;
+    bounds = canvas.getBoundingClientRect();
+    updatePointerTarget();
+  }
+  function onPointerLeave() {
+    pointerKnown = false;
+    targetPresence = 0;
+    requestRender();
+  }
+  function updateLayout() {
+    bounds = canvas.getBoundingClientRect();
+    resizeCanvas();
+    updatePointerTarget();
+    requestRender();
+  }
+  window.addEventListener('resize', updateLayout);
+  if (U.cursorEnabled) {
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    window.addEventListener('pointercancel', onPointerLeave);
+    window.addEventListener('scroll', updateLayout, true);
+    window.addEventListener('blur', onPointerLeave);
+    document.documentElement.addEventListener('pointerleave', onPointerLeave);
+  }
+
+  var resizeObserver = new ResizeObserver(updateLayout);
+  resizeObserver.observe(canvas);
+  var intersectionObserver = new IntersectionObserver(function (entries) {
+    inView = entries[0] ? entries[0].isIntersecting : true;
+    if (inView) requestRender();
+    else if (raf !== 0) { cancelAnimationFrame(raf); raf = 0; lastNow = null; }
+  });
+  intersectionObserver.observe(canvas);
+  function onVisibilityChange() {
+    visible = document.visibilityState === 'visible';
+    if (visible) requestRender();
+    else if (raf !== 0) { cancelAnimationFrame(raf); raf = 0; lastNow = null; }
+  }
+  document.addEventListener('visibilitychange', onVisibilityChange);
+
+  function render(now) {
+    raf = 0;
+    if (!visible || !inView) return;
+    var dt = lastNow === null ? 0 : Math.min((now - lastNow) / 1000, 0.1);
+    lastNow = now;
+    var follow = 1 - Math.exp(-12 * dt);
+    mouseX += (targetX - mouseX) * follow;
+    mouseY += (targetY - mouseY) * follow;
+    cursorPresence += (targetPresence - cursorPresence) * follow;
+    resizeCanvas();
+    gl.uniform4f(uni.scene, canvas.width, canvas.height, ((now - start) / 1000) * U.timeScale, U.colorCount);
+    gl.uniform4f(uni.space, U.offsetX, U.offsetY, mouseX, mouseY);
+    gl.uniform4f(uni.cursor, U.cursorEnabled ? cursorPresence : 0, U.cursorEffect, U.cursorStrength, U.cursorRadius);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    var pointerSettling = Math.abs(targetX - mouseX) > 0.001 ||
+      Math.abs(targetY - mouseY) > 0.001 ||
+      Math.abs(targetPresence - cursorPresence) > 0.001;
+    if (timeAnimated || pointerSettling) requestRender();
+    else lastNow = null;
+  }
+  requestRender();
+
+  /* Release the GL context when the page is torn down (bfcache-safe). */
+  window.addEventListener('pagehide', function () {
+    if (raf !== 0) { cancelAnimationFrame(raf); raf = 0; }
+    resizeObserver.disconnect();
+    intersectionObserver.disconnect();
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+    var ext = gl.getExtension('WEBGL_lose_context');
+    if (ext) ext.loseContext();
+  });
+})();
+</script>
+<script>
+/* ============================================================
+   Scroll reveal — one animation language across the page.
+   ============================================================ */
+(function () {
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) {
+    for (var i = 0; i < els.length; i++) els[i].classList.add('on');
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  for (var j = 0; j < els.length; j++) io.observe(els[j]);
+})();
+
+/* ============================================================
+   Live values — all from the real backend, never hardcoded.
+   Fails silently to em-dashes when the API is unreachable.
+   ============================================================ */
+(function(){
+  function get(p, cb){
+    try {
+      fetch(p).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ if (j) cb(j); }).catch(function(){});
+    } catch (e) {}
+  }
+  var num2 = function(v){ return (+v).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2}); };
+  var num1 = function(v){ return (+v).toLocaleString('en-IN', {maximumFractionDigits: 1}); };
+  var money = function(v){ return '₹' + Math.round(+v).toLocaleString('en-IN'); };
+  var pct = function(v, d){ return (v > 0 ? '+' : '') + (+v).toFixed(d == null ? 1 : d) + '%'; };
+  var set = function(id, txt){ var el = document.getElementById(id); if (el && txt != null) el.textContent = txt; };
+
+  get('/api/v1/index/realtime', function(rt){
+    set('hm-index', num2(rt.master_laspeyres_index));
+    set('pv-index', num2(rt.master_laspeyres_index));
+    set('map-idx', num2(rt.master_laspeyres_index));
+  });
+  get('/api/v1/routes/movement?lookback_days=7', function(mv){
+    if (!mv || !mv.national) return;
+    set('hm-fare', money(mv.national.current_fare_inr));
+    set('pv-fare', money(mv.national.current_fare_inr));
+    if (mv.national.change_pct != null) set('pv-chg', (mv.national.change_pct > 0 ? '▲ ' : '▼ ') + pct(Math.abs(mv.national.change_pct)) + ' vs prev');
+  });
+  get('/api/v1/analytics/pressure', function(pr){
+    set('pv-aips', num1(pr.pressure_score));
+    set('pv-lvl', String(pr.pressure_level || '').toLowerCase());
+  });
+  get('/api/v1/data-quality', function(dq){
+    if (dq.overall_trust_score == null) return;
+    set('hm-trust', num1(dq.overall_trust_score));
+    set('pv-trust', num1(dq.overall_trust_score));
+    set('pv-status', String(dq.status_rating || '').toLowerCase());
+    set('tc-trust', num1(dq.overall_trust_score));
+    set('ring-val', num1(dq.overall_trust_score));
+    var ring = document.getElementById('ring-trust');
+    if (ring){ var c = 2 * Math.PI * 50; ring.setAttribute('stroke-dasharray', String(c)); ring.setAttribute('stroke-dashoffset', String(c * (1 - Math.min(100, Math.max(0, dq.overall_trust_score)) / 100))); }
+    if (dq.route_coverage_pct != null) set('tc-cov', num1(dq.route_coverage_pct) + '%');
+    if (dq.freshness_pct != null) set('tc-fresh', num1(dq.freshness_pct) + '%');
+  });
+  /* index trend sparkline in the preview + MoM chips */
+  get('/api/v1/index/timeseries?limit=365', function(ts){
+    var data = (ts && ts.data) || [];
+    if (!data.length) return;
+    var svg = document.getElementById('pv-spark');
+    if (svg){
+      var vals = data.map(function(d){ return d.laspeyres_index; });
+      var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+      var W = 600, H = 150, pad = 8;
+      var X = function(i){ return pad + (i / (vals.length - 1)) * (W - 2 * pad); };
+      var Y = function(v){ return H - pad - ((v - lo) / ((hi - lo) || 1)) * (H - 2 * pad); };
+      var pts = vals.map(function(v, i){ return X(i).toFixed(1) + ',' + Y(v).toFixed(1); }).join(' ');
+      var area = pts + ' ' + X(vals.length - 1).toFixed(1) + ',' + (H - pad) + ' ' + X(0).toFixed(1) + ',' + (H - pad);
+      svg.innerHTML = '<defs><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(14,126,123,.35)"/><stop offset="1" stop-color="rgba(14,126,123,.02)"/></linearGradient></defs>'
+        + '<polygon points="' + area + '" fill="url(#pg)"/>'
+        + '<polyline points="' + pts + '" fill="none" stroke="#9BDDD9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
+        + '<circle cx="' + X(vals.length - 1).toFixed(1) + '" cy="' + Y(vals[vals.length - 1]).toFixed(1) + '" r="4" fill="#9BDDD9"/>';
+    }
+    if (data.length > 30){
+      var last = data[data.length - 1].laspeyres_index, prev = data[data.length - 31].laspeyres_index;
+      var mom = (last / prev - 1) * 100;
+      set('pv-mom', (mom > 0 ? '▲ +' : '▼ ') + mom.toFixed(1) + '% MoM · Laspeyres');
+      set('map-mom', (mom > 0 ? '↑' : '↓') + ' ' + mom.toFixed(1) + '%');
+    }
+  });
+})();
+</script>
+</body>
+</html>

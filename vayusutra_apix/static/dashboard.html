@@ -3,67 +3,69 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="VayuSutra — National Airfare Intelligence &amp; Inflation Decision Platform. MoSPI SIH26056 command center.">
-<title>VayuSutra — National Airfare Intelligence Command Center</title>
+<meta name="description" content="AirIntel India — India's Airfare Intelligence Platform. Measure, explain, forecast and simulate India's airfare-driven inflation. Team Rookie.">
+<title>AirIntel India — Airfare Intelligence Command Center</title>
 <style>
 /* ============================================================
-   VayuSutra — National Airfare Intelligence & Inflation
-   Command Center  ·  Design tokens & core styles
+   AirIntel India — India's Airfare Intelligence Platform
+   Team Rookie · Design tokens & core styles
    (single-file, zero-CDN, light-first institutional UI)
+   Palette: Deep Navy + Warm Ivory + Teal accent · no purple
    ============================================================ */
 :root{
-  --bg-page:#F4F6FB; --bg-elev:#FFFFFF; --bg-soft:#F8FAFD; --bg-inset:#EEF2F9; --bg-hover:#F1F5FC;
-  --text-1:#0F1B33; --text-2:#46536E; --text-3:#66758F; --text-4:#8B98AF;
-  --border:#E3E9F2; --border-strong:#CFD9E8;
-  --brand:#1E3A8A; --indigo:#4F46E5; --indigo-2:#6366F1; --purple:#7C3AED; --violet:#8B5CF6;
-  --grad-primary:linear-gradient(135deg,#3D4ED8 0%,#6A3FDC 100%);
-  --grad-hero:linear-gradient(135deg,#24389E 0%,#4338CA 46%,#6D28D9 100%);
-  --grad-navactive:linear-gradient(90deg,rgba(99,102,241,.95),rgba(124,58,237,.9));
-  --success:#059669; --success-deep:#047857; --success-soft:#E6F7F0;
-  --danger:#DC2626; --danger-deep:#B91C1C; --danger-soft:#FDECEC;
-  --warn:#D97706; --warn-deep:#B45309; --warn-soft:#FBF1DD;
-  --info:#2563EB; --info-soft:#E9F0FE;
-  --purple-soft:#F1EAFE; --cyan:#0891B2; --cyan-soft:#E4F5F9;
-  --shadow-xs:0 1px 2px rgba(15,27,51,.05);
-  --shadow-sm:0 1px 2px rgba(15,27,51,.06),0 4px 12px -4px rgba(15,27,51,.08);
-  --shadow-md:0 2px 4px rgba(15,27,51,.05),0 14px 30px -12px rgba(15,27,51,.16);
-  --shadow-lg:0 8px 16px rgba(15,27,51,.08),0 28px 60px -16px rgba(15,27,51,.22);
+  --bg-page:#F7F4EC; --bg-elev:#FFFFFF; --bg-soft:#FBF9F3; --bg-inset:#F0ECE1; --bg-hover:#F3EFE5;
+  --text-1:#0F2231; --text-2:#3E4E5C; --text-3:#5F6E7B; --text-4:#84909B;
+  --border:#E5DFD1; --border-strong:#D2CAB8;
+  --brand:#0B2A43; --indigo:#0E7E7B; --indigo-2:#139491; --purple:#12857F; --violet:#1E9A93;
+  --grad-primary:linear-gradient(135deg,#0F3A5C 0%,#0E7E7B 100%);
+  --grad-hero:linear-gradient(135deg,#0A1F33 0%,#0F3A5C 52%,#0E7E7B 100%);
+  --grad-navactive:linear-gradient(90deg,rgba(14,126,123,.96),rgba(11,95,98,.92));
+  --success:#2E7D4F; --success-deep:#22653F; --success-soft:#E9F3EC;
+  --danger:#C13A2E; --danger-deep:#A02C22; --danger-soft:#F9E9E6;
+  --warn:#C77E0E; --warn-deep:#9E6408; --warn-soft:#FAF0DC;
+  --info:#2E6CA9; --info-soft:#E7EFF6;
+  --purple-soft:#E3F1F0; --cyan:#0E7E7B; --cyan-soft:#E3F1F0;
+  --accent-orange:#C2621A; --accent-orange-soft:#F8EDE2;
+  --shadow-xs:0 1px 2px rgba(21,34,47,.05);
+  --shadow-sm:0 1px 2px rgba(21,34,47,.06),0 4px 12px -4px rgba(21,34,47,.09);
+  --shadow-md:0 2px 4px rgba(21,34,47,.05),0 14px 30px -12px rgba(21,34,47,.17);
+  --shadow-lg:0 8px 16px rgba(21,34,47,.08),0 28px 60px -16px rgba(21,34,47,.22);
   --r-lg:16px; --r-md:12px; --r-sm:9px; --r-xs:6px;
   --tr:.16s cubic-bezier(.4,0,.2,1); --tr-slow:.32s cubic-bezier(.4,0,.2,1);
-  --sb:#0B1226;
+  --sb:#0A1D30;
   --font-sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Inter","Helvetica Neue",Arial,"Noto Sans",sans-serif;
   --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
-  --sidebar-w:252px;
-  --info-deep:#1E4FD8; --indigo-soft:#EEEDFD; --indigo-deep:#4338CA;
-  --grad-indigo:linear-gradient(135deg,#4F46E5,#7C3AED);
-  --purple-deep:#6D28D9; --cyan-deep:#0E7490;
+  --sidebar-w:260px;
+  --info-deep:#24578A; --indigo-soft:#E3F1F0; --indigo-deep:#0B6562;
+  --grad-indigo:linear-gradient(135deg,#0E7E7B,#0B6562);
+  --purple-deep:#0B6562; --cyan-deep:#0B6562;
 }
 [data-theme="dark"]{
-  --bg-page:#0A101F; --bg-elev:#101830; --bg-soft:#0D1528; --bg-inset:#0C1426; --bg-hover:#17203A;
-  --text-1:#E7EDF8; --text-2:#A9B6CC; --text-3:#7D8AA3; --text-4:#5B6780;
-  --border:#1D2A46; --border-strong:#2A3A5E;
-  --brand:#7B93FF; --indigo:#818CF8; --indigo-2:#A5B4FC; --purple:#A78BFA; --violet:#C4B5FD;
-  --grad-primary:linear-gradient(135deg,#4F46E5 0%,#7C3AED 100%);
-  --grad-hero:linear-gradient(135deg,#312E81 0%,#4F46E5 55%,#6D28D9 100%);
-  --grad-navactive:linear-gradient(90deg,#4F46E5,#7C3AED);
-  --success:#34D399; --success-deep:#6EE7B7; --success-soft:rgba(5,150,105,.14);
-  --danger:#F87171; --danger-deep:#FCA5A5; --danger-soft:rgba(220,38,38,.14);
-  --warn:#FBBF24; --warn-deep:#FCD34D; --warn-soft:rgba(217,119,6,.16);
-  --info:#60A5FA; --info-soft:rgba(37,99,235,.16);
-  --purple-soft:rgba(124,58,237,.16); --cyan:#22D3EE; --cyan-soft:rgba(8,145,178,.16);
+  --bg-page:#0A1420; --bg-elev:#101E2C; --bg-soft:#0C1926; --bg-inset:#0D1B28; --bg-hover:#16242F;
+  --text-1:#EAF0F5; --text-2:#ADBAC6; --text-3:#7F8FA0; --text-4:#5B6B7C;
+  --border:rgba(148,163,184,.15); --border-strong:rgba(148,163,184,.30);
+  --brand:#7FD1CD; --indigo:#3EB8B3; --indigo-2:#6BCBC7; --purple:#3EB8B3; --violet:#6BCBC7;
+  --grad-primary:linear-gradient(135deg,#0F3A5C 0%,#0E7E7B 100%);
+  --grad-hero:linear-gradient(135deg,#081826 0%,#0E3754 55%,#0C6F6C 100%);
+  --grad-navactive:linear-gradient(90deg,#0E7E7B,#0B5F5C);
+  --success:#43C680; --success-deep:#7EDBA8; --success-soft:rgba(46,125,79,.16);
+  --danger:#E88377; --danger-deep:#F0A69D; --danger-soft:rgba(193,58,46,.15);
+  --warn:#E0A53E; --warn-deep:#EDBE6E; --warn-soft:rgba(199,126,14,.16);
+  --info:#6BA6DD; --info-soft:rgba(46,108,169,.16);
+  --purple-soft:rgba(14,126,123,.16); --cyan:#3EB8B3; --cyan-soft:rgba(14,126,123,.16);
+  --accent-orange:#E08A4C; --accent-orange-soft:rgba(194,98,26,.16);
   --shadow-xs:0 1px 2px rgba(0,0,0,.3); --shadow-sm:0 1px 2px rgba(0,0,0,.35),0 4px 14px -4px rgba(0,0,0,.45);
   --shadow-md:0 2px 6px rgba(0,0,0,.4),0 16px 34px -10px rgba(0,0,0,.55);
   --shadow-lg:0 10px 18px rgba(0,0,0,.5),0 30px 70px -14px rgba(0,0,0,.65);
-  --border:rgba(148,163,184,.16); --border-strong:rgba(148,163,184,.30);
-  --info-deep:#93C5FD; --indigo-soft:rgba(99,102,241,.16); --indigo-deep:#A5B4FC;
-  --grad-indigo:linear-gradient(135deg,#6366F1,#A78BFA);
-  --purple-deep:#C4B5FD; --cyan-deep:#67E8F9;
+  --info-deep:#8FC2EE; --indigo-soft:rgba(14,126,123,.18); --indigo-deep:#6BCBC7;
+  --grad-indigo:linear-gradient(135deg,#0E7E7B,#3EB8B3);
+  --purple-deep:#6BCBC7; --cyan-deep:#6BCBC7;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg-page);color:var(--text-1);font-family:var(--font-sans);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-::selection{background:rgba(99,102,241,.22)}
+::selection{background:rgba(14,126,123,.22)}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-thumb{background:rgba(100,116,139,.35);border-radius:8px;border:2px solid transparent;background-clip:content-box}
 ::-webkit-scrollbar-track{background:transparent}
@@ -74,7 +76,7 @@ button{font-family:inherit}
 
 /* ---------- App shell ---------- */
 #app{min-height:100vh}
-.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar-w);background:linear-gradient(180deg,#0C1530 0%,#0A1128 100%);color:#CBD6EC;display:flex;flex-direction:column;z-index:60;transition:transform var(--tr-slow);box-shadow:4px 0 24px -12px rgba(6,10,25,.35)}
+.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar-w);background:linear-gradient(180deg,#0C2236 0%,#081828 100%);color:#C3D0DE;display:flex;flex-direction:column;z-index:60;transition:transform var(--tr-slow);box-shadow:4px 0 24px -12px rgba(5,10,20,.35)}
 .main{min-height:100vh;margin-left:var(--sidebar-w);display:flex;flex-direction:column}
 @media(max-width:1180px){.sidebar{transform:translateX(-100%);box-shadow:none}.main{margin-left:0}}
 body.nav-open .sidebar{transform:translateX(0);box-shadow:0 0 0 100vmax rgba(5,9,22,.45)}
@@ -84,10 +86,10 @@ body.nav-open .sidebar{transform:translateX(0);box-shadow:0 0 0 100vmax rgba(5,9
 /* ---------- Sidebar ---------- */
 .side-inner{display:flex;flex-direction:column;height:100%;overflow:hidden}
 .side-brand{display:flex;align-items:center;gap:11px;padding:20px 18px 16px;border-bottom:1px solid rgba(148,163,184,.14)}
-.brand-mark{position:relative;width:42px;height:42px;border-radius:12px;flex:none;background:var(--grad-hero);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 6px 16px -4px rgba(79,70,229,.55)}
+.brand-mark{position:relative;width:42px;height:42px;border-radius:12px;flex:none;background:var(--grad-hero);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 6px 16px -4px rgba(14,126,123,.45)}
 .brand-mark svg{width:22px;height:22px}
 .brand-name{font-size:17px;font-weight:800;letter-spacing:.2px;color:#fff;line-height:1.15;display:flex;align-items:center;gap:7px}
-.brand-name .tm{font-size:9.5px;font-weight:800;background:linear-gradient(135deg,#F59E0B,#F97316);color:#1b1205;padding:1.5px 6px;border-radius:5px;letter-spacing:.6px}
+.brand-name .tm{font-size:9.5px;font-weight:800;background:linear-gradient(135deg,#C77E0E,#C2621A);color:#fff;padding:1.5px 6px;border-radius:5px;letter-spacing:.6px}
 .brand-sub{font-size:10.4px;color:#8FA0C4;letter-spacing:.25px;margin-top:3px;line-height:1.35}
 .side-nav{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 10px 16px;scrollbar-width:thin}
 .side-nav::-webkit-scrollbar{width:5px}
@@ -99,10 +101,10 @@ body.nav-open .sidebar{transform:translateX(0);box-shadow:0 0 0 100vmax rgba(5,9
 .nav-item .ni{width:17px;height:17px;flex:none;opacity:.85;display:flex;align-items:center;justify-content:center}
 .nav-item .ni svg{width:16.5px;height:16.5px}
 .nav-item:hover{background:rgba(148,163,184,.12);color:#fff}
-.nav-item.active{background:var(--grad-navactive);color:#fff;font-weight:600;box-shadow:0 6px 14px -6px rgba(99,102,241,.7)}
+.nav-item.active{background:var(--grad-navactive);color:#fff;font-weight:600;box-shadow:0 6px 14px -6px rgba(14,126,123,.55)}
 .nav-item.active .ni{opacity:1}
-.nav-item .ncount{margin-left:auto;font-size:10px;font-weight:800;background:rgba(244,63,94,.9);color:#fff;border-radius:20px;padding:1px 7px}
-.nav-item.active .ncount{background:rgba(255,255,255,.92);color:#4C1D95}
+.nav-item .ncount{margin-left:auto;font-size:10px;font-weight:800;background:rgba(194,98,26,.9);color:#fff;border-radius:20px;padding:1px 7px}
+.nav-item.active .ncount{background:rgba(255,255,255,.92);color:#0B3D3B}
 .side-foot{padding:12px 12px 14px;border-top:1px solid rgba(148,163,184,.12)}
 .live-card{background:rgba(10,16,36,.55);border:1px solid rgba(148,163,184,.16);border-radius:13px;padding:11px 12px}
 .live-card .lc-top{display:flex;align-items:center;gap:8px;font-size:9.6px;font-weight:800;letter-spacing:1.1px;color:#8FA0C4;margin-bottom:8px}
@@ -115,7 +117,7 @@ body.nav-open .sidebar{transform:translateX(0);box-shadow:0 0 0 100vmax rgba(5,9
 .pulse-dot{width:8px;height:8px;border-radius:50%;background:#34D399;position:relative;flex:none}
 .pulse-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid currentColor;animation:ping 1.6s ease-out infinite}
 @keyframes ping{0%{transform:scale(.4);opacity:.9}80%,100%{transform:scale(1.5);opacity:0}}
-.pulse-dot.red{background:#F87171}.pulse-dot.red::after{color:#F87171}
+.pulse-dot.red{background:#E88377}.pulse-dot.red::after{color:#E88377}
 .pulse-dot.amber{background:#FBBF24}.pulse-dot.amber::after{color:#FBBF24}
 
 /* ---------- Topbar ---------- */
@@ -142,8 +144,8 @@ body.nav-open .sidebar{transform:translateX(0);box-shadow:0 0 0 100vmax rgba(5,9
 .btn svg{width:15px;height:15px}
 .btn:hover{border-color:var(--border-strong);color:var(--text-1);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
 .btn:disabled{opacity:.55;pointer-events:none}
-.btn-primary{background:var(--grad-primary);border:none;color:#fff;box-shadow:0 8px 18px -6px rgba(79,70,229,.6)}
-.btn-primary:hover{color:#fff;filter:brightness(1.08);box-shadow:0 10px 22px -6px rgba(79,70,229,.7)}
+.btn-primary{background:var(--grad-primary);border:none;color:#fff;box-shadow:0 8px 18px -6px rgba(14,126,123,.5)}
+.btn-primary:hover{color:#fff;filter:brightness(1.08);box-shadow:0 10px 22px -6px rgba(14,126,123,.6)}
 .btn-soft{background:var(--indigo-soft);border-color:transparent;color:var(--indigo)}
 .btn-soft:hover{background:color-mix(in srgb,var(--indigo-soft) 78%,var(--indigo) 8%);color:var(--indigo)}
 .btn-danger{background:var(--danger-soft);border-color:transparent;color:var(--danger-deep)}
@@ -200,7 +202,7 @@ body.nav-open .sidebar{transform:translateX(0);box-shadow:0 0 0 100vmax rgba(5,9
 /* KPI cards */
 .kpi{border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .kpi-white{background:var(--bg-elev);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:15px 17px 12px}
-.kpi-hero{background:var(--grad-hero);color:#fff;border:none;box-shadow:0 16px 34px -12px rgba(67,56,202,.55);padding:16px 18px 13px;position:relative;overflow:hidden}
+.kpi-hero{background:var(--grad-hero);color:#fff;border:none;box-shadow:0 16px 34px -12px rgba(15,58,92,.5);padding:16px 18px 13px;position:relative;overflow:hidden}
 .kpi-hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 65%)}
 .kpi-hero .kpi-label,.kpi-hero .kpi-meta{color:rgba(255,255,255,.8)}
 .kpi-hero .kpi-tag{background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.25)}
@@ -276,11 +278,11 @@ table.tbl{width:100%;border-collapse:collapse;font-size:12.2px;min-width:480px}
 @media(max-width:640px){.strip5{grid-template-columns:1fr}}
 .strip-item{display:flex;gap:11px;align-items:flex-start;background:var(--bg-elev);border:1px solid var(--border);border-radius:13px;padding:12px 13px;box-shadow:var(--shadow-xs);transition:var(--tr)}
 .strip-item:hover{box-shadow:var(--shadow-sm);transform:translateY(-1px)}
-.strip-ic{width:34px;height:34px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--grad-primary);box-shadow:0 4px 10px -3px rgba(79,70,229,.55)}
-.strip-ic.s2{background:linear-gradient(135deg,#0EA5E9,#2563EB)}
-.strip-ic.s3{background:linear-gradient(135deg,#F59E0B,#D97706)}
-.strip-ic.s4{background:linear-gradient(135deg,#10B981,#059669)}
-.strip-ic.s5{background:linear-gradient(135deg,#8B5CF6,#6D28D9)}
+.strip-ic{width:34px;height:34px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--grad-primary);box-shadow:0 4px 10px -3px rgba(14,126,123,.5)}
+.strip-ic.s2{background:linear-gradient(135deg,#2E6CA9,#24578A)}
+.strip-ic.s3{background:linear-gradient(135deg,#C77E0E,#C2621A)}
+.strip-ic.s4{background:linear-gradient(135deg,#2E7D4F,#22653F)}
+.strip-ic.s5{background:linear-gradient(135deg,#0E7E7B,#0B6562)}
 .strip-ic svg{width:16px;height:16px}
 .strip-t{font-size:10.2px;font-weight:800;letter-spacing:.6px;color:var(--text-3);margin-bottom:1px}
 .strip-n{font-size:11.6px;font-weight:750;color:var(--text-1);line-height:1.35}
@@ -295,7 +297,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:12.2px;min-width:480px}
 .tcell.tc-up{border-color:color-mix(in srgb,var(--danger) 30%,var(--border));background:color-mix(in srgb,var(--danger-soft) 55%,var(--bg-elev))}
 .tcell.tc-up .tc-v{color:var(--danger-deep)}
 .tcell.tc-ok .tc-v{color:var(--success-deep)}
-.tcell.tc-main{background:linear-gradient(160deg,color-mix(in srgb,var(--indigo) 7%,var(--bg-elev)),color-mix(in srgb,var(--purple) 7%,var(--bg-elev)));border-color:color-mix(in srgb,var(--indigo) 26%,var(--border))}
+.tcell.tc-main{background:linear-gradient(160deg,color-mix(in srgb,var(--indigo) 8%,var(--bg-elev)),color-mix(in srgb,var(--indigo) 4%,var(--bg-elev)));border-color:color-mix(in srgb,var(--indigo) 26%,var(--border))}
 .tarrow{align-self:center;color:var(--text-4);flex:none;display:flex;flex-direction:column;align-items:center;font-size:9px;font-weight:800;letter-spacing:.4px;color:var(--text-4)}
 .tarrow svg{width:15px;height:15px;margin-bottom:2px}
 
@@ -391,9 +393,11 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .pal-item.sel{outline:1px solid color-mix(in srgb,var(--indigo) 30%,transparent)}
 
 /* chat */
+.ai-split{align-items:stretch}
+.ai-split .chat-box{height:min(58vh,520px)}
 .chat-box{display:flex;flex-direction:column;gap:11px;height:min(52vh,440px);overflow-y:auto;padding:4px 2px;scroll-behavior:smooth}
 .bubble{max-width:86%;border-radius:13px;padding:10px 13px;font-size:12.6px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
-.bubble.user{align-self:flex-end;background:var(--grad-primary);color:#fff;border-bottom-right-radius:4px;box-shadow:0 6px 14px -6px rgba(79,70,229,.55)}
+.bubble.user{align-self:flex-end;background:var(--grad-primary);color:#fff;border-bottom-right-radius:4px;box-shadow:0 6px 14px -6px rgba(14,126,123,.5)}
 .bubble.ai{align-self:flex-start;background:var(--bg-elev);border:1px solid var(--border);color:var(--text-2);border-bottom-left-radius:4px}
 .bubble.ai .b-strong{color:var(--text-1);font-weight:750}
 .bubble .cite{font-size:10.6px;color:var(--indigo);margin-top:6px;background:var(--indigo-soft);border-radius:8px;padding:5px 9px}
@@ -457,8 +461,8 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
     <div class="side-brand">
       <div class="brand-mark" id="brandMark"><span id="brandMarkInner"></span></div>
       <div>
-        <div class="brand-name">VayuSutra<span class="tm">APIx</span></div>
-        <div class="brand-sub">National Airfare<br>Intelligence</div>
+        <div class="brand-name">AirIntel<span class="tm">India</span></div>
+        <div class="brand-sub">India's Airfare<br>Intelligence</div>
       </div>
     </div>
     <nav class="side-nav" id="side-nav" aria-label="Sections"></nav>
@@ -474,7 +478,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
         <div class="lc-row"><span>Last cycle</span><b id="lc-last">—</b></div>
         <div class="lc-row"><span>Last updated</span><b id="lc-updated">—</b></div>
       </div>
-      <div class="side-mini">v2.0 · MoSPI SIH26056 · ILO / UN CPI Std</div>
+      <div class="side-mini">AirIntel India · Team Rookie · ILO / UN CPI Std</div>
     </div>
   </div>
 </aside>
@@ -487,8 +491,8 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
     <button class="tb-burger" id="btn-nav" aria-label="Open navigation"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     <div class="tb-titles">
       <div class="greet-badge" id="tb-greet">Namaste! 👋 <span id="tb-greet-name">Officer</span></div>
-      <h1 class="page-title" id="tb-title">National Airfare Intelligence Command Center</h1>
-      <div class="page-sub" id="tb-sub">Measure, explain, forecast and simulate India's airfare-driven inflation.</div>
+      <h1 class="page-title" id="tb-title">Airfare Intelligence Command Center</h1>
+      <div class="page-sub" id="tb-sub">India’s airfare — measured, explained, forecast and simulated. MEASURE → EXPLAIN → FORECAST → SIMULATE → DECIDE.</div>
     </div>
     <div class="tb-right">
       <div class="tb-chip" id="chip-ist" title="India Standard Time">
@@ -506,7 +510,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
       <button class="btn btn-primary" id="btn-api" style="gap:8px;padding:9px 16px">
         <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 6-5-6-5"/><path d="M12 19h8"/></svg><span style="font-size:12.6px;font-weight:750">API Access</span>
       </button>
-      <div class="avatar" id="btn-user" title="Account & persona">VS</div>
+      <div class="avatar" id="btn-user" title="Account & persona">TP</div>
       <div class="pop" id="pop-bell" role="menu"></div>
       <div class="pop" id="pop-user" style="min-width:320px"></div>
       <div class="pop" id="pop-live" style="min-width:340px"></div>
@@ -521,6 +525,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 
   <div class="sect"><div class="sect-label">Executive intelligence</div></div>
   <div class="grid g-main" id="home-main"></div>
+  <div id="home-whatchanged" style="margin-top:16px"></div>
 
   <div class="sect"><div class="sect-label">Route-level movement &amp; network heatmap</div></div>
   <div class="card" id="home-map-card">
@@ -587,9 +592,9 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 <section class="view" id="view-methodology"><div id="vb-methodology"></div></section>
 <section class="view" id="view-about"><div id="vb-about"></div></section>
 <footer class="footer">
-  <div><b>VayuSutra</b> — National Airfare Intelligence &amp; Inflation Decision Platform · MoSPI / NSO · RBI MPC · DGCA · SIH26056</div>
+  <div><b>AirIntel India</b> — India's Airfare Intelligence Platform · Team Rookie · MoSPI / NSO · RBI MPC · DGCA</div>
   <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
-    <a href="/docs" target="_blank">Swagger</a><a href="/references" target="_blank">References</a><a href="/solution" target="_blank">Solution card</a><a href="/video" target="_blank">Video walkthrough</a><a href="#" id="foot-team">Team VayuSutra</a>
+    <a href="/landing" target="_blank">Landing</a><a href="/docs" target="_blank">Swagger</a><a href="/references" target="_blank">References</a><a href="/solution" target="_blank">Solution card</a><a href="/video" target="_blank">Video walkthrough</a><a href="#" id="foot-team">Team Rookie</a>
     <span class="kbd">Ctrl K</span>
   </div>
 </footer>
@@ -604,7 +609,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
       <div class="brand-mark" style="width:40px;height:40px;border-radius:11px"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
       <div>
         <h3 class="ovl-title">Executive Access &amp; Role-Based Clearance</h3>
-        <div class="ovl-sub" id="auth-sub">Pre-configured demo personas mapped to the VayuSutra RBAC matrix</div>
+        <div class="ovl-sub" id="auth-sub">Pre-configured demo personas mapped to the AirIntel India RBAC matrix</div>
       </div>
       <button class="icon-btn ovl-x" data-close="ovl-auth"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
@@ -634,7 +639,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 <div class="ovl" id="ovl-drill" role="dialog" aria-modal="true" aria-label="Quote drill-down">
   <div class="ovl-box wide">
     <div class="ovl-head">
-      <div class="brand-mark" style="width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#0EA5E9,#2563EB)"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="brand-mark" style="width:40px;height:40px;border-radius:11px;background:var(--grad-primary)"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
       <div>
         <h3 class="ovl-title" id="drill-title">Cell Drill-Down</h3>
         <div class="ovl-sub" id="drill-sub">Raw quote audit &amp; SHA-256 provenance</div>
@@ -648,11 +653,11 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 </div>
 
 <!-- Team modal -->
-<div class="ovl" id="ovl-team" role="dialog" aria-modal="true" aria-label="Team VayuSutra">
+<div class="ovl" id="ovl-team" role="dialog" aria-modal="true" aria-label="Team Rookie">
   <div class="ovl-box wide">
     <div class="ovl-head">
       <div class="brand-mark" style="width:40px;height:40px;border-radius:11px"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-      <div><h3 class="ovl-title">Team VayuSutra</h3><div class="ovl-sub">Engineering &amp; research team · SIH26056</div></div>
+      <div><h3 class="ovl-title">Team Rookie</h3><div class="ovl-sub">The team behind AirIntel India</div></div>
       <button class="icon-btn ovl-x" data-close="ovl-team"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="ovl-body"><div class="grid g-3" id="team-grid" style="gap:12px"></div></div>
@@ -664,7 +669,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
   <div class="ovl-box wide">
     <div class="ovl-head">
       <div class="brand-mark" style="width:40px;height:40px;border-radius:11px"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 6-5-6-5"/><path d="M12 19h8"/></svg></div>
-      <div><h3 class="ovl-title">VayuSutra API — Developer Access</h3><div class="ovl-sub" id="api-base-info">REST catalog behind the dashboard — same endpoints the UI consumes</div></div>
+      <div><h3 class="ovl-title">AirIntel India API — Developer Access</h3><div class="ovl-sub" id="api-base-info">REST catalog behind the dashboard — same endpoints the UI consumes</div></div>
       <button class="icon-btn ovl-x" data-close="ovl-api"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="ovl-body">
@@ -956,8 +961,8 @@ class VChart {
         ctx.lineTo(X(0), this.H - p.b + 3);
         ctx.closePath();
         const grad = ctx.createLinearGradient(0, p.t, 0, this.H - p.b);
-        grad.addColorStop(0, s.fillColor || hexA(s.color || '#4F46E5', .22));
-        grad.addColorStop(1, hexA(s.color || '#4F46E5', .02));
+        grad.addColorStop(0, s.fillColor || hexA(s.color || '#0E7E7B', .22));
+        grad.addColorStop(1, hexA(s.color || '#0E7E7B', .02));
         ctx.fillStyle = grad; ctx.fill();
       }
       // line path
@@ -973,7 +978,7 @@ class VChart {
           ctx.bezierCurveTo(c1x, py, px, c1y, x, y);
         } else ctx.lineTo(x, y);
       });
-      ctx.strokeStyle = s.color || '#4F46E5';
+      ctx.strokeStyle = s.color || '#0E7E7B';
       ctx.lineWidth = s.width || 2.2;
       ctx.lineJoin = 'round'; ctx.lineCap = 'round';
       if (s.dash) ctx.setLineDash(s.dash); else ctx.setLineDash([]);
@@ -987,15 +992,15 @@ class VChart {
       if (cfg.markEnd && lv != null){
         const lx = X(lastSeries.vals.length - 1), ly = Y(lv);
         ctx.beginPath(); ctx.arc(lx, ly, 7, 0, Math.PI * 2);
-        ctx.fillStyle = hexA(cfg.series[0].color || '#4F46E5', .22); ctx.fill();
+        ctx.fillStyle = hexA(cfg.series[0].color || '#0E7E7B', .22); ctx.fill();
         ctx.beginPath(); ctx.arc(lx, ly, 3.4, 0, Math.PI * 2);
-        ctx.fillStyle = cfg.series[0].color || '#4F46E5'; ctx.fill();
+        ctx.fillStyle = cfg.series[0].color || '#0E7E7B'; ctx.fill();
         ctx.strokeStyle = dark ? '#0b1220' : '#fff'; ctx.lineWidth = 1.6; ctx.stroke();
       }
       if (this._hoverIdx >= 0 && cfg.labels && cfg.labels[this._hoverIdx]){
         const hi = Math.min(this._hoverIdx, n - 1);
         const hx = X(hi);
-        ctx.strokeStyle = hexA(dark ? '#C7D2FE' : '#6366F1', .5);
+        ctx.strokeStyle = hexA(dark ? '#9BDDD9' : '#0E7E7B', .5);
         ctx.setLineDash([3, 4]);
         ctx.beginPath(); ctx.moveTo(hx, p.t); ctx.lineTo(hx, this.H - p.b); ctx.stroke();
         ctx.setLineDash([]);
@@ -1125,34 +1130,34 @@ const APP = {
   telemetry: null, worker: null,
 };
 const VIEW_META = {
-  dashboard:{t:'National Airfare Intelligence Command Center',s:'Measure, explain, forecast and simulate India\u2019s airfare-driven inflation.',i:'dashboard'},
+  dashboard:{t:'Airfare Intelligence Command Center',s:'India\u2019s airfare \u2014 measured, explained, forecast, simulated. MEASURE \u2192 EXPLAIN \u2192 FORECAST \u2192 SIMULATE \u2192 DECIDE.',i:'dashboard'},
   index:{t:'Airfare Index',s:'Superlative index construction, real-time values & CPI pass-through.',i:'lineChart'},
-  routes:{t:'Route Intelligence',s:'DGCA top-20 corridor basket — pricing, movement & 360° dossiers.',i:'route'},
-  airlines:{t:'Airline & OTA Analytics',s:'Carrier positioning, source telemetry and channel consensus.',i:'plane'},
-  windows:{t:'Booking Window Analysis',s:'Advance-purchase horizons, yield curve & day-of-week dynamics.',i:'calendar'},
-  heatmap:{t:'Airfare Heatmap',s:'20 routes × 5 booking horizons + India route-movement map.',i:'mapPin'},
-  forecast:{t:'Forecasting & Model Validation',s:'Multi-model 14–30 day cone with 95% confidence bounds.',i:'trendUp'},
-  anomalies:{t:'Anomaly Detection & Watchlist',s:'Automated surveillance of fare spikes, drops and divergences.',i:'alertTriangle'},
+  routes:{t:'Routes',s:'DGCA top-20 corridor basket — pricing, movement & 360° dossiers.',i:'route'},
+  airlines:{t:'Airlines',s:'Carrier positioning, source telemetry and channel consensus.',i:'plane'},
+  windows:{t:'Booking Windows',s:'Advance-purchase horizons, yield curve & day-of-week dynamics.',i:'calendar'},
+  heatmap:{t:'Route Heatmap',s:'20 routes × 5 booking horizons + India route-movement map.',i:'mapPin'},
+  forecast:{t:'Forecasting',s:'Multi-model 14–30 day cone with 95% confidence bounds.',i:'trendUp'},
+  anomalies:{t:'Anomalies',s:'Automated surveillance of fare spikes, drops and divergences.',i:'alertTriangle'},
   cpi:{t:'CPI Decomposition',s:'Route-level contribution waterfall into headline CPI.',i:'pieChart'},
   regional:{t:'Regional Analysis',s:'Corridor & state-hub index disaggregation.',i:'layers'},
-  trust:{t:'Data Trust Center',s:'Quality scorecard, provenance vault & source consensus.',i:'shield'},
-  scenario:{t:'Policy Scenario Simulator',s:'What-if shocks on airfares, ATF, demand and capacity.',i:'flask'},
+  trust:{t:'Data Trust',s:'Quality scorecard, provenance vault & source consensus.',i:'shield'},
+  scenario:{t:'Policy Simulator',s:'What-if shocks on airfares, ATF, demand and capacity.',i:'flask'},
   policy:{t:'Policy Insights — Inflation Transmission',s:'From airfare shocks to headline CPI and RBI MPC guidance.',i:'landmark'},
-  ai:{t:'AI Policy Analyst',s:'Data-grounded Q&A over live VayuSutra endpoints.',i:'bot'},
-  reports:{t:'Reports & Daily Dossier',s:'Automated executive briefs, statutory datasets and exports.',i:'fileText'},
+  ai:{t:'AI Policy Analyst',s:'Data-grounded Q&A over live AirIntel India endpoints.',i:'bot'},
+  reports:{t:'Reports',s:'Automated executive briefs, statutory datasets and exports.',i:'fileText'},
   alerts:{t:'Alert Center',s:'Active regulatory alerts & threshold rules.',i:'bellRing'},
-  api:{t:'API & Data',s:'Full REST catalog behind this dashboard.',i:'terminal'},
-  docs:{t:'Documentation & Methodology',s:'Index mathematics, CPI weights and pipeline governance.',i:'book'},
+  api:{t:'API Access',s:'Full REST catalog behind this dashboard.',i:'terminal'},
+  docs:{t:'Documentation',s:'Index mathematics, CPI weights and pipeline governance.',i:'book'},
   methodology:{t:'Methodology',s:'Statistical standards, formula catalogue and data governance.',i:'clipboard'},
-  about:{t:'About VayuSutra',s:'Platform mandate, team and empirical validation.',i:'users'},
+  about:{t:'About AirIntel India',s:'Platform mandate, team and empirical validation.',i:'users'},
 };
 const NAV = [
-  ['OVERVIEW',[['home','Home','home'],['dashboard','Dashboard','dashboard']]],
-  ['INTELLIGENCE',[['index','Airfare Index','lineChart'],['routes','Routes','route'],['airlines','Airlines','plane'],['windows','Booking Windows','calendar'],['heatmap','Heatmap','mapPin']]],
-  ['ANALYTICS',[['forecast','Forecast','trendUp'],['anomalies','Anomalies','alertTriangle'],['cpi','CPI Decomposition','pieChart'],['regional','Regional Analysis','layers'],['trust','Data Trust','shield']]],
-  ['POLICY',[['scenario','Scenario Simulator','flask'],['policy','Policy Insights','landmark'],['ai','AI Policy Analyst','bot']]],
-  ['DATA',[['reports','Reports','fileText'],['alerts','Alerts','bellRing'],['api','API & Data','terminal'],['docs','Documentation','book'],['methodology','Methodology','clipboard']]],
-  ['ABOUT',[['about','About VayuSutra','users']]],
+  ['COMMAND CENTER',[['dashboard','Dashboard','dashboard']]],
+  ['AIRFARE INTELLIGENCE',[['index','Airfare Index','lineChart'],['routes','Routes','route'],['airlines','Airlines','plane'],['windows','Booking Windows','calendar'],['heatmap','Route Heatmap','mapPin']]],
+  ['ANALYTICS',[['forecast','Forecasting','trendUp'],['anomalies','Anomalies','alertTriangle'],['cpi','CPI Decomposition','pieChart'],['regional','Regional Analysis','layers']]],
+  ['DECISION SUPPORT',[['scenario','Policy Simulator','flask'],['ai','AI Policy Analyst','bot'],['reports','Reports','fileText']]],
+  ['DATA & SYSTEM',[['trust','Data Trust','shield'],['alerts','Alerts','bellRing'],['api','API Access','terminal'],['docs','Documentation','book'],['methodology','Methodology','clipboard']]],
+  ['ABOUT',[['about','About','users']]],
 ];
 const ALT_ICON = {home:'home', dashboard:'dashboard'};
 /* 'home' and 'dashboard' both open the dashboard view */
@@ -1239,9 +1244,9 @@ function fmtDateTime(iso){
   return fmtDateStr(iso) + ', ' + d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
 }
 const COL = {
-  rise: '#DC2626', fall: '#059669', flat: '#64748B',
-  indigo: '#4F46E5', purple: '#7C3AED', amber: '#D97706', blue: '#2563EB',
-  cyan: '#0891B2',
+  rise: '#C13A2E', fall: '#2E7D4F', flat: '#5F6E7B',
+  indigo: '#0E7E7B', purple: '#12857F', amber: '#C77E0E', blue: '#2E6CA9',
+  cyan: '#0E7E7B',
 };
 function deltaClass(v){
   if (v > 0.05) return { c: 'chip chip-up', col: COL.rise, sym: '▲' };
@@ -1256,11 +1261,11 @@ function deltaChip(v, fmt, suffix){
 }
 function levelColor(level){
   const l = String(level || '').toUpperCase();
-  if (l.indexOf('CRITICAL') > -1) return '#B91C1C';
-  if (l.indexOf('HIGH') > -1) return '#DC2626';
-  if (l.indexOf('MODERATE') > -1 || l.indexOf('MEDIUM') > -1 || l.indexOf('WARN') > -1) return '#D97706';
-  if (l.indexOf('LOW') > -1) return '#059669';
-  return '#2563EB';
+  if (l.indexOf('CRITICAL') > -1) return '#A02C22';
+  if (l.indexOf('HIGH') > -1) return '#C13A2E';
+  if (l.indexOf('MODERATE') > -1 || l.indexOf('MEDIUM') > -1 || l.indexOf('WARN') > -1) return '#C77E0E';
+  if (l.indexOf('LOW') > -1) return '#2E7D4F';
+  return '#2E6CA9';
 }
 function levelDot(level){ return `<span class="lvl-dot" style="background:${levelColor(level)}"></span>`; }
 function skelHTML(rows){
@@ -1334,7 +1339,7 @@ function navTo(key, opts){
   $('#tb-title').textContent = meta.t;
   $('#tb-sub').textContent = meta.s;
   $('#tb-greet').style.display = viewKey === 'dashboard' ? '' : 'none';
-  document.title = meta.t + ' · VayuSutra';
+  document.title = meta.t + ' · AirIntel India';
   try { history.replaceState(null, '', '#/' + viewKey); } catch (e) {}
   const loader = LOADERS[viewKey];
   if (loader) loader({ force: true });
@@ -1385,17 +1390,17 @@ async function initAuth(){
 }
 function personaMeta(role){
   const map = {
-    MOSPI_ADMIN: { c: '#059669', n: 'MoSPI' }, RBI_MPC: { c: '#2563EB', n: 'RBI MPC' },
-    DGCA_REGULATOR: { c: '#0891B2', n: 'DGCA' }, SYSTEM_ADMIN: { c: '#7C3AED', n: 'Admin' },
-    PUBLIC_AUDITOR: { c: '#D97706', n: 'Auditor' }, POLICY_ECONOMIST: { c: '#DC2626', n: 'Economist' },
+    MOSPI_ADMIN: { c: '#2E7D4F', n: 'MoSPI' }, RBI_MPC: { c: '#2E6CA9', n: 'RBI MPC' },
+    DGCA_REGULATOR: { c: '#0E7E7B', n: 'DGCA' }, SYSTEM_ADMIN: { c: '#0F3A5C', n: 'Admin' },
+    PUBLIC_AUDITOR: { c: '#C77E0E', n: 'Auditor' }, POLICY_ECONOMIST: { c: '#C13A2E', n: 'Economist' },
   };
-  return map[role] || { c: '#64748B', n: 'User' };
+  return map[role] || { c: '#5F6E7B', n: 'User' };
 }
 function paintUser(){
   const u = APP.user;
   const av = $('#btn-user');
   if (av){
-    const initials = u ? (u.full_name || 'VS').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() : 'VS';
+    const initials = u ? (u.full_name || 'TR').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() : 'TR';
     av.textContent = initials;
     av.style.background = u ? u.avatar_color || personaMeta(u.role).c : 'var(--grad-hero)';
   }
@@ -1677,14 +1682,14 @@ document.addEventListener('keydown', e => {
 });
 $('#pal-input') && ($('#pal-input') !== null) && null;
 
-/* ---------- team ---------- */
+/* ---------- team (Team Rookie) ---------- */
 const TEAM = [
-  ['Dev Parth','Lead Architect & Team Lead','#F59E0B','System architecture, econometric index engine, AI nowcast ensemble, full-stack leadership.'],
-  ['Avanish Kumar','Data Engineering Lead','#0EA5E9','Cleaning pipeline, multi-OTA deduplication and MAD modified Z-score outlier rejection.'],
-  ['Anushka Mall','Scraper & Ingestion Lead','#10B981','Ethical scraper engine, token-bucket rate limiting, MoSPI eSankhyiki connector.'],
-  ['Aryan Vishwakarma','Econometric Modeling Lead','#8B5CF6','Superlative Fisher/Walsh math, CPI transmission Δbps and macro elasticity modelling.'],
-  ['Sumit','Backend & Telemetry Engineer','#2563EB','FastAPI REST, Prometheus metrics, WebSocket live feeds and background daemon.'],
-  ['Aryan','UI/UX & Visualizations Lead','#0D9488','Command-center UI, live charts, 20×5 heatmap matrix and design tokens.'],
+  ['Dev Parth','Lead Architect & Team Lead','#C2621A','System architecture, econometric index engine, AI nowcast ensemble, full-stack leadership.'],
+  ['Avanish Kumar','Data Engineering Lead','#2E6CA9','Cleaning pipeline, multi-OTA deduplication and MAD modified Z-score outlier rejection.'],
+  ['Anushka Mall','Scraper & Ingestion Lead','#2E7D4F','Ethical scraper engine, token-bucket rate limiting, MoSPI eSankhyiki connector.'],
+  ['Aryan Vishwakarma','Econometric Modeling Lead','#0E7E7B','Superlative Fisher/Walsh math, CPI transmission Δbps and macro elasticity modelling.'],
+  ['Sumit','Backend & Telemetry Engineer','#0F3A5C','FastAPI REST, Prometheus metrics, WebSocket live feeds and background daemon.'],
+  ['Aryan','UI/UX & Visualizations Lead','#C77E0E','Command-center UI, live charts, 20×5 heatmap matrix and design tokens.'],
 ];
 function openTeam(){ openOv('ovl-team'); const g = $('#team-grid'); if (g) g.innerHTML = TEAM.map(t => `
   <div style="border:1px solid var(--border);border-radius:13px;padding:13px;background:var(--bg-soft)">
@@ -1775,7 +1780,8 @@ async function loadKPIs(){
   const hs = hexA('#FFFFFF', .55);
   const heroSpark = !heroFail && laspSeries.length ? `<div class="kpi-spark" data-spark></div>` : '';
 
-  // ---- KPI 1 hero
+  // ---- KPI 1 hero (dominant NATIONAL AIRFARE INDEX card)
+  const yoy = series.length > 365 ? ((laspSeries[laspSeries.length - 1] / laspSeries[laspSeries.length - 366]) - 1) * 100 : null;
   const card1 = `<div class="kpi kpi-hero" style="min-height:172px">
     <div class="kpi-top">
       <span class="kpi-label">National Airfare Index</span>
@@ -1783,7 +1789,8 @@ async function loadKPIs(){
     </div>
     ${rt ? `
     <div class="kpi-val"><span id="kpi1-val">${num2(rt.master_laspeyres_index)}</span><span class="unit">points</span>
-      ${deltaChip(mom, null, '') || ''}
+      ${deltaChip(mom, null, ' MoM') || ''}
+      ${yoy != null ? `<span class="kpi-delta flat" style="background:rgba(255,255,255,.14);color:rgba(255,255,255,.85)">${yoy > 0 ? '▲' : '▼'} ${Math.abs(yoy).toFixed(1)}% YoY</span>` : ''}
     </div>
     <div class="kpi-meta">Base Period: <b style="color:#fff">Jan 2024 = 100</b> · Superlative Fisher: <b style="color:#fff" id="kpi1-fisher">${num2(rt.fisher_ideal_index)}</b></div>
     ${heroSpark}
@@ -1830,7 +1837,7 @@ async function loadKPIs(){
     <div class="kpi-top"><span class="kpi-label">Data Trust Score</span>${dq ? `<span class="chip chip-ok">${h(dq.status_rating)}</span>` : '<span class="chip chip-gray">—</span>'}</div>
     ${dq ? `
     <div style="display:flex;gap:14px;align-items:center;margin-top:8px">
-      <div style="position:relative">${ringSVG(dq.overall_trust_score, '#059669', 96, 9)}
+      <div style="position:relative">${ringSVG(dq.overall_trust_score, '#2E7D4F', 96, 9)}
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column">
           <b style="font-size:20px;color:var(--text-1);line-height:1">${num1(dq.overall_trust_score)}</b>
           <span style="font-size:8.4px;color:var(--text-4);font-weight:800;letter-spacing:.6px">/ 100</span>
@@ -1869,7 +1876,7 @@ async function loadTrend(){
   if (!box) return;
   box.innerHTML = `
     <div class="card"><div class="card-head">
-      <div><h3 class="card-title"><span class="ic">${icon('lineChart')}</span>National Airfare Index Trend</h3>
+      <div><h3 class="card-title"><span class="ic">${icon('lineChart')}</span>Market Pulse — National Airfare Index</h3>
       <div class="card-sub" id="trend-sub">Loading…</div></div>
       <div class="card-actions">
         <div class="seg" id="trend-seg">
@@ -1882,7 +1889,7 @@ async function loadTrend(){
     </div></div>
     <div class="card" id="card-movers"><div class="card-head">
       <div><h3 class="card-title"><span class="ic">${icon('route')}</span>Route Intelligence</h3>
-      <div class="card-sub">Largest composite movements · latest vs ${'previous period'}</div></div>
+      <div class="card-sub">Current fare · MoM · YoY · inflation contribution · anomalies — click a row for the 360° dossier</div></div>
       <button class="btn-link" onclick="navTo('routes')">View all routes ${icon('arrowRight')}</button>
     </div><div class="card-body" id="movers-body"><div class="skels"><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div></div></div></div>`;
   $('#trend-seg').addEventListener('click', e => {
@@ -1912,8 +1919,8 @@ function paintTrendChart(){
   trendChart = new VChart(holder, {
     labels,
     series: [
-      { name: 'Laspeyres I\u2097', color: '#4F46E5', vals: lasp, fill: true, width: 2.4 },
-      { name: 'Fisher I\u1D39', color: '#0EA5E9', vals: fish, dash: [5, 4], width: 1.9 },
+      { name: 'Laspeyres I\u2097', color: '#0E7E7B', vals: lasp, fill: true, width: 2.4 },
+      { name: 'Fisher I\u1D39', color: '#2E6CA9', vals: fish, dash: [5, 4], width: 1.9 },
     ],
     height: 292,
     markEnd: true,
@@ -1925,34 +1932,46 @@ function paintTrendChart(){
 }
 async function loadMovers(){
   const body = $('#movers-body');
-  let mv = null; try { mv = await apiJSON('/api/v1/routes/movement?lookback_days=7', { ttl: 20000 }); } catch (e) {}
+  let mv = null, cp = null, an = null, ts = null;
+  try { mv = await apiJSON('/api/v1/routes/movement?lookback_days=7', { ttl: 20000 }); } catch (e) {}
+  try { cp = await apiJSON('/api/v1/analytics/cpi-decomposition', { ttl: 30000 }); } catch (e) {}
+  try { an = await apiJSON('/api/v1/anomalies', { ttl: 30000 }); } catch (e) {}
+  try { ts = ts || await apiJSON('/api/v1/index/timeseries?limit=365', { ttl: 15000 }); } catch (e) {}
   if (!mv || !mv.routes || !mv.routes.length){
     body.innerHTML = errHTML('Route movement endpoint unavailable', 'loadMovers()');
     return;
   }
-  const up = mv.routes.filter(r => r.change_pct > .05).slice(0, 4);
-  const down = mv.routes.filter(r => r.change_pct < -.05).slice(0, 3);
-  const rows = (arr, kind) => arr.map(r => `
-    <div class="list-row clickable" onclick="openRouteDrawer('${r.route_code}')" style="cursor:pointer" title="Open 360° dossier">
-      <span class="route-badge">${r.origin_city.slice(0, 3).toUpperCase()}${icon('arrowRight')}<small style="font-size:9px">→</small>${r.destination_city.slice(0, 3).toUpperCase()}<small style="font-variant-numeric:tabular-nums"> ${r.route_code.split('-')[0]}–${r.route_code.split('-')[1]}</small></span>
-      <span class="lr-v">${deltaChip(r.change_pct)}</span>
-    </div>`).join('');
-  const upH = up.length ? rows(up) : `<div class="muted" style="font-size:11.6px;padding:6px 2px">No rising corridors in latest window</div>`;
-  const downH = down.length ? rows(down) : `<div class="muted" style="font-size:11.6px;padding:6px 2px">No falling corridors in latest window</div>`;
+  // monthly (30-day) per-route YoY proxy via national series; MoM from change_pct is weekly-window
+  const contribMap = {};
+  (((cp || {}).full_route_waterfall) || []).forEach(w => { contribMap[w.route_code] = w; });
+  const anomalyMap = {};
+  (((an || {}).anomalies) || []).forEach(a => { if (a.route_code && !(a.route_code in anomalyMap)) anomalyMap[a.route_code] = a; });
+  const sorted = mv.routes.slice().sort((a, b) => Math.abs(b.change_pct || 0) - Math.abs(a.change_pct || 0));
+  const rows = sorted.map(r => {
+    const c = contribMap[r.route_code];
+    const a = anomalyMap[r.route_code];
+    const contrib = c ? (c.share_of_total_inflation_pct != null ? c.share_of_total_inflation_pct : c.headline_cpi_impact_bps) : null;
+    const trendCol = (r.change_pct || 0) > .05 ? 'var(--danger-deep)' : (r.change_pct || 0) < -.05 ? 'var(--success-deep)' : 'var(--text-3)';
+    return `<tr class="clickable" onclick="openRouteDrawer('${r.route_code}')" title="Open 360° dossier">
+      <td><span class="route-badge">${h(r.route_code)}</span><br><small class="muted2" style="font-size:9.8px">${h(r.origin_city)} → ${h(r.destination_city)}</small></td>
+      <td class="num strong">${money(r.current_fare_inr)}</td>
+      <td class="num">${deltaChip(r.change_pct)}</td>
+      <td class="num">${c && c.price_movement_pct != null ? deltaChip(c.price_movement_pct) : '<span class="muted2">—</span>'}</td>
+      <td class="num">${contrib != null ? num2(contrib) + (c && c.share_of_total_inflation_pct != null ? '%' : ' bps') : '<span class="muted2">—</span>'}</td>
+      <td>${a ? chipLevel(a.severity) : '<span class="chip chip-gray">nominal</span>'}</td>
+      <td><svg width="34" height="12" viewBox="0 0 34 12" aria-hidden="true"><path d="M2 6 H32" stroke="var(--border)" stroke-width="1.5"/><path d="M${2 + Math.max(0, Math.min(1, ((r.change_pct || 0) + 10) / 20)) * 30} 6 L30 6" stroke="${trendCol}" stroke-width="2" stroke-linecap="round"/></svg></td>
+    </tr>`;
+  }).join('');
   body.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
-      <span class="chip chip-up">▲ Rising corridors</span>
-      <span class="muted2" style="font-size:10.4px">vs ${fmtDateStr(mv.comparison_date)}</span>
-    </div>
-    ${upH}
-    <div style="margin:8px 0 4px"></div>
-    <span class="chip chip-down">▼ Falling corridors</span>
-    ${downH}
-    <div class="hr-line">National composite</div>
-    <div class="metric-tile" style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+    <div class="tbl-wrap"><table class="tbl" style="min-width:560px"><thead><tr>
+      <th>Route</th><th class="num">Current fare</th><th class="num">MoM</th><th class="num">YoY</th><th class="num">CPI contribution</th><th>Anomaly</th><th>Trend</th>
+    </tr></thead><tbody>${rows}</tbody></table></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:10px;flex-wrap:wrap">
+      <span class="muted2" style="font-size:10.4px">vs ${fmtDateStr(mv.comparison_date)} · ${mv.routes.length} DGCA corridors</span>
+      <div class="metric-tile" style="display:flex;justify-content:space-between;align-items:center;gap:8px">
       <div><div class="mt-k">Weighted avg fare</div><div class="mt-v" style="font-size:17px">${money(mv.national ? mv.national.current_fare_inr : 0)}</div></div>
       <div style="text-align:right">${deltaChip(mv.national ? mv.national.change_pct : null)}<div class="muted2" style="font-size:10.2px;margin-top:3px">${mv.national ? mv.national.routes_covered : 0} corridors covered</div></div>
-    </div>`;
+    </div></div>`;
   runBars(body);
 }
 
@@ -1962,16 +1981,16 @@ async function loadMovers(){
 const INDIA = (typeof INDIA_GEO !== 'undefined' && INDIA_GEO) ? INDIA_GEO : {"path_d":"","city_pts":{},"viewBox":"0 0 660 600"};
 function cityColor(change){
   if (change == null) return '#94A3B8';
-  if (change <= -4) return '#16A34A';
-  if (change < 0) return '#22C55E';
-  if (change < 2) return '#EAB308';
-  if (change < 6) return '#F97316';
-  return '#DC2626';
+  if (change <= -4) return '#2E7D4F';
+  if (change < 0) return '#43A366';
+  if (change < 2) return '#C77E0E';
+  if (change < 6) return '#C2621A';
+  return '#C13A2E';
 }
 function cityBuckets(){
   return [
-    ['Higher Increase', '#DC2626'], ['Increase', '#F97316'], ['Moderate', '#EAB308'],
-    ['Decrease', '#22C55E'], ['Higher Decrease', '#16A34A'],
+    ['High pressure', '#C13A2E'], ['Moderate pressure', '#C2621A'], ['Stable', '#C77E0E'],
+    ['Easing', '#43A366'], ['Cooling', '#2E7D4F'],
   ];
 }
 function buildMapInto(holderId, movements, opts){
@@ -2004,19 +2023,19 @@ function buildMapInto(holderId, movements, opts){
   let svg = `<svg class="map-svg" viewBox="${INDIA.viewBox || '0 0 660 600'}" role="img" aria-label="Airfare movement map of India">
     <defs>
       <linearGradient id="mapfill" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="${isDark() ? '#18233E' : '#F1F4FB'}"/>
-        <stop offset="1" stop-color="${isDark() ? '#111A30' : '#E6ECF7'}"/>
+        <stop offset="0" stop-color="${isDark() ? '#152030' : '#F5F2E9'}"/>
+        <stop offset="1" stop-color="${isDark() ? '#101B29' : '#ECE7DA'}"/>
       </linearGradient>
       <radialGradient id="haloR" cx=".5" cy=".5" r=".5">
-        <stop offset="0" stop-color="#DC2626" stop-opacity=".5"/><stop offset="1" stop-color="#DC2626" stop-opacity="0"/>
+        <stop offset="0" stop-color="#C13A2E" stop-opacity=".5"/><stop offset="1" stop-color="#C13A2E" stop-opacity="0"/>
       </radialGradient>
     </defs>
-    <path d="${INDIA.path_d}" fill="url(#mapfill)" stroke="${isDark() ? '#2C3A5C' : '#C4D0E4'}" stroke-width="1.6" stroke-linejoin="round"/>`;
+    <path d="${INDIA.path_d}" fill="url(#mapfill)" stroke="${isDark() ? '#2C3A4C' : '#CFC6B2'}" stroke-width="1.6" stroke-linejoin="round"/>`;
   // arcs for key movers
   svg += arcs.map(r => {
     const a = pt[r.origin_iata], b = pt[r.destination_iata];
     if (!a || !b) return '';
-    const col = r.change_pct > 0 ? '#DC2626' : '#16A34A';
+    const col = r.change_pct > 0 ? '#C13A2E' : '#2E7D4F';
     const wdt = Math.min(5, 1.5 + Math.abs(r.change_pct) / 4);
     return `<path class="map-arc" d="${arcPath([a[0], a[1]], [b[0], b[1]])}" fill="none" stroke="${col}" stroke-opacity="${r.change_pct > 0 ? .4 : .38}"
       stroke-width="${wdt}" data-route="${r.route_code}" data-change="${r.change_pct.toFixed(2)}"
@@ -2148,7 +2167,7 @@ async function loadMarket(){
           const barC = hot ? 'var(--danger)' : w.window_id === 'T+7' ? 'var(--warn)' : w.window_id === 'T+15' ? 'var(--indigo)' : w.window_id === 'T+1' ? 'var(--purple)' : 'var(--info)';
           return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;height:100%;justify-content:flex-end" title="${h(w.name)} — avg ${money(w.average_fare_inr)} · sub-index ${num1(w.sub_index_value)}">
             <span style="font-size:10px;font-weight:800;color:${hot ? 'var(--danger-deep)' : 'var(--text-3)'};white-space:nowrap">${money(w.average_fare_inr)}</span>
-            <div class="bar-fill" data-w="${pc}" style="width:100%;border-radius:7px 7px 3px 3px;background:${hot ? 'linear-gradient(180deg,#F87171,#DC2626)' : barC};opacity:${hot ? 1 : .82};min-height:6px;display:block"></div>
+            <div class="bar-fill" data-w="${pc}" style="width:100%;border-radius:7px 7px 3px 3px;background:${hot ? 'linear-gradient(180deg,#E88377,#C13A2E)' : barC};opacity:${hot ? 1 : .82};min-height:6px;display:block"></div>
             <div style="font-size:10.6px;font-weight:800;color:${hot ? 'var(--danger-deep)' : 'var(--text-2)'}">${w.window_id.replace('T+', 'T+')}</div>
             <div style="font-size:9px;color:var(--text-4);margin-top:-3px">${mult(w.window_id) ? mult(w.window_id).toFixed(2) + '×' : '—'} base</div>
           </div>`;
@@ -2180,7 +2199,7 @@ async function loadMarket(){
     const change = t && t.fare_change_pct != null ? t.fare_change_pct : null;
     const vsMarket = ((c.average_fare_inr - natAvg) / natAvg) * 100;
     const sig = change == null ? '—' : change > 1.5 ? '<span class="chip chip-up">▲ Rising</span>' : change < -1.5 ? '<span class="chip chip-down">▼ Falling</span>' : '<span class="chip chip-gray">Stable</span>';
-    const col = ['#A2005C', '#E01A22', '#FF7E00', '#7C3AED', '#F97316', '#64748B'][carriers.indexOf(c) % 6] || '#4F46E5';
+    const col = ['#A2005C', '#E01A22', '#FF7E00', '#0E7E7B', '#C2621A', '#64748B'][carriers.indexOf(c) % 6] || '#0E7E7B';
     const code = c.carrier_code;
     return `<tr class="clickable" onclick="openAirlineModal('${code}')">
       <td><span style="display:inline-flex;align-items:center;gap:8px"><span class="airline-logo" style="background:${col}">${h(c.carrier_code)}</span><b style="color:var(--text-1)">${h(c.carrier_name)}</b><span class="muted2" style="font-size:9.8px">${h(c.category)}</span></span></td>
@@ -2192,8 +2211,8 @@ async function loadMarket(){
   }).join('');
 }
 function airlineColor(code){
-  const map = { '6E': '#9A0E2F', 'AI': '#E01A22', 'IX': '#FF7E00', 'QP': '#7C3AED', 'SG': '#F97316' };
-  return map[code] || '#4F46E5';
+  const map = { '6E': '#9A0E2F', 'AI': '#E01A22', 'IX': '#FF7E00', 'QP': '#0E7E7B', 'SG': '#C2621A' };
+  return map[code] || '#0F3A5C';
 }
 async function openAirlineModal(code){
   const ov = document.createElement('div');
@@ -2373,7 +2392,7 @@ async function loadPolicy(){
     <div class="metric-tile"><div class="mt-k">Index level</div><div class="mt-v">${num2(rt.master_laspeyres_index)} <span style="font-size:11px">I\u2097</span></div><div class="mt-s">Fisher ${num2(rt.fisher_ideal_index)} · Paasche ${num2(rt.paasche_index)}</div></div>
   </div>
   <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-    <span class="chip chip-purple">${icon('zap')} ${h(rt.data_tag || '')}</span>
+    <span class="chip chip-cyan">${icon('zap')} ${h(rt.data_tag || '')}</span>
     <span class="muted" style="font-size:10.8px">${h(rt.statutory_compliance || '')}</span>
   </div>`;
 }
@@ -2381,11 +2400,11 @@ async function loadPolicy(){
 function loadAICard(){
   const box = $('#home-ai');
   if (!box) return;
-  box.innerHTML = `<div class="card" style="border-color:color-mix(in srgb,var(--purple) 30%,var(--border));background:linear-gradient(120deg,color-mix(in srgb,var(--purple) 4%,var(--bg-elev)),var(--bg-elev) 45%)">
+  box.innerHTML = `<div class="card" style="border-color:color-mix(in srgb,var(--indigo) 30%,var(--border));background:linear-gradient(120deg,color-mix(in srgb,var(--indigo) 4%,var(--bg-elev)),var(--bg-elev) 45%)">
   <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:15px 17px">
-    <div class="brand-mark" style="background:linear-gradient(135deg,#7C3AED,#4F46E5);width:46px;height:46px;border-radius:13px">${icon('bot')}</div>
+    <div class="brand-mark" style="background:var(--grad-primary);width:46px;height:46px;border-radius:13px">${icon('bot')}</div>
     <div style="flex:1;min-width:220px">
-      <h3 style="margin:0;font-size:14.4px;font-weight:800;color:var(--text-1)">Ask VayuSutra</h3>
+      <h3 style="margin:0;font-size:14.4px;font-weight:800;color:var(--text-1)">Ask AirIntel India</h3>
       <div class="card-sub" style="margin-top:2px">Data-grounded AI Policy Analyst — answers computed from live API endpoints, never hallucinated.</div>
     </div>
     <div style="display:flex;gap:7px;flex-wrap:wrap">
@@ -2397,6 +2416,58 @@ function loadAICard(){
 }
 function askFromHome(q){
   navTo('ai', { extra: () => setTimeout(() => { const inp = $('#ai-input'); if (inp){ inp.value = q; askAI(); } }, 260) });
+}
+
+/* ============ "What changed?" insight panel ============ */
+async function loadWhatChanged(){
+  const box = $('#home-whatchanged');
+  if (!box) return;
+  box.innerHTML = `<div class="card"><div class="card-head">
+    <div><h3 class="card-title"><span class="ic">${icon('sparkle')}</span>What changed?</h3>
+    <div class="card-sub">Traceable drivers behind the latest index move · every line cites its endpoint</div></div>
+    <span class="chip chip-cyan" id="wc-tag">live</span></div>
+    <div class="card-body" id="wc-body"><div class="skels"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div></div></div>`;
+  const body = $('#wc-body');
+  const [rt, pr, an, cp, ts] = await Promise.all([
+    apiSafe('/api/v1/index/realtime', { ttl: 8000 }),
+    apiSafe('/api/v1/analytics/pressure', { ttl: 20000 }),
+    apiSafe('/api/v1/anomalies', { ttl: 30000 }),
+    apiSafe('/api/v1/analytics/cpi-decomposition', { ttl: 30000 }),
+    apiSafe('/api/v1/index/timeseries?limit=365', { ttl: 15000 }),
+  ]);
+  const tag = $('#wc-tag'); if (tag && rt && rt.data_tag) tag.textContent = h(rt.data_tag);
+  const items = [];
+  if (rt && rt.daily_movement && rt.daily_movement.percentage_change != null){
+    items.push(['dailyMove', 'Index ' + pct(rt.daily_movement.percentage_change) + ' on ' + fmtDateStr(rt.calculation_date), '/api/v1/index/realtime']);
+  }
+  if (pr && pr.ranked_drivers && pr.ranked_drivers.length){
+    pr.ranked_drivers.slice(0, 3).forEach(d => items.push(['driver', String(d).replace(/:\s*\d+(\.\d+)?%?$/, ''), '/api/v1/analytics/pressure']));
+  }
+  if (an && an.anomalies && an.anomalies.length){
+    const top = an.anomalies.slice(0, 3);
+    top.forEach(a => items.push(['anomaly' + (a.severity || ''), (a.corridor_name || a.route_code) + ' ' + h(a.anomaly_type || '') + ' ' + (a.deviation_pct != null ? pct(a.deviation_pct) : '') + ' deviation', '/api/v1/anomalies']));
+  }
+  if (cp && cp.top_positive_contributors && cp.top_positive_contributors.length){
+    const c = cp.top_positive_contributors[0];
+    if (c) items.push(['cpi', (c.corridor_name || c.route_code) + ' contributed ' + (c.share_of_total_inflation_pct != null ? num2(c.share_of_total_inflation_pct) + '%' : num2(c.headline_cpi_impact_bps) + ' bps') + ' of inflation', '/api/v1/analytics/cpi-decomposition']);
+  }
+  const series = (ts && ts.data) || [];
+  if (series.length > 30){
+    const mom = monthlyChangePct(series);
+    if (mom != null && Math.abs(mom) > .01) items.push(['mom', 'Index ' + pct(mom) + ' month-over-month (Laspeyres, 30d)', '/api/v1/index/timeseries']);
+  }
+  if (!items.length){
+    body.innerHTML = emptyHTML('No significant changes detected in the latest cycle — market nominal.');
+    return;
+  }
+  body.innerHTML = items.slice(0, 7).map(([k, txt, src]) => {
+    const isAnom = k.indexOf('anomaly') === 0;
+    const sev = k.replace('anomaly', '');
+    const dot = isAnom ? levelColor(sev || 'LOW') : k === 'cpi' ? 'var(--warn)' : k === 'mom' ? (String(txt).indexOf('+') === -1 ? 'var(--success)' : 'var(--danger)') : k === 'dailyMove' ? 'var(--indigo)' : 'var(--accent-orange)';
+    return `<div class="list-row"><span class="lvl-dot" style="background:${dot};flex:none"></span>
+      <span style="flex:1;min-width:0">${txt}</span>
+      <span class="mono muted2" style="font-size:9.4px;flex:none">${src}</span></div>`;
+  }).join('');
 }
 
 /* ============ alert strip ============ */
@@ -2419,6 +2490,7 @@ async function loadDashboard(){
   loadAlertStrip();
   loadKPIs();
   loadTrend();          // also triggers loadMovers
+  loadWhatChanged();
   loadMap();
   loadMarket();
   loadCollect();
@@ -2523,9 +2595,9 @@ LOADERS.index = async function(){
     new VChart(holder, {
       labels: series.map(d => d.calculation_date),
       series: [
-        { name: 'Laspeyres', color: '#4F46E5', vals: series.map(d => d.laspeyres_index), fill: true },
-        { name: 'Fisher', color: '#0EA5E9', vals: series.map(d => d.fisher_index != null ? d.fisher_index : d.laspeyres_index), dash: [5,4] },
-        { name: 'Spot T+1', color: '#D97706', vals: series.map(d => d.spot_t1_index != null ? d.spot_t1_index : d.laspeyres_index) },
+        { name: 'Laspeyres', color: '#0E7E7B', vals: series.map(d => d.laspeyres_index), fill: true },
+        { name: 'Fisher', color: '#2E6CA9', vals: series.map(d => d.fisher_index != null ? d.fisher_index : d.laspeyres_index), dash: [5,4] },
+        { name: 'Spot T+1', color: '#C77E0E', vals: series.map(d => d.spot_t1_index != null ? d.spot_t1_index : d.laspeyres_index) },
       ],
       height: 220, yFmt: v => num1(v), xFmt: lb => fmtDateStr(lb).split(',')[0],
       ttFmt: v => num2(v),
@@ -2566,7 +2638,7 @@ LOADERS.index = async function(){
   if (rel && rel.windows){
     const best = rel.windows.slice().sort((a, b) => b.average_fare_inr - a.average_fare_inr)[0];
     box.innerHTML += `<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-      <span class="chip chip-purple">${icon('bar3')} Booking windows</span>
+      <span class="chip chip-cyan">${icon('bar3')} Booking windows</span>
       ${rel.windows.map(w => `<span class="chip chip-gray">${w.window_id} ${money(w.average_fare_inr)}</span>`).join('')}
       ${best ? `<span class="chip chip-up">Priciest ${best.window_id}</span>` : ''}
       <button class="btn-link" onclick="navTo('windows')">Analyse windows ${icon('arrowRight')}</button></div>`;
@@ -2707,7 +2779,7 @@ async function loadRouteDossier(code){
     const holder = $('#dr-hist');
     if (holder) new VChart(holder, {
       labels: hist.map(x => x.date),
-      series: [{ name: 'Fare', color: '#4F46E5', vals: hist.map(x => x.fare_inr), fill: true }],
+      series: [{ name: 'Fare', color: '#0E7E7B', vals: hist.map(x => x.fare_inr), fill: true }],
       height: 170, yFmt: v => money(v), xFmt: lb => fmtDateStr(lb).split(',')[0],
       ttFmt: v => money(v),
     });
@@ -2804,7 +2876,7 @@ LOADERS.airlines = async function(){
   runBars(box);
   if (src.summary){
     box.innerHTML += `<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
-      <span class="chip chip-purple">${h(src.summary.market_leader || '')}</span>
+      <span class="chip chip-cyan">${h(src.summary.market_leader || '')}</span>
       <span class="chip chip-info">${h(src.summary.lowest_price_channel || '')}</span>
       <span class="chip chip-gray">${src.summary.active_carriers} carriers · ${src.summary.active_otas} OTAs</span>
     </div>`;
@@ -2832,7 +2904,7 @@ LOADERS.windows = async function(){
           const hot = w.window_id === maxW.window_id;
           return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end;min-width:0;height:100%" title="${h(w.description || w.name)}">
             <b class="num" style="font-size:11.6px;color:${hot ? 'var(--danger-deep)' : 'var(--text-2)'}">${money(w.average_fare_inr)}</b>
-            <div class="bar-fill" data-w="${pc}" style="width:100%;border-radius:8px 8px 3px 3px;display:block;background:${hot ? 'linear-gradient(180deg,#F87171,#DC2626)' : w.window_id === 'T+7' ? 'var(--warn)' : 'var(--indigo)'};opacity:${hot ? 1 : .85}"></div>
+            <div class="bar-fill" data-w="${pc}" style="width:100%;border-radius:8px 8px 3px 3px;display:block;background:${hot ? 'linear-gradient(180deg,#E88377,#C13A2E)' : w.window_id === 'T+7' ? 'var(--warn)' : 'var(--indigo)'};opacity:${hot ? 1 : .85}"></div>
             <div style="font-weight:800;font-size:11.6px;color:var(--text-1)">${w.window_id}</div>
             <div class="muted2" style="font-size:9.6px;line-height:1.3;text-align:center">${h(w.name)}<br>wt ${num1(w.basket_weight_pct)}%</div>
           </div>`;
@@ -3004,7 +3076,7 @@ LOADERS.forecast = async function(){
     new VChart(holder, {
       labels: traj.map(t => t.target_date),
       series: [{
-        name: 'Mean forecast', color: '#4F46E5', vals: traj.map(t => t.forecast_value), band: true,
+        name: 'Mean forecast', color: '#0E7E7B', vals: traj.map(t => t.forecast_value), band: true,
         valsBand: [traj.map(t => t.upper_bound_95), traj.map(t => t.lower_bound_95)],
         bandColor: 'rgba(99,102,241,.12)', width: 2.4,
       }],
@@ -3052,7 +3124,7 @@ LOADERS.anomalies = async function(){
     + '<div class="card-body">'+(list.length ? list.map(a => '<div style="border:1px solid var(--border);border-left:4px solid '+levelColor(a.severity)+';border-radius:11px;padding:10px 12px;margin-bottom:8px;background:var(--bg-soft)">'
       + '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><b style="color:var(--text-1)">'+h(a.route_code)+'</b>'
       + '<span class="chip '+(a.severity === 'HIGH' || a.severity === 'CRITICAL' ? 'chip-up' : a.severity === 'MEDIUM' ? 'chip-warn' : 'chip-gray')+'">'+h(a.severity)+'</span>'
-      + '<span class="chip chip-purple">'+h(a.anomaly_type)+'</span>'
+      + '<span class="chip chip-cyan">'+h(a.anomaly_type)+'</span>'
       + '<span class="muted2" style="margin-left:auto;font-size:10.6px">'+h(String(a.timestamp || '').slice(0, 10))+' · confidence '+num2((a.confidence_score || 0) * 100)+'%</span></div>'
       + '<div class="muted" style="font-size:11.4px;margin-top:5px;line-height:1.5">'+h(a.explanation)+'</div>'
       + '<div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">'
@@ -3145,10 +3217,10 @@ LOADERS.trust = async function(){
   const [dq, pv, cs] = await Promise.all([apiSafe('/api/v1/data-quality', { ttl: 20000 }), apiSafe('/api/v1/audit/provenance', { ttl: 60000 }), apiSafe('/api/v1/analytics/source-consensus', { ttl: 30000 })]);
   const s = $('#tr-skels'); if (s) s.remove();
   if (!dq){ box.innerHTML += errHTML('Data quality endpoint unavailable', "reloadMod('trust')"); return; }
-  const dims = [['Freshness', dq.freshness_pct, '#059669'], ['Completeness', dq.completeness_pct, '#059669'], ['Route coverage', dq.route_coverage_pct, '#2563EB'],
-    ['Source health', dq.source_health_pct, '#2563EB'], ['Validation success', dq.validation_success_pct, '#7C3AED'], ['Cross-source consensus', dq.consensus_score, '#7C3AED'],
-    ['Deduplication integrity', 100 - dq.duplicate_rate_pct, '#D97706'], ['Outlier cleanliness', 100 - dq.outlier_rate_pct, '#D97706']];
-  const ringCol = dq.overall_trust_score >= 90 ? '#059669' : dq.overall_trust_score >= 75 ? '#2563EB' : '#D97706';
+  const dims = [['Freshness', dq.freshness_pct, '#2E7D4F'], ['Completeness', dq.completeness_pct, '#2E7D4F'], ['Route coverage', dq.route_coverage_pct, '#2E6CA9'],
+    ['Source health', dq.source_health_pct, '#2E6CA9'], ['Validation success', dq.validation_success_pct, '#0E7E7B'], ['Cross-source consensus', dq.consensus_score, '#0E7E7B'],
+    ['Deduplication integrity', 100 - dq.duplicate_rate_pct, '#C77E0E'], ['Outlier cleanliness', 100 - dq.outlier_rate_pct, '#C77E0E']];
+  const ringCol = dq.overall_trust_score >= 90 ? '#2E7D4F' : dq.overall_trust_score >= 75 ? '#2E6CA9' : '#C77E0E';
   box.innerHTML += '<div class="grid g-2">'
     + '<div class="card"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('shield')+'</span>Overall trust scorecard</h3>'
     + '<div class="card-sub">'+fmtDateStr(dq.snapshot_date)+' snapshot · '+h(dq.data_tag)+'</div></div><span class="chip chip-ok">'+h(dq.status_rating)+'</span></div>'
@@ -3233,13 +3305,20 @@ LOADERS.scenario = async function(){
       const r = await apiJSON('/api/v1/scenario/simulate', { method: 'POST', ttl: 0, body: { scenario_name: 'Command Center Scenario', airfare_shock_pct: 0, demand_change_pct: SCEN.dem, capacity_change_pct: SCEN.cap, atf_fuel_shock_pct: SCEN.atf } });
       if (r && r.projected_airfare_index != null){
         const d = r, ci = d.confidence_interval_95 || {};
-        $('#sc-out-sub').textContent = String(d.scenario_name || 'Scenario') + ' · baseline ' + num2(d.baseline_airfare_index) + ' · ' + (d.scenario_id || '');
-        out.innerHTML = '<div class="dossier-grid">'
-          + '<div class="metric-tile t-hero"><div class="mt-k">Projected index</div><div class="mt-v">'+num2(d.projected_airfare_index)+'</div><div class="mt-s">'+deltaChip(d.net_airfare_index_change_pct)+' net</div></div>'
+        const idxDelta = d.projected_airfare_index - (d.baseline_airfare_index != null ? d.baseline_airfare_index : base);
+        $('#sc-out-sub').textContent = String(d.scenario_name || 'Scenario') + ' · ' + (d.scenario_id || '') + ' · simulated ' + fmtDateTime(d.simulated_at);
+        out.innerHTML = '<div class="hr-line" style="margin-top:0">Baseline vs scenario</div>'
+          + '<div class="dossier-grid">'
+          + '<div class="metric-tile"><div class="mt-k">Baseline index</div><div class="mt-v">'+num2(d.baseline_airfare_index != null ? d.baseline_airfare_index : base)+'</div><div class="mt-s">live Laspeyres anchor</div></div>'
+          + '<div class="metric-tile t-hero"><div class="mt-k">Scenario index</div><div class="mt-v">'+num2(d.projected_airfare_index)+'</div><div class="mt-s">'+deltaChip(d.net_airfare_index_change_pct)+' net change</div></div>'
+          + '<div class="metric-tile"><div class="mt-k">Δ Index</div><div class="mt-v" style="font-size:19px;color:'+(idxDelta > 0 ? 'var(--danger-deep)' : 'var(--success-deep)')+'">'+(idxDelta > 0 ? '+' : '')+num2(idxDelta)+'</div><div class="mt-s">points vs baseline</div></div>'
+          + '<div class="metric-tile"><div class="mt-k">95% CI</div><div class="mt-v" style="font-size:14px">'+(ci.lower_bound != null ? num2(ci.lower_bound) + ' – ' + num2(ci.upper_bound) : '—')+'</div><div class="mt-s">confidence interval</div></div>'
+          + '</div>'
+          + '<div class="grid g-3" style="margin-top:10px">'
           + '<div class="metric-tile"><div class="mt-k">Transport CPI</div><div class="mt-v" style="font-size:17px;color:'+(d.projected_transport_subgroup_impact_bps > 0 ? 'var(--danger-deep)' : 'var(--text-1)')+'">'+pct(d.projected_transport_subgroup_impact_bps, 2)+' bps</div><div class="mt-s">Group 6.1.03</div></div>'
           + '<div class="metric-tile"><div class="mt-k">Headline CPI</div><div class="mt-v" style="font-size:17px;color:'+(d.projected_headline_cpi_impact_bps > 0 ? 'var(--danger-deep)' : 'var(--text-1)')+'">'+num4(d.projected_headline_cpi_impact_bps)+' bps</div><div class="mt-s">All-India headline</div></div>'
-          + '<div class="metric-tile"><div class="mt-k">Pressure score</div><div class="mt-v" style="font-size:17px;color:'+levelColor(d.projected_pressure_level)+'">'+num1(d.projected_inflation_pressure_score)+'</div><div class="mt-s">'+h(d.projected_pressure_level)+'</div></div></div>'
-          + '<div style="display:flex;gap:7px;flex-wrap:wrap;margin:10px 0">'+(ci.lower_bound != null ? '<span class="chip chip-gray">95% CI '+num2(ci.lower_bound)+' – '+num2(ci.upper_bound)+'</span>' : '')+'</div>';
+          + '<div class="metric-tile"><div class="mt-k">Pressure score</div><div class="mt-v" style="font-size:17px;color:'+levelColor(d.projected_pressure_level)+'">'+num1(d.projected_inflation_pressure_score)+'</div><div class="mt-s">'+h(d.projected_pressure_level)+'</div></div>'
+          + '</div>';
         if (d.top_affected_corridors && d.top_affected_corridors.length){
           out.innerHTML += '<div class="hr-line">Top affected corridors</div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Corridor</th><th class="num">Baseline</th><th class="num">Projected</th><th class="num">Δ</th><th class="num">Headline bps</th></tr></thead><tbody>'
             + d.top_affected_corridors.slice(0, 6).map(c => '<tr><td><b>'+h(c.route_code)+'</b> <span class="muted2" style="font-size:9.8px">'+h(c.corridor_name)+'</span></td>'
@@ -3299,12 +3378,16 @@ LOADERS.policy = async function(){
 };
 
 /* ---------------------------- AI ANALYST ---------------------------- */
+/* Split layout: left = conversation, right = live evidence/data panel.
+   Structured response: Conclusion · Drivers · Evidence · Affected routes ·
+   Forecast implication · Policy implication · Data references. */
 LOADERS.ai = async function(){
   const box = $('#vb-ai');
   box.innerHTML = modHead('ai', '', '<span class="chip chip-ok">'+icon('zap')+' grounded in live API data</span>');
-  box.innerHTML += '<div class="card"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('bot')+'</span>Ask VayuSutra — AI Policy Analyst</h3>'
-    + '<div class="card-sub">answers are assembled from live VayuSutra endpoints · no fabricated numbers</div></div>'
-    + '<span class="chip chip-purple">role: '+h((APP.user && APP.user.role) || 'POLICY_ECONOMIST')+'</span></div>'
+  box.innerHTML += '<div class="grid g-2 ai-split">'
+    + '<div class="card"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('bot')+'</span>Conversation</h3>'
+    + '<div class="card-sub">policy Q&amp;A · answers assembled from live AirIntel India endpoints</div></div>'
+    + '<span class="chip chip-cyan">role: '+h((APP.user && APP.user.role) || 'POLICY_ECONOMIST')+'</span></div>'
     + '<div class="card-body"><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">'
     + ['Explain the full CPI transmission mechanism from airfares to headline inflation.',
        'Why did the BOM-DEL corridor experience a surge this week?',
@@ -3315,10 +3398,48 @@ LOADERS.ai = async function(){
        'What is the 14-day airfare outlook?']
       .map(q => '<button class="btn btn-sm" onclick="askAI(\''+q.replace(/'/g, '')+'\')">'+icon('sparkle')+' '+h(q.length > 42 ? q.slice(0, 42) + '…' : q)+'</button>').join('')
     + '</div><div class="chat-box" id="ai-chat">'
-    + '<div class="bubble ai"><b>Welcome to the VayuSutra AI Policy Analyst.</b> I am wired into the live econometric engine, MoSPI eSankhyiki baseline and forecasting modules — every answer carries the endpoints it was computed from. Try one of the prompts above or type your own policy question.</div></div>'
+    + '<div class="bubble ai"><b>Welcome to the AirIntel India AI Policy Analyst.</b> I am wired into the live econometric engine, MoSPI eSankhyiki baseline and forecasting modules — every answer is presented as Conclusion → Drivers → Evidence with the endpoints it was computed from (see the evidence panel on the right). Try a prompt above or type your own policy question.</div></div>'
     + '<div class="chat-in-row"><input class="inp" id="ai-input" placeholder="Ask an econometric or policy question — e.g. What is the Laspeyres vs Fisher bias today?" onkeydown="if(event.key===String.fromCharCode(13))askAI()">'
-    + '<button class="btn btn-primary" id="ai-send" onclick="askAI()">'+icon('send')+' Send</button></div></div></div>';
+    + '<button class="btn btn-primary" id="ai-send" onclick="askAI()">'+icon('send')+' Send</button></div></div></div>'
+    + '<div class="card"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('database')+'</span>Evidence &amp; live data</h3>'
+    + '<div class="card-sub">the exact numbers behind the latest answer</div></div></div>'
+    + '<div class="card-body" id="ai-evidence"><div class="state-box" style="min-height:120px">'+icon('database')+'<div class="sb-msg">Ask a question — the evidence panel fills with the live values the answer cites (index, pressure, trust, forecast, affected routes).</div></div></div></div>'
+    + '</div>';
+  renderAIEvidence();
 };
+async function renderAIEvidence(){
+  const ev = $('#ai-evidence');
+  if (!ev) return;
+  const [rt, pr, dq, fo] = await Promise.all([
+    apiSafe('/api/v1/index/realtime', { ttl: 15000 }),
+    apiSafe('/api/v1/analytics/pressure', { ttl: 25000 }),
+    apiSafe('/api/v1/data-quality', { ttl: 25000 }),
+    apiSafe('/api/v1/forecast/national?horizon_days=14', { ttl: 45000 }),
+  ]);
+  const fo14 = fo && fo.daily_trajectory ? fo.daily_trajectory.filter(x => x.horizon_days <= 14) : [];
+  ev.innerHTML = ''
+    + (rt ? '<div class="hr-line" style="margin-top:0">National index</div>'
+      + '<div class="list-row"><span class="lr-k">Laspeyres</span><span class="lr-v">'+num2(rt.master_laspeyres_index)+'</span></div>'
+      + '<div class="list-row"><span class="lr-k">Fisher ideal</span><span class="lr-v">'+num2(rt.fisher_ideal_index)+'</span></div>'
+      + '<div class="list-row"><span class="lr-k">As of</span><span class="lr-v">'+fmtDateStr(rt.calculation_date)+'</span></div>' : '')
+    + (pr ? '<div class="hr-line">Pressure</div>'
+      + '<div class="list-row"><span class="lr-k">AIPS</span><span class="lr-v" style="color:'+levelColor(pr.pressure_level)+'">'+num1(pr.pressure_score)+'</span></div>'
+      + '<div class="list-row"><span class="lr-k">Level</span><span class="lr-v">'+h(pr.pressure_level)+'</span></div>'
+      + '<div class="list-row"><span class="lr-k">RBI alert</span><span class="lr-v" style="font-size:10.6px">'+h(String(pr.rbi_monetary_policy_alert || '—').replace(/_/g, ' '))+'</span></div>' : '')
+    + (dq ? '<div class="hr-line">Data trust</div>'
+      + '<div class="list-row"><span class="lr-k">Trust score</span><span class="lr-v">'+num1(dq.overall_trust_score)+'</span></div>'
+      + '<div class="list-row"><span class="lr-k">Status</span><span class="lr-v">'+h(dq.status_rating)+'</span></div>' : '')
+    + (fo14.length ? '<div class="hr-line">14-day forecast</div>'
+      + '<div class="list-row"><span class="lr-k">Model</span><span class="lr-v" style="font-size:10.6px">'+h(fo.best_model_name || 'ensemble')+'</span></div>'
+      + '<div class="list-row"><span class="lr-k">T+14 value</span><span class="lr-v">'+num2((fo14[fo14.length - 1] || {}).forecast_value)+'</span></div>'
+      + '<div class="list-row"><span class="lr-k">95% CI</span><span class="lr-v" style="font-size:10.4px">'+num2((fo14[fo14.length - 1] || {}).lower_bound_95)+' – '+num2((fo14[fo14.length - 1] || {}).upper_bound_95)+'</span></div>' : '')
+    + '<div class="hr-line">References</div>'
+    + '<div class="mono muted2" style="font-size:9.4px;line-height:1.7">/api/v1/index/realtime<br>/api/v1/analytics/pressure<br>/api/v1/data-quality<br>/api/v1/forecast/national<br>/api/v1/anomalies<br>/api/v1/analytics/cpi-decomposition</div>';
+}
+function aiSection(title, body){
+  return '<div style="margin:9px 0 4px;font-size:9.4px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-4)">'+title+'</div>'
+    + '<div style="font-size:12px;line-height:1.55;color:var(--text-2)">'+body+'</div>';
+}
 async function askAI(q){
   const input = $('#ai-input');
   const question = (q != null ? q : (input && input.value || '')).trim();
@@ -3336,12 +3457,28 @@ async function askAI(q){
     const ans = r && (r.answer_summary || r.answer) ? r : null;
     if (!ans) throw new Error('empty response');
     loadEl.remove();
-    let hh = '<span class="b-strong">'+icon('sparkle')+' '+h(String(ans.detected_intent || 'ANALYSIS').replace(/_/g, ' '))+'</span><br><br>';
-    hh += esc(ans.answer_summary || '');
-    if (ans.detailed_explanation) hh += '<br><br><span class="muted">'+esc(ans.detailed_explanation)+'</span>';
-    if (ans.statutory_citations && ans.statutory_citations.length) hh += '<div class="cite">'+icon('book')+' '+ans.statutory_citations.map(esc).join(' · ')+'</div>';
-    hh += '<div style="margin-top:7px;display:flex;gap:6px;flex-wrap:wrap">'+(ans.data_tag ? '<span class="chip chip-gray">'+h(ans.data_tag)+'</span>' : '')+(ans.confidence_score ? '<span class="chip chip-purple">confidence '+num2(ans.confidence_score * 100)+'%</span>' : '')+'</div>';
+    // structured response: Conclusion / Drivers / Evidence / Affected routes / Forecast / Policy / References
+    let hh = '<span class="b-strong">'+icon('sparkle')+' '+h(String(ans.detected_intent || 'ANALYSIS').replace(/_/g, ' '))+'</span>';
+    hh += aiSection('Conclusion', '<b style="color:var(--text-1)">'+esc(ans.answer_summary || '')+'</b>');
+    if (ans.detailed_explanation) hh += aiSection('Drivers &amp; evidence', '<span class="muted">'+esc(ans.detailed_explanation)+'</span>');
+    const ev = ans.numerical_evidence;
+    if (ev && typeof ev === 'object'){
+      const keys = Object.keys(ev).filter(k => ev[k] != null).slice(0, 10);
+      if (keys.length) hh += aiSection('Evidence (live values)', '<div style="display:grid;grid-template-columns:auto 1fr;gap:3px 12px">'
+        + keys.map(k => '<span class="muted2" style="font-size:10.4px">'+h(k.replace(/_/g, ' '))+'</span><b class="num" style="font-size:11px;text-align:right">'+(typeof ev[k] === 'number' ? num2(ev[k]) : h(String(ev[k])))+'</b>').join('') + '</div>');
+    }
+    if (ans.affected_routes && ans.affected_routes.length){
+      hh += aiSection('Affected routes', '<div class="tagflow">'+ans.affected_routes.slice(0, 10).map(x => {
+        const rc = typeof x === 'string' ? x : (x.route_code || x.route || JSON.stringify(x));
+        return '<button class="chip chip-gray" style="cursor:pointer" onclick="openRouteDrawer(\''+h(String(rc)).replace(/'/g, '')+'\')">'+h(String(rc))+'</button>';
+      }).join('')+'</div>');
+    }
+    if (ans.statutory_citations && ans.statutory_citations.length){
+      hh += '<div class="cite">'+icon('book')+' '+ans.statutory_citations.map(esc).join(' · ')+'</div>';
+    }
+    hh += '<div style="margin-top:7px;display:flex;gap:6px;flex-wrap:wrap">'+(ans.data_tag ? '<span class="chip chip-gray">'+h(ans.data_tag)+'</span>' : '')+(ans.confidence_score ? '<span class="chip chip-cyan">confidence '+num2(ans.confidence_score * 100)+'%</span>' : '')+'</div>';
     chat.innerHTML += '<div class="bubble ai">'+hh+'</div>';
+    renderAIEvidence();
   } catch (e) {
     loadEl.remove();
     chat.innerHTML += '<div class="bubble ai" style="color:var(--danger-deep)">I could not reach the analyst engine ('+esc(errReason(e))+'). The assistant never fabricates numbers — retry when the API is reachable.</div>';
@@ -3468,7 +3605,7 @@ LOADERS.api = async function(){
     });
   });
   const tags = Object.keys(groups).sort((a, b) => (b.includes('Index') ? 1 : 0) - (a.includes('Index') ? 1 : 0) || a.localeCompare(b));
-  const mcol = { get: 'chip-info', post: 'chip-ok', patch: 'chip-warn', put: 'chip-purple', delete: 'chip-up' };
+  const mcol = { get: 'chip-info', post: 'chip-ok', patch: 'chip-warn', put: 'chip-cyan', delete: 'chip-up' };
   box.innerHTML += '<div class="card"><div class="card-body">'
     + '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px"><span class="chip chip-ok">'+icon('check')+' spec loaded</span>'
     + tags.map(tag => '<span class="chip chip-gray">'+h(tag)+' · '+groups[tag].length+'</span>').join('') + '</div><div class="hr-line">Catalog by tag</div>'
@@ -3490,7 +3627,7 @@ async function openApiModal(){
   const curls = $('#api-curls');
   if (curls){
     const nl = String.fromCharCode(10);
-    curls.innerHTML = '<span class="c-cmt"># VayuSutra APIx · base ' + window.location.origin + ' · token auth via Authorization: Bearer &lt;token&gt;</span>' + nl
+    curls.innerHTML = '<span class="c-cmt"># AirIntel India API · base ' + window.location.origin + ' · token auth via Authorization: Bearer &lt;token&gt;</span>' + nl
       + list.slice(0, 7).map(p => 'curl -s "' + p + '"').join(nl) + nl
       + '<span class="c-cmt"># ' + list.length + '+ endpoints · full catalog: /docs</span>';
   }
@@ -3528,7 +3665,7 @@ function docsMethodologyBlock(){
     ['Benchmarks', 'Base-period fares anchored to the 2024-01-15 DGCA basket configuration.'],
     ['Sources', 'MoSPI eSankhyiki official CPI series used as macro baseline (Group 6.1.03).']];
   let hOut = '<div class="card" style="margin-bottom:15px"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('calculator')+'</span>Index construction — UN/ILO aligned</h3>'
-    + '<div class="card-sub">what VayuSutra computes every ingestion cycle</div></div></div><div class="card-body"><div class="grid g-2"><div><div class="hr-line" style="margin-top:0">Formula catalogue</div>';
+    + '<div class="card-sub">what AirIntel India computes every ingestion cycle</div></div></div><div class="card-body"><div class="grid g-2"><div><div class="hr-line" style="margin-top:0">Formula catalogue</div>';
   cat.forEach(f => { hOut += '<div style="display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--border)"><b style="width:172px;flex:none;font-size:11.4px;color:var(--indigo)">'+f[0]+'</b><span class="muted" style="font-size:11.6px">'+f[1]+'</span></div>'; });
   hOut += '</div><div><div class="hr-line" style="margin-top:0">Data pipeline governance</div>';
   gov.forEach(f => { hOut += '<div style="display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--border)"><b style="width:110px;flex:none;font-size:11.4px;color:var(--indigo)">'+f[0]+'</b><span class="muted" style="font-size:11.6px">'+f[1]+'</span></div>'; });
@@ -3553,7 +3690,7 @@ LOADERS.docs = async function(){
     + [['Interactive API docs', '/docs', 'Swagger UI with every endpoint, schema and example.'],
        ['ReDoc', '/redoc', 'Readable documentation layout of the API.'],
        ['References & research', '/references', 'eSankhyiki, ILO CPI manual & econometric citations.'],
-       ['Proposed solution card', '/solution', 'Executive one-pager for the SIH26056 evaluation.'],
+       ['Proposed solution card', '/solution', 'Executive one-pager for the evaluation panel.'],
        ['Video walkthrough', '/video', 'Hindi walkthrough of the whole platform.'],
        ['MoSPI eSankhyiki portal', 'https://esankhyiki.mospi.gov.in', 'Official macro catalog (Group 6.1.03).']]
       .map(x => '<div style="display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--border)"><b style="flex:1;font-size:12px;color:var(--text-1)">'+x[0]+'</b><a class="btn-link" href="'+x[1]+'" target="_blank" style="font-size:11px">open '+icon('external')+'</a></div>'
@@ -3565,7 +3702,7 @@ LOADERS.methodology = async function(){
   const rt = await apiSafe('/api/v1/index/realtime', { ttl: 8000 });
   box.innerHTML = modHead('methodology', '<button class="btn btn-sm btn-soft" onclick="navTo(\'docs\')">'+icon('book')+' Full documentation</button>', '<span class="chip chip-cyan">'+icon('clipboard')+' statistical methodology</span>');
   box.innerHTML += docsMethodologyBlock();
-  box.innerHTML += '<div class="card"><div class="card-body"><div class="muted" style="font-size:11.6px;line-height:1.6">Statutory references: ILO CPI Manual · UN Consumer Price Index Manual (Diewert) · MoSPI CPI compilation (2012 = 100 standard · Group 6.1.03 Transport &amp; Communication) · DGCA domestic city-pair traffic statistics. VayuSutra reports the Laspeyres index for statutory continuity and the superlative Fisher index as the quality standard, exactly as '+(rt ? h(rt.statutory_compliance) : 'the platform mandates')+'.</div></div></div>';
+  box.innerHTML += '<div class="card"><div class="card-body"><div class="muted" style="font-size:11.6px;line-height:1.6">Statutory references: ILO CPI Manual · UN Consumer Price Index Manual (Diewert) · MoSPI CPI compilation (2012 = 100 standard · Group 6.1.03 Transport &amp; Communication) · DGCA domestic city-pair traffic statistics. AirIntel India reports the Laspeyres index for statutory continuity and the superlative Fisher index as the quality standard, exactly as '+(rt ? h(rt.statutory_compliance) : 'the platform mandates')+'.</div></div></div>';
 };
 
 /* ---------------------------- ABOUT ---------------------------- */
@@ -3576,9 +3713,9 @@ LOADERS.about = async function(){
   box.innerHTML += '<div class="card" style="margin-bottom:15px"><div class="card-body" style="padding:20px">'
     + '<div style="display:flex;gap:15px;align-items:flex-start;flex-wrap:wrap">'
     + '<div class="brand-mark" style="width:54px;height:54px;border-radius:15px">'+icon('plane')+'</div>'
-    + '<div style="flex:1;min-width:250px"><h2 style="margin:0;font-size:19px;font-weight:800;color:var(--text-1)">VayuSutra — National Airfare Intelligence &amp; Inflation Decision Platform</h2>'
-    + '<p class="muted" style="font-size:12.4px;line-height:1.7;margin:8px 0 0">Smart India Hackathon 2026 · problem statement <b>SIH26056</b>, commissioned for the Ministry of Statistics &amp; Programme Implementation. VayuSutra replaces archaic 30-day manual airport price collection with automated high-frequency capture across India\'s top-20 DGCA corridors and five booking horizons, then builds statutory price indices (Jevons · Laspeyres · superlative Fisher), transmits them into CPI terms for the RBI MPC, forecasts the 14–30 day path with 95% confidence, and lets policy teams simulate ATF, demand and capacity shocks.</p>'
-    + '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:11px"><span class="chip chip-purple">'+icon('users')+' MoSPI / NSO</span><span class="chip chip-info">'+icon('landmark')+' RBI MPC</span><span class="chip chip-cyan">'+icon('plane')+' DGCA</span><span class="chip chip-ok">'+icon('check')+' SIH26056</span></div></div>'
+    + '<div style="flex:1;min-width:250px"><h2 style="margin:0;font-size:19px;font-weight:800;color:var(--text-1)">AirIntel India — India’s Airfare Intelligence Platform</h2>'
+    + '<p class="muted" style="font-size:12.4px;line-height:1.7;margin:8px 0 0">Built by <b>Team Rookie</b> for the Ministry of Statistics &amp; Programme Implementation. AirIntel India replaces archaic 30-day manual airport price collection with automated high-frequency capture across India’s top-20 DGCA corridors and five booking horizons, then builds statutory price indices (Jevons · Laspeyres · superlative Fisher), transmits them into CPI terms for the RBI MPC, forecasts the 14–30 day path with 95% confidence, and lets policy teams simulate ATF, demand and capacity shocks.</p>'
+    + '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:11px"><span class="chip chip-cyan">'+icon('users')+' MoSPI / NSO</span><span class="chip chip-info">'+icon('landmark')+' RBI MPC</span><span class="chip chip-cyan">'+icon('plane')+' DGCA</span><span class="chip chip-ok">'+icon('check')+' Team Rookie</span></div></div>'
     + '<div style="display:flex;flex-direction:column;gap:8px;min-width:210px">'
     + [['Backtest correlation r', bt ? num2(bt.pearson_r) : '—', 'vs DGCA yields'],
        ['MAPE', bt ? num2(bt.mape) + '%' : '—', '35-day sample'],
