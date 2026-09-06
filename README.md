@@ -23,7 +23,7 @@
 **Team Rookie** is a student development team focused on building practical, data-driven technology solutions for real-world problems. We designed and developed **AirIntel India** as a national airfare intelligence and decision-support platform, combining data engineering, analytics, forecasting, and AI-driven insights.
 
 Our goal is to transform complex airfare data into **clear, actionable intelligence** for policymakers, analysts, and other stakeholders.
-> **AirIntel India was designed, engineered, and developed entirely by Dev Parth (Team Rookie).**
+> **AirIntel India was designed, engineered, and developed entirely by Team Rookie.**
 
 ---
 
