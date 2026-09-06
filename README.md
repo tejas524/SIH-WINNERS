@@ -9,8 +9,20 @@
 
 ## 👤 Project Creator
 
-**Dev Parth** — Sole Creator & Lead Developer *(System Architecture, Econometric Math, AI Nowcasting Ensemble, Data Engineering, Ethical Ingestion, Backend & API Architecture, Forecasting, Policy Simulation, Data Trust Center, UI/UX, Visualizations, Testing & Full-Stack Development)*
+**TEAM ROOKIE**
 
+**Team Members:**
+- **Tejas Patil**
+- **Nikhil Kanse**
+- **Harsh Narkar**
+- **Shivish**
+- **Pranav Pawale**
+
+### About the Team
+
+**Team Rookie** is a student development team focused on building practical, data-driven technology solutions for real-world problems. We designed and developed **AirIntel India** as a national airfare intelligence and decision-support platform, combining data engineering, analytics, forecasting, and AI-driven insights.
+
+Our goal is to transform complex airfare data into **clear, actionable intelligence** for policymakers, analysts, and other stakeholders.
 > **AirIntel India was designed, engineered, and developed entirely by Dev Parth (Team Rookie).**
 
 ---
