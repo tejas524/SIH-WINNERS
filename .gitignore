@@ -52,3 +52,4 @@ uploads/
 # Local runtime logs and temporary environment overrides
 *.log
 .env.local
+vayusutra_apix/data/vayusutra_airfare.db

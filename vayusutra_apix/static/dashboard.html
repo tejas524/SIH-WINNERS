@@ -133,6 +133,7 @@ body.nav-open .sidebar{transform:translateX(0);box-shadow:0 0 0 100vmax rgba(5,9
 .icon-btn{position:relative;width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text-2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tr)}
 .icon-btn:hover{border-color:var(--border-strong);color:var(--text-1);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
 .icon-btn svg{width:17.5px;height:17.5px}
+#btn-bell svg{width:20px;height:20px}
 .icon-btn .bdg{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;border-radius:20px;background:var(--danger);color:#fff;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px;box-shadow:0 2px 6px rgba(220,38,38,.5)}
 .tb-chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text-2);font-size:11.4px;font-weight:600;padding:7px 11px;border-radius:10px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .tb-chip .lbl{color:var(--text-4);font-weight:600;font-size:9.6px;letter-spacing:.8px}
@@ -194,6 +195,34 @@ body.nav-open .sidebar{transform:translateX(0);box-shadow:0 0 0 100vmax rgba(5,9
 @media(max-width:1500px){.g-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.g-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:1180px){.g-2,.g-main,.g-map,.g-3,.g-stats3{grid-template-columns:1fr}}
 @media(max-width:760px){.g-kpis,.g-4{grid-template-columns:1fr}.page{padding:16px 13px 26px}.topbar{padding:0 13px}}
+
+/* ---------- Small screens: reprioritize the topbar ----------
+   Row 1: burger + title block. Row 2: live pill, search, theme, bell, avatar.
+   IST clock & data-asof chips + API button are demoted (hidden). */
+@media(max-width:920px){
+  .tb-row{flex-wrap:wrap;gap:8px 10px;padding:10px 0;align-items:center}
+  .tb-burger{flex:none}
+  .tb-titles{flex:1;min-width:0;order:0;padding-right:0}
+  .page-title{font-size:17.5px}
+  .page-sub{display:none}
+  .tb-right{flex:1 1 100%;justify-content:flex-end;margin-left:0}
+  #chip-ist,#chip-data-asof{display:none}
+  #btn-api{display:none}
+  .tb-burger,.icon-btn{width:36px;height:36px}
+  .greet-badge{font-size:10px;padding:1px 8px}
+}
+@media(max-width:640px){
+  .tb-right{gap:6px}
+  .live-pill{padding:6px 9px;font-size:10px}
+  .live-pill .lp-t{display:none}
+  .avatar{width:34px;height:34px;font-size:12px}
+  .page-title{font-size:16px}
+}
+/* ensure touch targets stay usable even when visually compact */
+@media(max-width:920px) and (pointer:coarse){
+  .tb-burger,.icon-btn{position:relative}
+  .tb-burger::before,.icon-btn::before{content:"";position:absolute;inset:-4px}
+}
 .sect{margin-top:18px}
 .sect-label{display:flex;align-items:center;gap:9px;font-size:10.8px;font-weight:800;letter-spacing:1.4px;color:var(--text-4);text-transform:uppercase;margin:2px 2px 10px}
 .sect-label::after{content:"";flex:1;height:1px;background:var(--border)}
@@ -259,13 +288,15 @@ table.tbl{width:100%;border-collapse:collapse;font-size:12.2px;min-width:480px}
 .row-btn:hover{background:var(--indigo-soft)}
 .route-badge{font-weight:800;font-family:var(--font-mono);font-size:11.6px;color:var(--text-1);letter-spacing:.3px}
 .route-badge .arrow{color:var(--text-4);font-weight:600;padding:0 3px}
+.route-badge svg{width:12px;height:12px;flex:none;color:var(--text-4);vertical-align:-1.5px}
 .route-badge small{font-family:var(--font-sans);font-weight:600;color:var(--text-3);font-size:10.2px;letter-spacing:0}
 .airline-logo{width:26px;height:26px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff;flex:none}
 
 /* state boxes */
 .state-box{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:26px 14px;text-align:center;color:var(--text-3);font-size:12px;min-height:110px}
+.state-box svg{width:19px;height:19px;flex:none;opacity:.7}
 .state-box .sb-ic{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--bg-inset);color:var(--text-4)}
-.state-box .sb-ic svg{width:19px;height:19px}
+.state-box .sb-ic svg{width:19px;height:19px;opacity:1}
 .state-box.err .sb-ic{background:var(--danger-soft);color:var(--danger)}
 .state-box .sb-msg{max-width:320px;line-height:1.45}
 .skels{display:flex;flex-direction:column;gap:8px;padding:10px 0}
@@ -351,11 +382,22 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .drawer-sub{font-size:11.6px;color:var(--text-3);margin-top:2px}
 .drawer-body{flex:1;overflow-y:auto;padding:18px 22px 30px}
 .drawer-body .card{border-radius:13px;box-shadow:var(--shadow-xs)}
-.pop{position:absolute;top:calc(100% + 8px);right:0;background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-lg);z-index:130;min-width:300px;overflow:hidden;opacity:0;transform:translateY(-6px);pointer-events:none;transition:all var(--tr)}
+.pop{position:absolute;top:calc(100% + 8px);right:0;background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-lg);z-index:130;min-width:300px;max-width:calc(100vw - 24px);overflow:hidden;opacity:0;transform:translateY(-6px);pointer-events:none;transition:all var(--tr)}
 .pop.open{opacity:1;transform:none;pointer-events:auto}
+@media(max-width:640px){
+  /* keep popovers on-screen on phones: shrink to viewport and allow left-anchoring */
+  .pop{min-width:min(300px,calc(100vw - 24px));max-width:calc(100vw - 20px)}
+  .pop[style*="min-width"]{min-width:calc(100vw - 20px)!important}
+}
 .pop-head{padding:12px 14px 9px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .pop-title{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--text-3);text-transform:uppercase}
 .pop-list{max-height:min(430px,60vh);overflow-y:auto}
+.pop-head{gap:8px;flex-wrap:wrap}
+.pop-head svg{width:16px;height:16px;flex:none}
+.pop-row{display:flex;gap:10px;align-items:center;padding:9px 13px;border-bottom:1px solid var(--border);cursor:pointer;width:100%;background:none;border-left:0;border-right:0;border-top:0;color:inherit;font-family:inherit;text-align:left;transition:background var(--tr)}
+.pop-row:last-child{border-bottom:0}
+.pop-row:hover{background:var(--bg-hover)}
+.pop-head .btn-link{white-space:nowrap}
 .pop-item{display:flex;gap:9px;padding:10px 13px;border-bottom:1px solid var(--border);cursor:pointer;align-items:flex-start;transition:background var(--tr);text-align:left;width:100%;background:none;border-left:0;border-right:0;border-top:0;color:inherit;font-family:inherit}
 .pop-item:last-child{border-bottom:0}
 .pop-item:hover{background:var(--bg-hover)}
@@ -400,13 +442,38 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .bubble.user{align-self:flex-end;background:var(--grad-primary);color:#fff;border-bottom-right-radius:4px;box-shadow:0 6px 14px -6px rgba(14,126,123,.5)}
 .bubble.ai{align-self:flex-start;background:var(--bg-elev);border:1px solid var(--border);color:var(--text-2);border-bottom-left-radius:4px}
 .bubble.ai .b-strong{color:var(--text-1);font-weight:750}
+.bubble.ai .b-strong svg{width:14px;height:14px;flex:none;vertical-align:-2px}
 .bubble .cite{font-size:10.6px;color:var(--indigo);margin-top:6px;background:var(--indigo-soft);border-radius:8px;padding:5px 9px}
+.bubble .cite svg{width:12px;height:12px;flex:none;vertical-align:-1.5px}
 .typing{display:inline-flex;gap:4px;align-items:center;padding:4px 2px}
 .typing i{width:6px;height:6px;border-radius:50%;background:var(--indigo-2);animation:ty 1.1s infinite;display:inline-block}
 .typing i:nth-child(2){animation-delay:.16s}.typing i:nth-child(3){animation-delay:.32s}
 @keyframes ty{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
 .chat-in-row{display:flex;gap:8px;margin-top:12px}
-.chat-in-row .inp{flex:1}
+.chat-in-row .inp{flex:1;min-width:0}
+@media(max-width:640px){
+  .chat-in-row{flex-wrap:wrap}.chat-in-row .inp{flex:1 1 100%}.chat-in-row .btn{flex:1 1 100%}
+}
+.ai-split{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
+@media(max-width:1180px){.ai-split{grid-template-columns:1fr}}
+
+/* ---------- Small-screen tables / heads / buttons / overlays ---------- */
+@media(max-width:640px){
+  .view-head{flex-direction:column;align-items:flex-start;gap:8px}
+  .vh-actions{width:100%}
+  .vh-actions .btn{flex:1 1 auto;justify-content:center;min-height:40px}
+  .card-head{flex-wrap:wrap;gap:8px}
+  .card-actions{width:100%}
+  .card-actions .btn,.card-actions .btn-sm{flex:1 1 auto;justify-content:center}
+  .card-body{padding:12px 13px 14px}
+  table.tbl{min-width:420px}
+  .bubble{max-width:94%}
+  .ovl{padding:12px}
+  .ovl-box{max-height:92vh}
+  .chat-box{height:min(60vh,420px)}
+  .stat-line .bar-track{width:80px}
+  .kpi-val{font-size:26px}
+}
 
 /* mini panels & lists */
 .list-row{display:flex;align-items:center;gap:9px;padding:8.5px 2px;border-bottom:1px solid var(--border);font-size:12.2px}
@@ -428,10 +495,12 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .hr-line::after{content:"";flex:1;height:1px;background:var(--border)}
 .tagflow{display:flex;flex-wrap:wrap;gap:6px}
 .sec-block{margin-bottom:20px}
-.dossier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media(max-width:1000px){.dossier-grid{grid-template-columns:repeat(2,1fr)}}
+.dossier-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media(max-width:1000px){.dossier-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.dossier-grid{grid-template-columns:1fr}}
 .kbd{font-size:10px;background:var(--bg-inset);border:1px solid var(--border-strong);border-bottom-width:2.5px;border-radius:5px;padding:1px 6px;font-family:var(--font-mono);color:var(--text-3)}
 .footer{color:var(--text-4);font-size:11px;padding:22px 26px 26px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--border);margin-top:auto}
+@media(max-width:760px){.footer{flex-direction:column;gap:10px;padding:18px 13px 22px}.footer a{padding:3px 0;display:inline-block}}
 .chart-holder{position:relative}
 .chart-holder canvas{display:block;width:100%}
 .tt{position:absolute;z-index:20;pointer-events:none;background:var(--bg-elev);border:1px solid var(--border-strong);border-radius:10px;box-shadow:var(--shadow-md);padding:8px 10px;font-size:11px;line-height:1.5;color:var(--text-2);white-space:nowrap;transform:translate(-50%,-110%);transition:opacity .12s;min-width:120px}
@@ -471,7 +540,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
         <div class="lc-top">
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12h4l3 8 4-16 3 8h4"/></svg>
           LIVE DATA COLLECTION
-          <span class="lc-status" id="lc-status"><span class="pulse-dot"></span>Operational</span>
+          <span class="lc-status" id="lc-status">…</span>
         </div>
         <div class="lc-row"><span>Sources</span><b id="lc-sources">5 Airlines · 3 OTAs</b></div>
         <div class="lc-row"><span>Quotes today</span><b id="lc-quotes">—</b></div>
@@ -510,7 +579,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
       <button class="btn btn-primary" id="btn-api" style="gap:8px;padding:9px 16px">
         <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 6-5-6-5"/><path d="M12 19h8"/></svg><span style="font-size:12.6px;font-weight:750">API Access</span>
       </button>
-      <div class="avatar" id="btn-user" title="Account & persona">TP</div>
+      <div class="avatar" id="btn-user" title="Account & persona">TR</div>
       <div class="pop" id="pop-bell" role="menu"></div>
       <div class="pop" id="pop-user" style="min-width:320px"></div>
       <div class="pop" id="pop-live" style="min-width:340px"></div>
@@ -537,8 +606,8 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
       <div class="card-actions" id="home-map-actions"></div>
     </div>
     <div class="card-body"><div class="grid g-map">
-      <div id="india-map-holder" style="min-height:320px;position:relative"></div>
-      <div id="map-right-rail"></div>
+      <div id="india-map-holder" style="min-height:320px;position:relative;min-width:0"></div>
+      <div id="map-right-rail" style="min-width:0"></div>
     </div></div>
   </div>
 
@@ -810,8 +879,12 @@ percent:'<path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17
 indianFlag:'<rect x="3" y="5" width="18" height="14" rx="1.5"/><rect x="3" y="9.2" width="18" height="5.6"/>',
 grid:'<rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/>',
 };
-function icon(name, cls){
-  return '<svg class="'+(cls||'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(I[name]||I.info)+'</svg>';
+function icon(name, cls, size){
+  /* width/height attributes give every icon a controlled intrinsic size (default 16px)
+     so it can never stretch to its parent; contextual CSS rules still override these
+     presentational hints wherever a specific size is required. */
+  const s = size || 16;
+  return '<svg class="'+(cls||'')+'" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(I[name]||I.info)+'</svg>';
 }
 
 /* ============================================================
@@ -1631,7 +1704,7 @@ async function refreshWorker(force){
       s.innerHTML = '<span class="pulse-dot amber"></span>Paused';
       s.style.color = 'var(--warn-deep)';
     } else {
-      s.innerHTML = '<span class="pulse-dot red"></span>Standby';
+      s.innerHTML = '<span class="pulse-dot red"></span>' + (w ? 'Standby' : 'Unreachable');
       s.style.color = '';
     }
   }
@@ -2044,11 +2117,11 @@ function buildMapInto(holderId, movements, opts){
   // markers
   svg += Object.keys(pt).map(k => {
     const c = cityColor(cMean[k]);
-    const rad = 7 + (cnt[k] ? Math.min(5, Math.abs(cMean[k]) / 2.2) : 0);
+    const rad = 4.5 + (cnt[k] ? Math.min(3, Math.abs(cMean[k]) / 3) : 0);
     const big = Math.abs(cMean[k] || 0) >= 4;
     return `<g class="map-marker" data-city="${k}" data-mean="${cMean[k] == null ? '' : cMean[k].toFixed(2)}" style="cursor:pointer">
-      ${big ? `<circle cx="${pt[k][0]}" cy="${pt[k][1]}" r="${rad + 7}" fill="${c}" opacity=".22"></circle>` : ''}
-      <circle cx="${pt[k][0]}" cy="${pt[k][1]}" r="${rad}" fill="${c}" stroke="${isDark() ? '#0b1220' : '#fff'}" stroke-width="2.2"></circle>
+      ${big ? `<circle cx="${pt[k][0]}" cy="${pt[k][1]}" r="${rad + 5}" fill="${c}" opacity=".2"></circle>` : ''}
+      <circle cx="${pt[k][0]}" cy="${pt[k][1]}" r="${rad}" fill="${c}" stroke="${isDark() ? '#0b1220' : '#fff'}" stroke-width="1.6"></circle>
       <text class="map-city-lbl" x="${pt[k][0] + rad + 3}" y="${pt[k][1] + 3.5}">${k}</text>
     </g>`;
   }).join('');
@@ -2099,7 +2172,7 @@ function mapRailHTML(movements){
     <div class="stat-line"><span class="muted2">Period</span><b>${movements && movements.as_of_date ? fmtDateStr(movements.as_of_date) : '—'} vs ${movements && movements.comparison_date ? fmtDateStr(movements.comparison_date) : '—'}</b></div>
     <div class="hr-line">Top absolute movers</div>
     ${movers.map(r => `<div class="list-row clickable" style="cursor:pointer" onclick="openRouteDrawer('${r.route_code}')">
-      <span class="route-badge" style="font-size:10.6px">${r.origin_city}${icon('arrowRight')}<span style="font-size:9px">→</span>${r.destination_city}</span>
+      <span class="route-badge" style="font-size:10.6px;display:inline-flex;align-items:center;gap:2px;min-width:0">${h(r.origin_city)}${icon('arrowRight', null, 11)}${h(r.destination_city)}</span>
       <span class="lr-v">${deltaChip(r.change_pct)}</span>
     </div>`).join('')}
     <div style="margin-top:10px;text-align:center"><button class="btn-link" onclick="navTo('heatmap')">Open full heatmap &amp; 20×5 matrix ${icon('arrowRight')}</button></div>`;
@@ -2676,7 +2749,7 @@ LOADERS.routes = async function(){
       const ch = mvMap[r.route_code];
       const metro = r.is_metro_metro ? '<span class="chip chip-gray" style="font-size:9px">metro</span>' : '';
       return `<tr class="clickable" onclick="openRouteDrawer('${r.route_code}')">
-        <td><span class="route-badge">${h(r.origin_city)} ${icon('arrowRight')} ${h(r.destination_city)}<small> ${r.route_code}</small></span> ${metro}</td>
+        <td><span class="route-badge" style="display:inline-flex;align-items:center;gap:4px;flex-wrap:wrap">${h(r.origin_city)} ${icon('arrowRight', null, 13)} ${h(r.destination_city)}<small> ${r.route_code}</small></span> ${metro}</td>
         <td class="num muted">${num2(r.weight_pct)}%</td>
         <td class="num">${money(r.base_fare_benchmark)}</td>
         <td class="num strong">${money(r.latest_indexed_fare)}</td>
@@ -2946,7 +3019,7 @@ LOADERS.heatmap = async function(){
     </select>`, `<span class="chip chip-cyan">${icon('mapPin')} click any cell → raw quote audit</span>`);
   box.innerHTML += `<div class="card" style="margin-bottom:16px"><div class="card-head">
     <div><h3 class="card-title"><span class="ic">${icon('mapPin')}</span>Airfare change across India</h3><div class="card-sub" id="hm-map-sub">route-level movement</div></div></div>
-    <div class="card-body"><div class="grid g-map"><div id="hm-map-holder" style="min-height:340px"></div><div id="hm-rail"></div></div></div></div>`;
+    <div class="card-body"><div class="grid g-map"><div id="hm-map-holder" style="min-height:340px;min-width:0"></div><div id="hm-rail" style="min-width:0"></div></div></div></div>`;
   box.innerHTML += `<div class="card"><div class="card-head">
     <div><h3 class="card-title"><span class="ic">${icon('grid')}</span>20 × 5 booking-horizon matrix</h3>
       <div class="card-sub" id="hm-sub">loading…</div></div>
@@ -3100,7 +3173,7 @@ LOADERS.forecast = async function(){
       + '</div></div><div class="muted" style="font-size:10.8px;margin-top:8px">'+(bt.total_quotes_evaluated ? bt.total_quotes_evaluated.toLocaleString('en-IN') + ' quotes · ' + bt.sample_days + ' days · ' + fmtDateStr(bt.metric_date) : '')+'</div></div></div>';
   }
   box.innerHTML += '<div class="card"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('bot')+'</span>Nowcast model status</h3></div></div>'
-    + '<div class="card-body">'+(ms ? Object.entries(ms).filter(([k]) => !['generated_at','data_tag'].includes(k)).map(([k, v]) => '<div class="stat-line"><span class="muted">'+h(String(k).replace(/_/g, ' '))+'</span><b>'+(typeof v === 'number' ? num2(v) : h(String(v)))+'</b></div>').join('') : emptyHTML('model status endpoint unavailable'))+'</div></div>';
+    + '<div class="card-body">'+(ms ? Object.entries(ms).filter(([k]) => !['generated_at','data_tag'].includes(k)).map(([k, v]) => '<div class="stat-line"><span class="muted">'+h(String(k).replace(/_/g, ' '))+'</span><b>'+h(fmtEvidenceVal(v))+'</b></div>').join('') : emptyHTML('model status endpoint unavailable'))+'</div></div>';
   box.innerHTML += '</div>';
 };
 
@@ -3235,7 +3308,7 @@ LOADERS.trust = async function(){
       + '<div style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><span class="chip chip-ok">'+icon('shield')+' '+h(pv.provenance_status || 'VALIDATED')+'</span>'
       + '<span class="muted2" style="font-size:10.4px">'+h(pv.audit_certificate_id || '')+'</span></div>'
       + '<div class="code-block" style="font-size:10px;word-break:break-all">'+h(pv.cryptographic_hash_sha256 || '')+'</div>'
-      + (pv.verified_batch_telemetry ? '<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px;font-size:11px">'+Object.entries(pv.verified_batch_telemetry).map(([k, v]) => '<div class="stat-line"><span class="muted">'+h(k.replace(/_/g, ' '))+'</span><b>'+h(String(v))+'</b></div>').join('')+'</div>' : '')
+      + (pv.verified_batch_telemetry ? '<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px;font-size:11px">'+Object.entries(pv.verified_batch_telemetry).map(([k, v]) => '<div class="stat-line"><span class="muted">'+h(k.replace(/_/g, ' '))+'</span><b>'+h(fmtEvidenceVal(v))+'</b></div>').join('')+'</div>' : '')
       + '<div class="muted2" style="font-size:10.4px;margin-top:6px">'+h(pv.compliance || '')+'</div></div>' : emptyHTML('provenance vault unavailable'))+'</div></div>'
     + '<div class="card"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('users')+'</span>Cross-source consensus</h3></div></div>'
     + '<div class="card-body">'+(cs ? '<div class="metric-tile" style="margin-bottom:9px"><div class="mt-k">Market consensus</div>'
@@ -3440,6 +3513,24 @@ function aiSection(title, body){
   return '<div style="margin:9px 0 4px;font-size:9.4px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-4)">'+title+'</div>'
     + '<div style="font-size:12px;line-height:1.55;color:var(--text-2)">'+body+'</div>';
 }
+/* Recursively flatten any evidence value (nested objects/arrays from the analyst
+   payload) into a readable string — never "[object Object]". */
+function fmtEvidenceVal(v, depth){
+  if (v == null) return '—';
+  if (typeof v === 'number') return num2(v);
+  if (typeof v === 'boolean') return v ? 'yes' : 'no';
+  if (typeof v === 'string') return v;
+  if (v instanceof Date) return String(v);
+  if (Array.isArray(v)) return v.slice(0, 6).map(x => fmtEvidenceVal(x, (depth||0)+1)).join(', ');
+  if (typeof v === 'object'){
+    const d = depth || 0;
+    const keys = Object.keys(v).filter(k => v[k] != null).slice(0, 6);
+    if (!keys.length) return '—';
+    if (d >= 2) return keys.map(k => fmtEvidenceVal(v[k], d+1)).join(' ');
+    return keys.map(k => k.replace(/_/g, ' ') + ': ' + fmtEvidenceVal(v[k], d+1)).join(' · ');
+  }
+  return String(v);
+}
 async function askAI(q){
   const input = $('#ai-input');
   const question = (q != null ? q : (input && input.value || '')).trim();
@@ -3464,17 +3555,17 @@ async function askAI(q){
     const ev = ans.numerical_evidence;
     if (ev && typeof ev === 'object'){
       const keys = Object.keys(ev).filter(k => ev[k] != null).slice(0, 10);
-      if (keys.length) hh += aiSection('Evidence (live values)', '<div style="display:grid;grid-template-columns:auto 1fr;gap:3px 12px">'
-        + keys.map(k => '<span class="muted2" style="font-size:10.4px">'+h(k.replace(/_/g, ' '))+'</span><b class="num" style="font-size:11px;text-align:right">'+(typeof ev[k] === 'number' ? num2(ev[k]) : h(String(ev[k])))+'</b>').join('') + '</div>');
+      if (keys.length) hh += aiSection('Evidence (live values)', '<div style="display:grid;grid-template-columns:auto 1fr;gap:4px 12px">'
+        + keys.map(k => '<span class="muted2" style="font-size:10.4px">'+h(k.replace(/_/g, ' '))+'</span><b class="num" style="font-size:10.8px;text-align:right;word-break:break-word">'+h(fmtEvidenceVal(ev[k]))+'</b>').join('') + '</div>');
     }
     if (ans.affected_routes && ans.affected_routes.length){
       hh += aiSection('Affected routes', '<div class="tagflow">'+ans.affected_routes.slice(0, 10).map(x => {
-        const rc = typeof x === 'string' ? x : (x.route_code || x.route || JSON.stringify(x));
+        const rc = typeof x === 'string' ? x : (x && (x.route_code || x.route)) || fmtEvidenceVal(x);
         return '<button class="chip chip-gray" style="cursor:pointer" onclick="openRouteDrawer(\''+h(String(rc)).replace(/'/g, '')+'\')">'+h(String(rc))+'</button>';
       }).join('')+'</div>');
     }
     if (ans.statutory_citations && ans.statutory_citations.length){
-      hh += '<div class="cite">'+icon('book')+' '+ans.statutory_citations.map(esc).join(' · ')+'</div>';
+      hh += '<div class="cite">'+icon('book')+' '+ans.statutory_citations.map(x => h(fmtEvidenceVal(x))).join(' · ')+'</div>';
     }
     hh += '<div style="margin-top:7px;display:flex;gap:6px;flex-wrap:wrap">'+(ans.data_tag ? '<span class="chip chip-gray">'+h(ans.data_tag)+'</span>' : '')+(ans.confidence_score ? '<span class="chip chip-cyan">confidence '+num2(ans.confidence_score * 100)+'%</span>' : '')+'</div>';
     chat.innerHTML += '<div class="bubble ai">'+hh+'</div>';
@@ -3527,13 +3618,13 @@ LOADERS.reports = async function(){
     + '<div class="card"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('activity')+'</span>Active anomalies ('+anomalies.length+')</h3></div></div>'
     + '<div class="card-body">'+(anomalies.length ? anomalies.map(a => '<div class="list-row"><span class="chip chip-up">'+h(a.severity || '')+'</span><span class="muted" style="flex:1;font-size:11px">'+h(a.explanation || a.message || a.title || '')+'</span></div>').join('') : '<span class="chip chip-ok">no active anomalies</span>')+'</div></div>'
     + '<div class="card"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('trendUp')+'</span>Forward 14-day nowcast</h3></div></div>'
-    + '<div class="card-body">'+(Object.keys(now14).length ? Object.entries(now14).map(([k, v]) => '<div class="stat-line"><span class="muted">'+h(k.replace(/_/g, ' '))+'</span><b>'+(typeof v === 'number' ? num2(v) : h(String(v)))+'</b></div>').join('') : '<div class="muted">not in payload — see Forecast module</div>')
+    + '<div class="card-body">'+(Object.keys(now14).length ? Object.entries(now14).map(([k, v]) => '<div class="stat-line"><span class="muted">'+h(k.replace(/_/g, ' '))+'</span><b>'+h(fmtEvidenceVal(v))+'</b></div>').join('') : '<div class="muted">not in payload — see Forecast module</div>')
     + '<button class="btn-link" onclick="navTo(\'forecast\')">Open forecast '+icon('arrowRight')+'</button></div></div>'
     + '<div class="card"><div class="card-head"><div><h3 class="card-title"><span class="ic">'+icon('users')+'</span>Consensus &amp; datasets</h3></div></div>'
     + '<div class="card-body"><div class="stat-line"><span class="muted">Consensus score</span><b>'+num1(cons.overall_market_consensus_score != null ? cons.overall_market_consensus_score : 0)+'</b></div>'
     + '<div class="stat-line"><span class="muted">MoSPI eSankhyiki rows</span><b>'+(mospi ? mospi.count : '—')+'</b></div>'
     + '<div class="stat-line"><span class="muted">DGCA traffic rows</span><b>'+(dgca ? (dgca.count || dgca.total || '—') : '—')+'</b></div>'
-    + (rep.methodology_metadata ? Object.entries(rep.methodology_metadata).slice(0, 3).map(([k, v]) => '<div class="stat-line"><span class="muted">'+h(k.replace(/_/g, ' '))+'</span><b style="font-size:10.6px">'+h(String(v).slice(0, 60))+'</b></div>').join('') : '')
+    + (rep.methodology_metadata ? Object.entries(rep.methodology_metadata).slice(0, 3).map(([k, v]) => '<div class="stat-line"><span class="muted">'+h(k.replace(/_/g, ' '))+'</span><b style="font-size:10.6px">'+h(fmtEvidenceVal(v).slice(0, 60))+'</b></div>').join('') : '')
     + '</div></div></div></div>';
 };
 
@@ -3722,7 +3813,7 @@ LOADERS.about = async function(){
        ['Quotes validated', bt && bt.total_quotes_evaluated ? bt.total_quotes_evaluated.toLocaleString('en-IN') : '—', bt ? fmtDateStr(bt.metric_date) : '']]
       .map(x => '<div class="metric-tile"><div class="mt-k">'+x[0]+'</div><div class="mt-v" style="font-size:17px">'+x[1]+'</div><div class="mt-s">'+x[2]+'</div></div>').join('')
     + '</div></div>'
-    + (hx ? '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:13px">'+Object.entries(hx.subsystems || {}).map(([k, v]) => '<span class="chip chip-gray">'+h(k.replace(/_/g, ' '))+' · '+h((v && v.status) || String(v))+'</span>').join('')+'</div>' : '')
+    + (hx ? '<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:13px">'+Object.entries(hx.subsystems || {}).map(([k, v]) => '<span class="chip chip-gray">'+h(k.replace(/_/g, ' '))+' · '+h((v && v.status) || fmtEvidenceVal(v))+'</span>').join('')+'</div>' : '')
     + '</div></div>'
     + '<div class="grid g-3">'
     + [['Measure', 'High-frequency real index — 20 DGCA-weighted corridors × 5 booking horizons, collected every cycle from 7 live channels.'],
@@ -3861,11 +3952,12 @@ LOADERS.about = async function(){
   const authLogout = $('#auth-logout');
   if (authLogout) authLogout.addEventListener('click', () => { logout(); closeOv('ovl-auth'); });
 
-  /* keyboard: escape closes palette / drawers / pops */
+  /* keyboard: escape closes palette / drawers / mobile sidebar / pops */
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
     closeOv('ovl-pal');
     const d = $('#drawer-route-ovl'); if (d) d.classList.remove('open');
+    closeSidebarMobile();
     $$('.pop.open').forEach(p => p.classList.remove('open'));
   });
 
